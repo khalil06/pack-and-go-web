@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-licol-sm-12 col-md-5"></i> GESTION HOTELS</h1>
+        </div>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                        <td><a href="{{ path('addHotel')}} " class="btn">Ajouter un Hotel</td>
+                        <tr>
+                            <th>Nom Hotel</th>
+                            <th>Nombre d'étoiles</th>
+                            <th>Nombre de chambres</th>
+                            <th>Adresse</th>
+                            <th>Pays</th>
+                            <th>Tel</th>
+                            <th>Email</th>
+                            <th>Image</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for hotel in hotels %}
+                        <tr>
+                            <td>{{ hotel.nomHotel }}</td>
+                            <td>{{ hotel.nbrEtoiles }}</td>
+                            <td>{{ hotel.nbrChambres }}</td>
+                            <td>{{ hotel.adresse }}</td>
+                            <td>{{ hotel.pays }}</td>
+                            <td>{{ hotel.tel }}</td>
+                            <td>{{ hotel.email }}</td>
+                            <td><img src="{{ asset(hotel.image) }}" width="120" height="70"></td>
+                            <td><a href="{{ path('updateHotel', {'id': hotel.idHotel}) }}" class="btn btn-success">Modifier</a></td>
+                            <td><a href="{{ path('deleteHotel', {'id': hotel.idHotel}) }}" class="btn btn-danger">Supprimer</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Essential javascripts for application to work-->
+</body>
+</html>
+{% endblock %}
