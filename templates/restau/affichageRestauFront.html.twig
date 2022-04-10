@@ -1,0 +1,32 @@
+{% extends 'baseFront.html.twig' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="zxx">
+<div class="gallery" id="gallery">
+    <div class="container">
+        <h3 class="title-agile2"> Restaurant</h3>
+        <label class="agile-se"></label>
+        <div class="w3layouts-main">
+            {% for Resteau in tabResteau %}
+            <div class="gallery-grids carouselGallery-grid hidden-xs">
+                <div class="col-md-4 gallery-grid">
+                    <div class="carouselGallery-col-1 carouselGallery-carousel"  data-likes="30" data-index="0" data-username=""
+                         data-location=" {{ Resteau.nomr}}"  data-imagetext=" Adress:{{ Resteau.adressr}} <br> Type:  {{ Resteau.typer }} <br> Pays:{{ Resteau.paysr}} <br>  Tel:{{ Resteau.telr }}"
+                         data-imagepath="{{asset(Resteau.imgr)}}" data-posturl="#"   style="background-image:url(' {{asset(Resteau.imgr)}}')"  >
+                        <div class="carouselGallery-item">
+                            <div class="carouselGallery-item-meta">
+								<span class="carouselGallery-item-meta-user">détails..</span>
+                            </div>
+                        </div>
+                    </div>
+                    <li><a href="{{path('reserver')}}?id={{Resteau.idr }}"  class=""><i class="mb-3 mt-3"> reserver votre restau</i></a></li>
+                    <a  href="{{ path("Ajoutrest") }}" class="nav-link active"><h5 class="mb-3 mt-3" >Voir les avis!</h5></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+           <div class="clearfix"> </div>
+            </div>
+</html>
+{% endblock %}

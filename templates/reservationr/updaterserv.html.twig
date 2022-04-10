@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-edit"></i> Pack & Go </h1>
+                <p>Modifier reservations</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item"><a href="#">SPack & Go</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="tile">
+                <h3 class="tile-title">Modifier Reservation</h3>
+                <div class="tile-body">
+
+                    <form method="post" >
+                        <div class="card-body">
+                            <div class="form-group">
+
+                                {{form_row(formm.nbrpersonner,{'attr':{'class':'form-control'}})}}
+
+
+                                {{form_row(formm.dater,{'attr':{'class':'form-control'}})}}
+
+
+                                {{form_row(formm.timer,{'attr':{'class':'form-control'}})}}
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary" id="add">Modifier</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    </html>
+{% endblock %}
