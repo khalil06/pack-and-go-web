@@ -16,6 +16,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="heading_s1">
+                        <div class="container">
+                            <h3 class="title-agile2"> Reservation</h3>
+                            <label class="agile-se"></label>
+                            <div class="w3layouts-main">
+                                <img src="images/reserv.jpg" alt=""/>
 
                     </div>
 
@@ -23,13 +28,13 @@
                         {{ form_start(formm) }}
 
 
-                        {{form_row(formm.nbrpersonneR,{'attr':{'class':'form-control'}})}}
+                        {{form_row(formm.nbrpersonner,{'attr':{'class':'form-control'}})}}
 
 
-                        {{form_row(formm.dateR,{'attr':{'class':'form-control'}})}}
+                        {{form_row(formm.dater,{'attr':{'class':'form-control'}})}}
 
 
-                        {{form_row(formm.timeR,{'attr':{'class':'form-control'}})}}
+                        {{form_row(formm.timer,{'attr':{'class':'form-control'}})}}
 
 
 
@@ -45,5 +50,8 @@
         </div>
     </div>
 </div>
+    </div>
+</div>
+
 </html>
 {% endblock %}

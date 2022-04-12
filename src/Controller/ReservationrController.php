@@ -32,10 +32,10 @@ class ReservationrController extends AbstractController
      */
     public function ajouterreservation(\Symfony\Component\HttpFoundation\Request $request)
     {
-        $Reservationr = new Reservationr();
-        $idr=$_GET['idr'];
+        $Reservationr = new ReservationR();
+        $id=$_GET['id'];
 
-        $liste = $this->getDoctrine()->getRepository(Resteau::class)->find($idr);
+        $liste = $this->getDoctrine()->getRepository(Resteau::class)->find($id);
         $form = $this->createForm(ReservationRType::class, $Reservationr);
 
         $form->handleRequest($request);

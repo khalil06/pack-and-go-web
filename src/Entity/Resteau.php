@@ -68,10 +68,14 @@ class Resteau
      * @ORM\OneToMany(targetEntity=Reservationr::class, mappedBy="idR")
      */
     private $reservationRs;
-
+    /**
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="idR")
+     */
+    private $commentaires;
     public function __construct()
     {
         $this->reservationRs = new ArrayCollection();
+        $this->commentaires = new ArrayCollection();
     }
 
     public function getTyper(): ?string
@@ -180,5 +184,33 @@ class Resteau
         return $this;
     }
 
+    /**
+     * @return Collection<int, Commentaire>
+     */
+    public function getCommentaires(): Collection
+    {
+        return $this->commentaires;
+    }
 
+    public function addCommentaire(Commentaire $commentaire): self
+    {
+        if (!$this->commentaires->contains($commentaire)) {
+            $this->commentaires[] = $commentaire;
+            $commentaire->setIdR($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentaire(Commentaire $commentaire): self
+    {
+        if ($this->commentaires->removeElement($commentaire)) {
+            // set the owning side to null (unless already changed)
+            if ($commentaire->getIdR() === $this) {
+                $commentaire->setIdR(null);
+            }
+        }
+
+        return $this;
+    }
 }

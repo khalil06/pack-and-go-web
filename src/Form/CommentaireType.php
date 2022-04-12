@@ -2,28 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\Reservationr;
+use App\Entity\Commentaire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReservationRType extends AbstractType
+class CommentaireType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
-            ->add('nbrpersonner')
-            ->add('timer')
-            ->add('dater')
-
+            ->add('contenuCommentairer')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Reservationr::class,
+            'data_class' => Commentaire::class,
         ]);
     }
 }

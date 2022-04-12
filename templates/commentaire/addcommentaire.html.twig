@@ -1,0 +1,53 @@
+{% extends 'baseFront.html.twig' %}
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <div class="section pb_70">
+        <div class="container">
+            <div class="col-lg-12">
+
+            </div>
+        </div>
+
+
+        <div class="section pt-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="heading_s1">
+                            <div class="container">
+                                <h3 class="title-agile2"> Commentaire</h3>
+                                <label class="agile-se"></label>
+                                <div class="w3layouts-main">
+                                    <img src="images/cmnt.jpg"  width="400" height="200"/>
+
+                                </div>
+
+                                <div class="field_form">
+                                    {{ form_start(form) }}
+
+
+                                    {{form_row(form.contenuCommentairer,{'attr':{'class':'form-control'}})}}
+
+
+
+
+
+
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-fill-out">RESERVER</button>
+                                </div>
+                                {{form_end(form) }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </html>
+{% endblock %}
