@@ -36,18 +36,29 @@ class Reservationchambre
     private $checkOut;
 
     /**
-     * @var int
+     * @var \User
      *
-     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
      */
     private $idUser;
 
     /**
-     * @var int
+     * @var \Chambre
      *
-     * @ORM\Column(name="id_chambre", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="reservationCh")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_chambre", referencedColumnName="id_chambre")
+     * })
      */
     private $idChambre;
+
+  /*  /**
+     * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="reservationCh")
+     */
+  /*  private $chambre;*/
 
     public function getNumReservation(): ?int
     {
@@ -78,26 +89,38 @@ class Reservationchambre
         return $this;
     }
 
-    public function getIdUser(): ?int
+    public function getIdUser(): ?User
     {
         return $this->idUser;
     }
 
-    public function setIdUser(int $idUser): self
+    public function setIdUser(?User $idUser): self
     {
         $this->idUser = $idUser;
 
         return $this;
     }
 
-    public function getIdChambre(): ?int
+    public function getIdChambre(): ?Chambre
     {
         return $this->idChambre;
     }
 
-    public function setIdChambre(int $idChambre): self
+    public function setIdChambre(?Chambre $idChambre): self
     {
         $this->idChambre = $idChambre;
+
+        return $this;
+    }
+
+    public function getChambre(): ?Chambre
+    {
+        return $this->chambre;
+    }
+
+    public function setChambre(?Chambre $chambre): self
+    {
+        $this->chambre = $chambre;
 
         return $this;
     }

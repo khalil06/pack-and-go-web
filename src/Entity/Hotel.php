@@ -2,7 +2,12 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 /**
  * Hotel
@@ -23,6 +28,7 @@ class Hotel
 
     /**
      * @var string
+     * @Assert\NotBlank(message="nom hotel est obligatoire")
      *
      * @ORM\Column(name="nom_hotel", type="string", length=30, nullable=false)
      */
@@ -30,52 +36,63 @@ class Hotel
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank
      * @ORM\Column(name="nbr_etoiles", type="integer", nullable=false)
      */
     private $nbrEtoiles;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank(message="nombre chambres est obligatoire")
      * @ORM\Column(name="nbr_chambres", type="integer", nullable=false)
      */
     private $nbrChambres;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="adresse hotel est obligatoire")
      * @ORM\Column(name="adresse", type="string", length=50, nullable=false)
      */
     private $adresse;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="pays hotel est obligatoire")
      * @ORM\Column(name="pays", type="string", length=30, nullable=false)
      */
     private $pays;
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank(message="numero tel est obligatoire")
      * @ORM\Column(name="tel", type="integer", nullable=false)
      */
     private $tel;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="email hotel obligatoire")
      * @ORM\Column(name="email", type="string", length=30, nullable=false)
      */
     private $email;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="veuillez insérer une image")
      * @ORM\Column(name="image", type="string", length=200, nullable=false)
      */
     private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Chambre::class, mappedBy="idHotel",
+     * orphanRemoval=true)
+     */
+    private $chambre;
+
+    public function __construct()
+    {
+        $this->chambre = new ArrayCollection();
+    }
 
     public function getIdHotel(): ?int
     {
@@ -179,6 +196,36 @@ class Hotel
     }
     public function __toString() {
         return $this->getNomHotel();
+    }
+
+    /**
+     * @return Collection<int, Chambre>
+     */
+    public function getChambre(): Collection
+    {
+        return $this->chambre;
+    }
+
+    public function addChambre(Chambre $chambre): self
+    {
+        if (!$this->chambre->contains($chambre)) {
+            $this->chambre[] = $chambre;
+            $chambre->setHotel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChambre(Chambre $chambre): self
+    {
+        if ($this->chambre->removeElement($chambre)) {
+            // set the owning side to null (unless already changed)
+            if ($chambre->getHotel() === $this) {
+                $chambre->setHotel(null);
+            }
+        }
+
+        return $this;
     }
 
 }

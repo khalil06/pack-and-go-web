@@ -305,34 +305,29 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <!-- Gallery -->
 
-<section class="row news-grids pb-lg-3 mt-3 mt-lg-5">
-    <div class="nav3">
-        <style>
-        </style>
+<div class="contact">
 
-        <ul class="gallery">
-            <h3 class="title-agile2">Chambres dans l'hotel</h3>
-            <label class="agile-se"></label>
-            {% for chambre in chambres %}
-            <li>
-                <div class="w3layouts-main" style="width: 50%;">
-                    <div class="about-midd-main">
-                        <a href="#" data-toggle="modal" data-target="#myModal1"><img class="agile-img" src="{{ asset('uploads/' ~ chambre.image) }}" alt=" "></a>
-                        <div class="w3-test">
-                            <h2><span>Chambre {{  chambre.typeChambre }}</span></h2>
-                            <h2> Prix nuitée: {{  chambre.prix }} DT</h2>
-                            <p><h5> Numéro chambre {{  chambre.numChambre }} <br> située étage:  {{  chambre.etage }}</h5></p>
-                            <a href="{{ path('reserverCh', {'id': chambre.idChambre}) }}" class="view">Réserver cette chambre</a>
-                        </div>
-                    </div>
+    <div class="container">
+        <div class="contact-main">
+            <div class="contact-top">
+                <h3>Booking Room</h3>
+                <label class="agile-se"></label>
+                <h4>Merci de choisir les dates</h4>
+            </div>
+            <div class="contact-block1">
+                <div class="contact-block-left">
+                        {{form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                        {{form_row(form.checkIn,{'attr':{'class':'form-control'}})}}
+                        {{form_row(form.checkOut,{'attr':{'class':'form-control'}})}}
+                        <input type="submit" value="Confirmer Réservation">
+                    {{ form_end(form) }}
                 </div>
-            </li>
-            {% endfor %}
-        </ul>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
     </div>
 
-</section>
-
+</div>
 <!-- //Gallery -->
 
 <!-- Contact -->

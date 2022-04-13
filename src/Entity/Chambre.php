@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -59,12 +61,27 @@ class Chambre
     /**
      * @var \Hotel
      *
-     * @ORM\ManyToOne(targetEntity="Hotel")
+     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="chambre")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="id_hotel", referencedColumnName="id_hotel")
      * })
      */
     private $idHotel;
+
+  /*  /**
+     * @ORM\ManyToOne(targetEntity=Hotel::class, inversedBy="chambre")
+     */
+   /* private $hotel;*/
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reservationchambre::class, mappedBy="idChambre")
+     */
+    private $reservationCh;
+
+    public function __construct()
+    {
+        $this->reservationCh = new ArrayCollection();
+    }
 
     public function getIdChambre(): ?int
     {
@@ -139,6 +156,52 @@ class Chambre
     public function setIdHotel(?Hotel $idHotel): self
     {
         $this->idHotel = $idHotel;
+
+        return $this;
+    }
+
+    public function getHotel(): ?Hotel
+    {
+        return $this->hotel;
+    }
+
+    public function setHotel(?Hotel $hotel): self
+    {
+        $this->hotel = $hotel;
+
+        return $this;
+    }
+
+    public function __toString() {
+        return (string)$this->getNumChambre();
+    }
+
+    /**
+     * @return Collection<int, Reservationchambre>
+     */
+    public function getReservationCh(): Collection
+    {
+        return $this->reservationCh;
+    }
+
+    public function addReservationCh(Reservationchambre $reservationCh): self
+    {
+        if (!$this->reservationCh->contains($reservationCh)) {
+            $this->reservationCh[] = $reservationCh;
+            $reservationCh->setChambre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservationCh(Reservationchambre $reservationCh): self
+    {
+        if ($this->reservationCh->removeElement($reservationCh)) {
+            // set the owning side to null (unless already changed)
+            if ($reservationCh->getChambre() === $this) {
+                $reservationCh->setChambre(null);
+            }
+        }
 
         return $this;
     }
