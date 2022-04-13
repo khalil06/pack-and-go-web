@@ -41,7 +41,7 @@
                             <td>{{ hotel.pays }}</td>
                             <td>{{ hotel.tel }}</td>
                             <td>{{ hotel.email }}</td>
-                            <td><img src="{{ asset(hotel.image) }}" width="120" height="70"></td>
+                            <td><img src="{{ asset('uploads/' ~ hotel.image) }}" width="120" height="70"></td>
                             <td><a href="{{ path('updateHotel', {'id': hotel.idHotel}) }}" class="btn btn-success">Modifier</a></td>
                             <td><a href="{{ path('deleteHotel', {'id': hotel.idHotel}) }}" class="btn btn-danger">Supprimer</a></td>
                         </tr>

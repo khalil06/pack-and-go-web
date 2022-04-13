@@ -6,6 +6,7 @@ use App\Entity\Hotel;
 use App\Form\HotelType;
 //use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -35,17 +36,16 @@ class HotelController extends AbstractController
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
         if($form->isSubmitted()){
-
-         /*   $img = $request->files->get('hotel')['image'];
-            $uploads = $this->getParameter('uploads');
-
-        /   $filename = md5(uniqid()) . '.' . $img->guessExtension();
-            $img->move(
-                $uploads,
-                $filename
-            );
+            $file =$hotel->getImage();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
             $hotel->setImage($filename);
-*/
+            try{
+                $file->move(
+                    $this->getParameter('uploads'),
+                    $filename
+                );
+            } catch(FileException $e){
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($hotel);
             $em->flush();
@@ -75,6 +75,17 @@ class HotelController extends AbstractController
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+            $file =$hotel->getImage();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $hotel->setImage($filename);
+            try{
+                $file->move(
+                    $this->getParameter('uploads'),
+                    $filename
+                );
+            } catch(FileException $e){
+
+            }
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute('listHotels');

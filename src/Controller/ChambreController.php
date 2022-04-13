@@ -6,6 +6,7 @@ use App\Entity\Chambre;
 use App\Entity\Hotel;
 use App\Form\ChambreType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -33,17 +34,17 @@ class ChambreController extends AbstractController
         $form = $this->createForm(ChambreType::class, $chambre);
         $form->handleRequest($request);
         if($form->isSubmitted()){
+            $file =$chambre->getImage();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $chambre->setImage($filename);
+            try{
+                $file->move(
+                    $this->getParameter('uploads'),
+                    $filename
+                );
+            } catch(FileException $e){
 
-            /*   $img = $request->files->get('hotel')['image'];
-               $uploads = $this->getParameter('uploads');
-
-           /   $filename = md5(uniqid()) . '.' . $img->guessExtension();
-               $img->move(
-                   $uploads,
-                   $filename
-               );
-               $hotel->setImage($filename);
-   */
+            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($chambre);
             $em->flush();
@@ -62,6 +63,17 @@ class ChambreController extends AbstractController
         $form = $this->createForm(ChambreType::class, $chambre);
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
+            $file =$chambre->getImage();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $chambre->setImage($filename);
+            try{
+                $file->move(
+                    $this->getParameter('uploads'),
+                    $filename
+                );
+            } catch(FileException $e){
+
+            }
             $em = $this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute('listChambres');
