@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Chambre
- *
+ * @ORM\Entity(repositoryClass="App\Repository\ChambreRepository")
  * @ORM\Table(name="chambre", indexes={@ORM\Index(name="fk_chambre_hotel", columns={"id_hotel"})})
- * @ORM\Entity
+ *
  */
 class Chambre
 {
@@ -119,12 +119,12 @@ class Chambre
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getImage()
     {
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage( $image)
     {
         $this->image = $image;
 

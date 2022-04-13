@@ -102,4 +102,16 @@ class ChambreController extends AbstractController
         return $this->render('chambre/listChambresFront.html.twig', ['hotels' => $listHotels]);
     }
 
+    /**
+     * @Route("/chambres/{id}", name="chambresById")
+     */
+    public function AfficherChambresById($id)
+    {
+        $hotel = $this->getDoctrine()->getRepository(Hotel::class)->find($id);
+        $chambre= $this->getDoctrine()->getRepository(Chambre::class)->listChambresById($hotel->getIdHotel());
+        return $this->render('chambre/listChambresFront.html.twig', [
+            "hotel" => $hotel,
+            "chambres"=>$chambre]);
+    }
+
 }
