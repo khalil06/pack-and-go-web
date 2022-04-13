@@ -261,10 +261,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Our News</h4>
-                <p>Lorem ipsum dolor sit amet</p>
                 <img src="{{ asset('images/n1.jpg')}}" alt="blog-image" />
-                <span>Lorem ipsum dolor sit amet, Sed ut perspiciatis unde omnis iste natus error sit voluptatem , eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.accusantium doloremque laudantium, totam rem aperiamconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
             </div>
         </div>
 
@@ -306,39 +303,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 <!-- //Modal3 -->
 
-<!-- //News -->
-
 <!-- Gallery -->
-<section>
-<div class="gallery" id="gallery">
-    <div class="container">
-        <h3 class="title-agile2">Meilleurs destinations meilleurs Hotels</h3>
-        <label class="agile-se"></label>
-        {% for hotel in hotels %}
-        <div class="w3layouts-main">
-            <div class="gallery-grids carouselGallery-grid hidden-xs">
-                <div class="col-md-6 gallery-grid">
-                    <div class="carouselGallery-col-1 carouselGallery-carousel" data-likes="3144" data-index="0" data-username=" " data-imagetext="{{ hotel.nomHotel ~ " situé a " ~ hotel.adresse ~ " - " ~ hotel.pays }}  <br> {{ "Nombre Chambres : " ~  hotel.nbrChambres ~ ""}}  <br> {{ "Email : " ~  hotel.email ~ ""}} <br> {{ "Tel : " ~  hotel.tel ~ ""}}"
-                         data-location="{{ hotel.nomHotel ~ " " ~ hotel.pays }}" data-imagepath="{{ asset(hotel.image) }}" style="background-image: url('{{ asset (hotel.image)}}'); width: 100%; height: 100%;">
-                        <div class="carouselGallery-item">
-                            <div class="carouselGallery-item-meta">
-								<span class="carouselGallery-item-meta-user" >
-									{{  hotel.nomHotel|upper }} {{ "-" }} {{hotel.pays|upper}} <br>
-								</span>
+
+<section class="class="row news-grids pb-lg-5 mt-3 mt-lg-5">
+    <div class="responsive">
+        <style>
+        </style>
+
+        <ul class="gallery">
+                <li>
+                    {% for hotel in hotels %}
+                    <div class="banner-bottom" style="width: 50%;">
+                        <div class="about-midd-main">
+                            <a href="#" data-toggle="modal" data-target="#myModal1"><img class="agile-img" src="{{ asset(hotel.image) }}" alt=" "></a>
+                            <div class="w3-test">
+                                <h2><span>Chambre {{  hotel.typeChambre }}</span></h2>
+                                <h2> Prix nuitée: {{  hotel.prix }} DT</h2>
+                                <p><h5> Numéro chambre {{  hotel.numChambre }} <br> située étage:  {{  hotel.etage }}</h5></p>
+                                <a href="#" class="view">Réserver cette chambre</a>
                             </div>
                         </div>
                     </div>
-                    <a href="/listChambresFront" class="view" >Voir Chambres</a>
+                    <br>
+                    {% endfor %}
+                </li>
+        </ul>
+        <div class="clearfix"></div>
 
-                </div>
-
-                {% endfor %}
-                <div class="clearfix"> </div>
-            </div>
-        </div>
     </div>
-</div>
 </section>
+
 <!-- //Gallery -->
 
 <!-- Contact -->

@@ -102,5 +102,4 @@ class Reservationchambre
         return $this;
     }
 
-
 }

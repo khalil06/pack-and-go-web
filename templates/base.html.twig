@@ -61,7 +61,7 @@
         {% block sidebar %}
         <body class="app sidebar-mini rtl">
         <!-- Navbar-->
-        <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
+        <header class="app-header"><a class="app-header__logo" href="index.html">Pack & Go</a>
             <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
             <!-- Navbar Right Menu-->
             <ul class="app-nav">
@@ -150,11 +150,11 @@
                         <li><a class="treeview-item" href="form-notifications.html"><i class="icon fa fa-circle-o"></i> Form Notifications</a></li>
                     </ul>
                 </li>
-                <li class="treeview is-expanded"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">HOTELS</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+                <li class="treeview is-expanded"><a class="app-menu__item" href="/listHotels" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">HOTELS</span><i class="treeview-indicator fa fa-angle-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a class="treeview-item" href="/listHotels"><i class="icon fa fa-circle-o"></i> Hotels</a></li>
-                        <li><a class="treeview-item active" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Chambres</a></li>
-                        <li><a class="treeview-item active" href="table-data-table.html"><i class="icon fa fa-circle-o"></i> Réservations Chambres</a></li>
+                        <li><a class="treeview-item" href="{{ path('listChambres') }}"><i class="icon fa fa-circle-o"></i> Chambres</a></li>
+                        <li><a class="treeview-item" href="/listReservChambres"><i class="icon fa fa-circle-o"></i> Réservations Chambres</a></li>
                     </ul>
                 </li>
                 <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-file-text"></i><span class="app-menu__label">Pages</span><i class="treeview-indicator fa fa-angle-right"></i></a>
