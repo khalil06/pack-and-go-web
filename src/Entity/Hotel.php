@@ -36,7 +36,7 @@ class Hotel
 
     /**
      * @var int
-     * @Assert\NotBlank
+     *
      * @ORM\Column(name="nbr_etoiles", type="integer", nullable=false)
      */
     private $nbrEtoiles;
@@ -44,6 +44,11 @@ class Hotel
     /**
      * @var int
      * @Assert\NotBlank(message="nombre chambres est obligatoire")
+     * @Assert\NotEqualTo(0)
+     * @Assert\Length(
+     *     max= 3,
+     *     maxMessage="Nombre maximum de chambre 1000",
+     * )
      * @ORM\Column(name="nbr_chambres", type="integer", nullable=false)
      */
     private $nbrChambres;
@@ -57,7 +62,7 @@ class Hotel
 
     /**
      * @var string
-     * @Assert\NotBlank(message="pays hotel est obligatoire")
+     *
      * @ORM\Column(name="pays", type="string", length=30, nullable=false)
      */
     private $pays;
@@ -72,6 +77,7 @@ class Hotel
     /**
      * @var string
      * @Assert\NotBlank(message="email hotel obligatoire")
+     * @Assert\Email(message = "L'email '{{ value }}' n est pas valide")
      * @ORM\Column(name="email", type="string", length=30, nullable=false)
      */
     private $email;
@@ -79,6 +85,7 @@ class Hotel
     /**
      * @var string
      * @Assert\NotBlank(message="veuillez insérer une image")
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png", "image/jpg")
      * @ORM\Column(name="image", type="string", length=200, nullable=false)
      */
     private $image;
@@ -190,8 +197,9 @@ class Hotel
 
     public function setImage($image)
     {
-        $this->image = $image;
-
+        if (!is_null($image)) {
+            $this->image = $image;
+        }
         return $this;
     }
     public function __toString() {

@@ -314,12 +314,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="container">
         <h3 class="title-agile2">Meilleurs destinations meilleurs Hotels</h3>
         <label class="agile-se"></label>
-        {% for hotel in hotels %}
         <div class="w3layouts-main">
             <div class="gallery-grids carouselGallery-grid hidden-xs">
-                <div class="col-md-5 gallery-grid">
-                    <div class="carouselGallery-col-2 carouselGallery-carousel" data-likes="3144" data-index="0" data-username=" " data-imagetext="{{ hotel.nomHotel ~ " situé a " ~ hotel.adresse ~ " - " ~ hotel.pays }}  <br> {{ "Nombre Chambres : " ~  hotel.nbrChambres ~ ""}}  <br> {{ "Email : " ~  hotel.email ~ ""}} <br> {{ "Tel : " ~  hotel.tel ~ ""}}"
-                         data-location="{{ hotel.nomHotel ~ " " ~ hotel.pays }}" data-imagepath="{{ asset('uploads/' ~ hotel.image) }}" style="background-image: url('{{ asset ('uploads/' ~ hotel.image)}}'); width: 100%; height: 100%;">
+                {% for hotel in hotels %}
+                    <div class="col-md-4 gallery-grid">
+                    <div class="carouselGallery-col-2 carouselGallery-carousel" data-imagetext="{{ hotel.nomHotel ~ " situé a " ~ hotel.adresse ~ " - " ~ hotel.pays }}  <br> {{ "Nombre Chambres : " ~  hotel.nbrChambres ~ ""}}  <br> {{ "Email : " ~  hotel.email ~ ""}} <br> {{ "Tel : " ~  hotel.tel ~ ""}}"
+                         data-location="{{ hotel.nomHotel ~ " " ~ hotel.pays }} <br> {{ hotel.nbrEtoiles ~ " étoiles" }} " data-imagepath="{{ asset('uploads/' ~ hotel.image) }}" style="background-image: url('{{ asset ('uploads/' ~ hotel.image)}}'); width: 100%; height: 100%;">
                         <div class="carouselGallery-item">
                             <div class="carouselGallery-item-meta">
 								<span class="carouselGallery-item-meta-user" >
@@ -328,10 +328,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             </div>
                         </div>
                     </div>
-                    <a href="{{ path('chambresById', {'id': hotel.idHotel}) }}" class="view" >Voir Chambres</a>
-
-                </div>
-
+                        <a href="{{ path('chambresById', {'id': hotel.idHotel}) }}" class="view" >Voir Chambres</a>
+                    </div>
                 {% endfor %}
                 <div class="clearfix"> </div>
             </div>

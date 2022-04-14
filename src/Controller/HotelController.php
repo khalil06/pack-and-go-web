@@ -75,16 +75,20 @@ class HotelController extends AbstractController
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $file =$hotel->getImage();
-            $filename = md5(uniqid()).'.'.$file->guessExtension();
-            $hotel->setImage($filename);
-            try{
-                $file->move(
-                    $this->getParameter('uploads'),
-                    $filename
-                );
-            } catch(FileException $e){
+            if($hotel->getImage() == null) {
+                $file = $hotel->getImage();
+                $filename = md5(uniqid()) . '.' . $file->guessExtension();
+                $hotel->setImage($filename);
+                try {
+                    $file->move(
+                        $this->getParameter('uploads'),
+                        $filename
+                    );
+                } catch (FileException $e) {
 
+                }
+            }else{
+                $hotel->setImage($hotel->getImage());
             }
             $em = $this->getDoctrine()->getManager();
             $em->flush();

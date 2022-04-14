@@ -5,6 +5,7 @@ namespace App\Form;
 use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,7 +29,7 @@ class HotelType extends AbstractType
             ])
             ->add('nbrChambres')
             ->add('adresse')
-            ->add('pays')
+            ->add('pays' , CountryType::class)
             ->add('tel')
             ->add('email')
             ->add('image', FileType::class, array('data_class' => null,'required' => false))
