@@ -23,12 +23,16 @@
                             <tr><th>Id Commentaire</th>
 
                                 <th>Contenu Commentaire</th>
+                                <th>Id restau</th>
+
                             </thead>
                             <tbody>
                             {% for Commentaire in tabCmntr %}
                                 <tr>
                                     <td>{{ Commentaire.idcommentairer }}</td>
                                     <td>{{ Commentaire.contenucommentairer }}</td>
+                                    <td>{{ Commentaire.idr }}</td>
+
                                     <td><a href="{{ path('suppC',{'idcommentairer': Commentaire.idcommentairer}) }}"  type="submit" class="btn btn-danger" id="add" >delete</a></td>
                                 </tr>
                             {% endfor %}

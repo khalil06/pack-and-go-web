@@ -6,6 +6,7 @@
     <div class="section pb_70">
         <div class="container">
             <div class="col-lg-12">
+                <img height="400" width="900" src=" {{asset(imgr)}}">
 
             </div>
         </div>
@@ -17,29 +18,12 @@
                     <div class="col-lg-12">
                         <div class="heading_s1">
                             <div class="container">
-                                <h3 class="title-agile2"> Commentaire</h3>
+                                <h3 class="title-agile2"> </h3>
                                 <label class="agile-se"></label>
                                 <div class="w3layouts-main">
-                                    <img src="images/cmnt.jpg"  width="400" height="200"/>
+                                    <img src=""  />
 
-                                </div>
-
-                                <div class="field_form">
-                                    {{ form_start(form) }}
-
-
-                                    {{form_row(form.contenuCommentairer,{'attr':{'class':'form-control'}})}}
-
-
-
-
-
-
-                                </div>
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-fill-out">RESERVER</button>
-                                </div>
-                                {{form_end(form) }}
+                                    {% include "commentaire/afficheCmntrFront.hmtl.twig" %}
                             </div>
                         </div>
 
@@ -47,6 +31,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     </html>

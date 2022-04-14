@@ -45,7 +45,7 @@ class Reservationr
     /**
      * @var \Resteau
      *
-     * @ORM\ManyToOne(targetEntity="Resteau" , inversedBy="reservationRs")
+     * @ORM\ManyToOne(targetEntity="Resteau" , inversedBy="reservationr")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idR", referencedColumnName="idR")
      * })

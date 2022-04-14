@@ -23,6 +23,7 @@
                             <tr><th>Nombre Personne</th>
                                 <th>Time</th>
                                 <th>Date</th>
+                                <th>Id restau</th>
 
 
 
@@ -33,6 +34,8 @@
                                     <td>{{ Reservationr.nbrpersonner }}</td>
                                     <td>{{ Reservationr.timer }}</td>
                                     <td>{{ Reservationr.dater }}</td>
+                                    <td>{{ Reservationr.idr }}</td>
+
                                     <td><a href="{{ path('removReserv',{'idreservationr': Reservationr.idreservationr}) }}"  type="submit" class="btn btn-danger" id="add" >delete</a></td>
                                     <td><a href="{{ path('updateR',{'idreservationr': Reservationr.idreservationr}) }}"  type="submit" class="btn btn-success" id="add" >update</a></td>
                                 </tr>

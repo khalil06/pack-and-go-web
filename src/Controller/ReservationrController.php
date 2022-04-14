@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Reservationr;
 use App\Entity\Resteau;
 
+use App\Entity\User;
 use App\Form\RestauUpdateForm;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\ReservationRType;
@@ -36,19 +37,22 @@ class ReservationrController extends AbstractController
         $id=$_GET['id'];
 
         $liste = $this->getDoctrine()->getRepository(Resteau::class)->find($id);
+        $list = $this->getDoctrine()->getRepository(User::class)->find(1);
+
         $form = $this->createForm(ReservationRType::class, $Reservationr);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             $Reservationr->setIdR($liste);
+            $Reservationr->setIdUser($list);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($Reservationr);
             $em->flush();
-            return $this->redirectToRoute('affichee');
 
         }
-        return $this->render("reservationr/addreservation.html.twig", array('formm' => $form->createView(),'image'=>$liste->getImgR()));
+        return $this->render("reservationr/addreservation.html.twig", array('formm' => $form->createView(),'imgr'=>$liste->getImgr(),'idUser'=>$list));
 
 
     }

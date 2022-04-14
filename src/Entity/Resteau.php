@@ -60,16 +60,16 @@ class Resteau
      *
      * @ORM\Column(name="idR", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="IDENTITY" )
      */
     private $idr;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservationr::class, mappedBy="idR")
+     * @ORM\OneToMany(targetEntity=Reservationr::class, mappedBy="idr" ,cascade={"remove"})
      */
     private $reservationRs;
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="idR")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="idr",cascade={"remove"})
      */
     private $commentaires;
     public function __construct()
@@ -213,4 +213,11 @@ class Resteau
 
         return $this;
     }
+    public function  __toString()
+    {
+        return (String) $this->getIdr() ;
+
+
+    }
+
 }

@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\Reservationr;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 class ReservationRType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -15,8 +17,7 @@ class ReservationRType extends AbstractType
 
             ->add('nbrpersonner')
             ->add('timer')
-            ->add('dater')
-
+            ->add( 'dater')
         ;
     }
 

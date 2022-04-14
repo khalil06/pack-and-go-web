@@ -100,7 +100,10 @@ class User
     {
         return $this->firstName;
     }
-
+public function  __toString()
+{
+    return (String) $this ->getFirstName();
+}
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;

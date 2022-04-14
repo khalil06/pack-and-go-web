@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Entity;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,9 +32,9 @@ class Commentaire
     /**
      * @var \Resteau
      *
-     * @ORM\ManyToOne(targetEntity="Resteau")
+     * @ORM\ManyToOne(targetEntity="Resteau",inversedBy="Commentaire")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idR", referencedColumnName="idR")
+     *   @ORM\JoinColumn(name="idR", referencedColumnName="idR",onDelete="CASCADE")
      * })
      */
     private $idr;
@@ -74,7 +75,7 @@ class Commentaire
 
     public function setIdr(?Resteau $idr): self
     {
-        $this->idr = $idr;
+       $this->idr = $idr;
 
         return $this;
     }
@@ -83,6 +84,11 @@ class Commentaire
     {
         return $this->idUser;
     }
+    public function  __toString()
+    {
+        return (String) $this ->getFirstName();
+    }
+
 
     public function setIdUser(?User $idUser): self
     {
