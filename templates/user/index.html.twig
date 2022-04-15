@@ -1,44 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-back.html.twig' %}
 
 {% block title %}User index{% endblock %}
 
-{% block body %}
-    <h1>User index</h1>
+{% block content %}
 
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>First_name</th>
-                <th>Last_name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Email</th>
                 <th>Number</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Role</th>
                 <th>Birthday</th>
-                <th>Created_date_user</th>
-                <th>Last_updated_user</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.number }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.role }}</td>
                 <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
-                <td>{{ user.createdDateUser ? user.createdDateUser|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.lastUpdatedUser ? user.lastUpdatedUser|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-sm btn-primary">Show</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}"class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
         {% else %}
@@ -49,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_new') }}">Create new</a>
+    <a href="{{ path('app_user_new') }}" class="btn btn-sm btn-success">Create new</a>
 {% endblock %}

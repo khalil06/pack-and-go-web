@@ -56,8 +56,8 @@ class User
      *  @Assert\Length(
      *
      *      max = 8,
-     *
-     *      maxMessage = "Your number cannot be longer than {{ limit }} characters"
+     *      min = 8,
+     *      exactMessage = "Your number must have 8 digits"
      * )
      */
     private $number;
