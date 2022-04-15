@@ -4,7 +4,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * Resteau
  *
@@ -22,35 +23,40 @@ class Resteau
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="nom Restau est obligatoire")
      * @ORM\Column(name="nomR", type="string", length=30, nullable=false)
      */
     private $nomr;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="adresse Restau est obligatoire")
      * @ORM\Column(name="adressR", type="string", length=30, nullable=false)
      */
     private $adressr;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="pays est obligatoire")
      * @ORM\Column(name="paysR", type="string", length=30, nullable=false)
      */
     private $paysr;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="numero tel est obligatoire")
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+$/",
+     *     message="Only numbers allowed"
+     * )
      * @ORM\Column(name="telR", type="string", length=30, nullable=false)
      */
     private $telr;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="veuillez insérer une image")
+     * @Assert\File(mimeTypes={ "imgr/jpeg" , "imgr/png", "imgr/jpg")
      * @ORM\Column(name="imgR", type="string", length=50, nullable=false)
      */
     private $imgr;
@@ -137,19 +143,17 @@ class Resteau
 
         return $this;
     }
-
+    public function setImgr(string $imgr): self
+    {
+        if (!is_null($imgr)) {
+            $this->imgr = $imgr;
+        }
+        return $this;
+    }
     public function getImgr(): ?string
     {
         return $this->imgr;
     }
-
-    public function setImgr(string $imgr): self
-    {
-        $this->imgr = $imgr;
-
-        return $this;
-    }
-
     public function getIdr(): ?int
     {
         return $this->idr;

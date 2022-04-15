@@ -3,7 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * Reservationr
  *
@@ -23,21 +24,26 @@ class Reservationr
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank(message="nombre personne est obligatoire")
+     * @Assert\NotEqualTo(0)
+     * @Assert\Length(
+     *     max= 1,
+     *     maxMessage="Nombre maximum de personne 9",
+     * )
      * @ORM\Column(name="nbrPersonneR", type="integer", nullable=false)
      */
     private $nbrpersonner;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="le temp est obligatoire")
      * @ORM\Column(name="timeR", type="string", length=30, nullable=false)
      */
     private $timer;
 
     /**
      * @var string
-     *
+      * @Assert\NotBlank(message="la date  est obligatoire")
      * @ORM\Column(name="dateR", type="string", length=30, nullable=false)
      */
     private $dater;

@@ -39,7 +39,7 @@ class RestauController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() ) {
-            $file = $Resteau->getNomr() . ('uploads').'/'.'.jpg';
+            $file = $Resteau->getImgr() . ('uploads').'/'.'1.jpg';
 
             $Resteau->setImgr($file);
 

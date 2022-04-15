@@ -4,7 +4,8 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * Commentaire
  *
@@ -24,7 +25,7 @@ class Commentaire
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="commentaire tel est obligatoire")
      * @ORM\Column(name="contenuCommentaireR", type="string", length=100, nullable=false)
      */
     private $contenucommentairer;
