@@ -9,12 +9,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 /**
  * @Route("/user")
  */
 class UserController extends AbstractController
 {
+
     /**
      * @Route("/", name="app_user_index", methods={"GET"})
      */
@@ -28,17 +31,21 @@ class UserController extends AbstractController
     /**
      * @Route("/new", name="app_user_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, UserRepository $userRepository): Response
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $user = new User();
-        $user->setRole("CLIENT");
+        //$user->setRoles(["CLIENT"]);
         $user->setCreatedDateUser(new \DateTime());
         $user->setLastUpdatedUser(new \DateTime());
+        
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$userRepository->add($user);
+            $user->setPassword($passwordEncoder->encodePassword(
+                $user,
+                $form->get('password')->getData()
+            ));
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -85,7 +92,7 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $userRepository->remove($user);
         }
 
