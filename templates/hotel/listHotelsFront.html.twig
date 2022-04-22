@@ -19,6 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!--// Meta tag Keywords -->
 
     <!-- css files -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
     <link rel="stylesheet" href="{{ asset ('css/bootstrap.css') }}"> <!-- Bootstrap-Core-CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css')}}" type="text/css" media="all" /> <!-- Style-CSS -->
     <link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}"> <!-- Font-Awesome-Icons-CSS -->
@@ -35,8 +36,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <!--start-home-->
 <body class="cbp-spmenu-push" id="home">
+
 <!-- Banner -->
 <div id="house" class="top-header">
+
     <div class="col-md-6 logo-w3l w32">
 
         <h1 class="location"><span class="icon-w3"></span><a href="index.html">Travel Go</a></h1>
@@ -195,117 +198,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </section>
 <!-- //services -->
 
-<!-- News -->
-<div class="about-middle" id="news">
-    <div class="container">
-        <div class="testimo">
-            <h3>Our News</h3>
-            <label class="agile-se"></label>
-            <span class="lft-bar-testi"> </span>
-            <span class="rit-bar-testi"> </span>
-        </div>
-        <section class="slider">
-            <div class="flexslider">
-                <ul class="slides">
-                    <li>
-                        <div class="banner-bottom">
-                            <div class="about-midd-main">
-                                <a href="#" data-toggle="modal" data-target="#myModal1"><img class="agile-img" src="{{ asset('images/n1.jpg')}}" alt=" "></a>
-                                <div class="w3-test">
-                                    <h4><span>14</span> November</h4>
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal1">LOREAM IPSUM</a></h5>
-                                    <p> consectetur adipiscing elit, sed do eiusmod idunt ut labore.</p>
-                                    <a href="#" class="view" data-toggle="modal" data-target="#myModal1">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="banner-bottom">
-                            <div class="about-midd-main">
-                                <a href="#" data-toggle="modal" data-target="#myModal2"><img class="agile-img" src="{{ asset('images/n2.jpg') }}" alt=" "></a>
-                                <div class="w3-test">
-                                    <h4><span>16</span> November</h4>
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal2">dolor amet</a></h5>
-                                    <p>consectetur adipiscing elit, sed do eiusmod idunt ut labore.</p>
-                                    <a href="#" class="view" data-toggle="modal" data-target="#myModal1">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="banner-bottom">
-                            <div class="about-midd-main">
-                                <a href="#" data-toggle="modal" data-target="#myModal3"><img class="agile-img" src="{{ asset('images/n3.jpg')}}" alt=" "></a>
-                                <div class="w3-test">
-                                    <h4><span>18</span> November</h4>
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal3">iste natus</a></h5>
-                                    <p> consectetur adipiscing elit, sed do eiusmod idunt ut labore.</p>
-                                    <a href="#" class="view" data-toggle="modal" data-target="#myModal1">Read More</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix"> </div>
-        </section>
-    </div>
-</div>
-
-<!-- Modal1 -->
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" >
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Our News</h4>
-                <p>Lorem ipsum dolor sit amet</p>
-                <img src="{{ asset('images/n1.jpg')}}" alt="blog-image" />
-                <span>Lorem ipsum dolor sit amet, Sed ut perspiciatis unde omnis iste natus error sit voluptatem , eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.accusantium doloremque laudantium, totam rem aperiamconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- //Modal1 -->
-<!-- Modal2 -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" >
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Our News</h4>
-                <p>Lorem ipsum dolor sit amet</p>
-                <img src="{{ asset('images/n2.jpg')}}" alt="blog-image" />
-                <span>Lorem ipsum dolor sit amet, Sed ut perspiciatis unde omnis iste natus error sit voluptatem , eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.accusantium doloremque laudantium, totam rem aperiamconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- //Modal2 -->
-<!-- Modal3 -->
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" >
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Our News</h4>
-                <p>Lorem ipsum dolor sit amet</p>
-                <img src="{{ asset('images/n3.jpg')}}" alt="blog-image" />
-                <span>Lorem ipsum dolor sit amet, Sed ut perspiciatis unde omnis iste natus error sit voluptatem , eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.accusantium doloremque laudantium, totam rem aperiamconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- //Modal3 -->
-
 <!-- //News -->
 
 <!-- Gallery -->
@@ -318,16 +210,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="gallery-grids carouselGallery-grid hidden-xs">
                 {% for hotel in hotels %}
                     <div class="col-md-4 gallery-grid">
-                    <div class="carouselGallery-col-2 carouselGallery-carousel" data-imagetext="{{ hotel.nomHotel ~ " situé a " ~ hotel.adresse ~ " - " ~ hotel.pays }}  <br> {{ "Nombre Chambres : " ~  hotel.nbrChambres ~ ""}}  <br> {{ "Email : " ~  hotel.email ~ ""}} <br> {{ "Tel : " ~  hotel.tel ~ ""}}"
-                         data-location="{{ hotel.nomHotel ~ " " ~ hotel.pays }} <br> {{ hotel.nbrEtoiles ~ " étoiles" }} " data-imagepath="{{ asset('uploads/' ~ hotel.image) }}" style="background-image: url('{{ asset ('uploads/' ~ hotel.image)}}'); width: 100%; height: 100%;">
-                        <div class="carouselGallery-item">
-                            <div class="carouselGallery-item-meta">
-								<span class="carouselGallery-item-meta-user" >
-									{{  hotel.nomHotel|upper }} {{ "-" }} {{hotel.pays|upper}} <br>
-								</span>
+                        <div class="carouselGallery-col-2 carouselGallery-carousel" data-imagetext=" {{ hotel.nbrEtoiles|rating ~ hotel.nomHotel ~ " situé a " ~ hotel.adresse ~ " - " ~ hotel.pays }}  <br> {{ "Nombre Chambres : " ~  hotel.nbrChambres ~ ""}}  <br> {{ "Email : " ~  hotel.email ~ ""}} <br> {{ "Tel : " ~  hotel.tel ~ ""}}"
+                         data-location="{{ hotel.nomHotel ~ " " ~ hotel.pays }} <br> {{ hotel.nbrEtoiles|rating ~ "" }} " data-imagepath="{{ asset('uploads/' ~ hotel.image) }}" style="background-image: url('{{ asset ('uploads/' ~ hotel.image)}}'); width: 100%; height: 100%;">
+                            <div class="carouselGallery-item">
+                                <div class="carouselGallery-item-meta">
+                                    <span class="carouselGallery-item-meta-user" >
+                                        {{  hotel.nomHotel|upper }} {{ "-" }} {{hotel.pays|upper}}
+                                        <br>
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        {{ hotel.nbrEtoiles|rating }}
                         <a href="{{ path('chambresById', {'id': hotel.idHotel}) }}" class="view" >Voir Chambres</a>
                     </div>
                 {% endfor %}
@@ -432,6 +326,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- js-scripts -->
 <!-- js -->
 <script type="text/javascript" src="{{ asset('js/jquery-2.1.4.min.js')}}"></script>
+<script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
 <script type="text/javascript" src="{{ asset('js/bootstrap.js')}}"></script> <!-- Necessary-JavaScript-File-For-Bootstrap -->
 <!-- //js -->
 

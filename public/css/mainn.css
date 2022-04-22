@@ -285,7 +285,7 @@ background-color: #fffffe;
         width: 100%;
     }
 }
-@media only screen (max-width: 1200px){
+@media only screen and (max-width: 1200px){
     .carouselGallery-modal .container{
         padding-right: 334px;
         width: 850px;

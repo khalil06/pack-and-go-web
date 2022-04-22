@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,35 +27,57 @@ class Chambre
 
     /**
      * @var int
-     *
+     * @Assert\NotBlank(message="Numero chambre est obligatoire")
+     * @Assert\NotEqualTo(0,
+     *     message="doir être différent de 0")
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+$/",
+     *     message="Only numbers allowed"
+     * )
      * @ORM\Column(name="num_chambre", type="integer", nullable=false)
      */
     private $numChambre;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Type chambre est obligatoire")
+     * @Assert\NotEqualTo(0,
+     *     message="doir être différent de 0")
      * @ORM\Column(name="type_chambre", type="string", length=20, nullable=false)
      */
     private $typeChambre;
 
     /**
      * @var int
-     *
+     * @Assert\LessThan(200,
+     *     message="Etage doit etre inferieur a 200")
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+$/",
+     *     message="Only numbers allowed"
+     * )
+     * @Assert\NotBlank(message="Etage est obligatoire")
      * @ORM\Column(name="etage", type="integer", nullable=false)
      */
     private $etage;
 
     /**
      * @var int
+     * @Assert\NotBlank(message="Prix est obligatoire")
+     * @Assert\NotEqualTo(0,
+     *     message="doir être différent de 0")
      *
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+$/",
+     *     message="Only numbers allowed"
+     * )
      * @ORM\Column(name="prix", type="integer", nullable=false)
      */
     private $prix;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="Image est obligatoire")
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png", "image/jpg"})
      * @ORM\Column(name="image", type="string", length=100, nullable=false)
      */
     private $image;
@@ -75,6 +99,7 @@ class Chambre
 
     /**
      * @ORM\OneToMany(targetEntity=Reservationchambre::class, mappedBy="idChambre")
+     * onDelete="CASCADE"
      */
     private $reservationCh;
 
@@ -173,7 +198,7 @@ class Chambre
     }
 
     public function __toString() {
-        return (string)$this->getNumChambre();
+        return (string) $this->getNumChambre();
     }
 
     /**

@@ -12,5 +12,6 @@ return [
     Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle::class => ['all' => true],
     Symfony\Bundle\SecurityBundle\SecurityBundle::class => ['all' => true],
     Twig\Extra\TwigExtraBundle\TwigExtraBundle::class => ['all' => true],
-    Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
+    Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class => ['all' => true],
+    blackknight467\StarRatingBundle\StarRatingBundle::class => ['all' => true],
 ];

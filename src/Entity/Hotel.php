@@ -29,7 +29,8 @@ class Hotel
     /**
      * @var string
      * @Assert\NotBlank(message="nom hotel est obligatoire")
-     *
+     * @Assert\NotEqualTo(0,
+     *     message="doir être différent de 0")
      * @ORM\Column(name="nom_hotel", type="string", length=30, nullable=false)
      */
     private $nomHotel;
@@ -44,10 +45,15 @@ class Hotel
     /**
      * @var int
      * @Assert\NotBlank(message="nombre chambres est obligatoire")
-     * @Assert\NotEqualTo(0)
+     * @Assert\NotEqualTo(0,
+     *     message="doir être différent de 0")
      * @Assert\Length(
      *     max= 3,
      *     maxMessage="Nombre maximum de chambre 1000",
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[0-9]+$/",
+     *     message="Only numbers allowed"
      * )
      * @ORM\Column(name="nbr_chambres", type="integer", nullable=false)
      */
@@ -56,6 +62,8 @@ class Hotel
     /**
      * @var string
      * @Assert\NotBlank(message="adresse hotel est obligatoire")
+     * @Assert\NotEqualTo(0,
+     *     message="doir être différent de 0")
      * @ORM\Column(name="adresse", type="string", length=50, nullable=false)
      */
     private $adresse;
@@ -70,6 +78,12 @@ class Hotel
     /**
      * @var int
      * @Assert\NotBlank(message="numero tel est obligatoire")
+     * @Assert\NotEqualTo(0,
+     *     message="doir être différent de 0")
+     * @Assert\Length(
+     *     max= 15,
+     *     maxMessage="tel 15 chiffres"
+     * )
      * @ORM\Column(name="tel", type="integer", nullable=false)
      */
     private $tel;
@@ -85,7 +99,7 @@ class Hotel
     /**
      * @var string
      * @Assert\NotBlank(message="veuillez insérer une image")
-     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png", "image/jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png", "image/jpg"})
      * @ORM\Column(name="image", type="string", length=200, nullable=false)
      */
     private $image;

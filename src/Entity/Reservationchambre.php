@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 /**
  * Reservationchambre
@@ -23,14 +26,18 @@ class Reservationchambre
 
     /**
      * @var \DateTime
-     *
+     * @Assert\GreaterThan(
+     *     value="+1 days",
+     *     message="La date saisie doit être sup ou égale au {{ compared_value }}"
+     * )
      * @ORM\Column(name="check_in", type="date", nullable=false)
      */
     private $checkIn;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\GreaterThan(propertyPath="checkIn",
+     *     message="date check out doit etre sup a date check in")
      * @ORM\Column(name="check_out", type="date", nullable=false)
      */
     private $checkOut;

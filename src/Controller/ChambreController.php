@@ -33,8 +33,8 @@ class ChambreController extends AbstractController
         $chambre = new Chambre();
         $form = $this->createForm(ChambreType::class, $chambre);
         $form->handleRequest($request);
-        if($form->isSubmitted()){
-            $file =$chambre->getImage();
+        if($form->isSubmitted() && $form->isValid()){
+            $file = $form->get('image')->getData();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $chambre->setImage($filename);
             try{
@@ -62,17 +62,21 @@ class ChambreController extends AbstractController
         $chambre = $this->getDoctrine()->getRepository(Chambre::class)->find($id);
         $form = $this->createForm(ChambreType::class, $chambre);
         $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            $file =$chambre->getImage();
-            $filename = md5(uniqid()).'.'.$file->guessExtension();
-            $chambre->setImage($filename);
-            try{
-                $file->move(
-                    $this->getParameter('uploads'),
-                    $filename
-                );
-            } catch(FileException $e){
+        if ($form->isSubmitted() && $form->isValid()) {
+            if($form->get('image')->getData() != null) {
+                $file = $form->get('image')->getData();
+                $filename = md5(uniqid()) . '.' . $file->guessExtension();
+                $chambre->setImage($filename);
+                try {
+                    $file->move(
+                        $this->getParameter('uploads'),
+                        $filename
+                    );
+                } catch (FileException $e) {
 
+                }
+            }else{
+                $chambre->setImage($form->get('image')->getData());
             }
             $em = $this->getDoctrine()->getManager();
             $em->flush();

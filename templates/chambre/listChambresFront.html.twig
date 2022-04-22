@@ -196,139 +196,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- //services -->
 
 <!-- News -->
-<div class="about-middle" id="news">
-    <div class="container">
-        <div class="testimo">
-            <h3>Our News</h3>
-            <label class="agile-se"></label>
-            <span class="lft-bar-testi"> </span>
-            <span class="rit-bar-testi"> </span>
-        </div>
-        <section class="slider">
-            <div class="flexslider">
-                <ul class="slides">
-                    <li>
-                        <div class="banner-bottom">
-                            <div class="about-midd-main">
-                                <a href="#" data-toggle="modal" data-target="#myModal1"><img class="agile-img" src="{{ asset('images/n1.jpg')}}" alt=" "></a>
-                                <div class="w3-test">
-                                    <h4><span>14</span> November</h4>
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal1">LOREAM IPSUM</a></h5>
-                                    <p> consectetur adipiscing elit, sed do eiusmod idunt ut labore.</p>
-                                    <a href="#" class="view" data-toggle="modal" data-target="#myModal1">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="banner-bottom">
-                            <div class="about-midd-main">
-                                <a href="#" data-toggle="modal" data-target="#myModal2"><img class="agile-img" src="{{ asset('images/n2.jpg') }}" alt=" "></a>
-                                <div class="w3-test">
-                                    <h4><span>16</span> November</h4>
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal2">dolor amet</a></h5>
-                                    <p>consectetur adipiscing elit, sed do eiusmod idunt ut labore.</p>
-                                    <a href="#" class="view" data-toggle="modal" data-target="#myModal1">Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="banner-bottom">
-                            <div class="about-midd-main">
-                                <a href="#" data-toggle="modal" data-target="#myModal3"><img class="agile-img" src="{{ asset('images/n3.jpg')}}" alt=" "></a>
-                                <div class="w3-test">
-                                    <h4><span>18</span> November</h4>
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal3">iste natus</a></h5>
-                                    <p> consectetur adipiscing elit, sed do eiusmod idunt ut labore.</p>
-                                    <a href="#" class="view" data-toggle="modal" data-target="#myModal1">Read More</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="clearfix"> </div>
-        </section>
-    </div>
-</div>
-
-<!-- Modal1 -->
-<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" >
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <img src="{{ asset('images/n1.jpg')}}" alt="blog-image" />
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- //Modal1 -->
-<!-- Modal2 -->
-<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" >
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Our News</h4>
-                <p>Lorem ipsum dolor sit amet</p>
-                <img src="{{ asset('images/n2.jpg')}}" alt="blog-image" />
-                <span>Lorem ipsum dolor sit amet, Sed ut perspiciatis unde omnis iste natus error sit voluptatem , eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.accusantium doloremque laudantium, totam rem aperiamconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- //Modal2 -->
-<!-- Modal3 -->
-<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" >
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4>Our News</h4>
-                <p>Lorem ipsum dolor sit amet</p>
-                <img src="{{ asset('images/n3.jpg')}}" alt="blog-image" />
-                <span>Lorem ipsum dolor sit amet, Sed ut perspiciatis unde omnis iste natus error sit voluptatem , eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.accusantium doloremque laudantium, totam rem aperiamconsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
-            </div>
-        </div>
-
-    </div>
-</div>
-<!-- //Modal3 -->
 
 <!-- Gallery -->
 
 <section class="row news-grids pb-lg-3 mt-3 mt-lg-5">
     <div class="nav3">
-        <style>
-        </style>
-
         <ul class="gallery">
+
             <h3 class="title-agile2">Chambres dans l'hotel</h3>
+
             <label class="agile-se"></label>
-            {% for chambre in chambres %}
             <li>
-                <div class="w3layouts-main" style="width: 50%;">
-                    <div class="about-midd-main">
-                        <a href="#" data-toggle="modal" data-target="#myModal1"><img class="agile-img" src="{{ asset('uploads/' ~ chambre.image) }}" alt=" "></a>
-                        <div class="w3-test">
-                            <h2><span>Chambre {{  chambre.typeChambre }}</span></h2>
-                            <h2> Prix nuitée: {{  chambre.prix }} DT</h2>
-                            <p><h5> Numéro chambre {{  chambre.numChambre }} <br> située étage:  {{  chambre.etage }}</h5></p>
-                            <a href="{{ path('reserverCh', {'id': chambre.idChambre}) }}" class="view">Réserver cette chambre</a>
-                        </div>
-                    </div>
+                <div class="w3layouts-main" >
+                        {% for chambre in chambres %}
+                            <div class="border:2px solid #E3F2FD;">
+                                <div class="ww" class="responsive">
+                                    <h2 style="color: #f2af00 "><span>Chambre {{  chambre.typeChambre }} </span></h2>
+                                    <h2 style="color: antiquewhite"> Prix nuitée: {{  chambre.prix }} TND</h2><br><br>
+                                    <img class="agile-img" src="{{ asset('uploads/' ~ chambre.image) }}" style="width: 220px; height: 200px; background-size: cover;" class="responsive" >
+                                    <br><br>
+                                    <p><h3 style="color: #0d1214"> Chambre numéro {{  chambre.numChambre }} <br> étage:  {{  chambre.etage }}</h3></p>
+                                    <a href="{{ path('reserverCh', {'id': chambre.idChambre}) }}" class="view">Réserver cette chambre</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    <div class="clearfix"></div>
                 </div>
+                <style>
+                .ww{
+                    float: left;
+                    width: 30%;
+                    margin-left: 40px;
+                    margin-bottom: 40px;
+                    background: #478bca;
+                    padding:4% 1.5% 4%;
+                }
+                </style>
             </li>
-            {% endfor %}
+
         </ul>
+
     </div>
 
 </section>

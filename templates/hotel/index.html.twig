@@ -2,6 +2,7 @@
 {% block body %}
 <!DOCTYPE html>
 <html lang="en">
+
 <main class="app-content">
     <div class="app-title">
         <div>
@@ -13,13 +14,16 @@
             <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
         </ul>
     </div>
+
     <div class="row">
+
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
+
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
-                        <td><a href="{{ path('addHotel')}} " class="btn">Ajouter un Hotel</td>
+                        <td><a href="{{ path('addHotel')}} " class="btn">Ajouter un Hotel</a></td>
                         <tr>
                             <th>Nom Hotel</th>
                             <th>Nombre d'étoiles</th>
@@ -33,6 +37,7 @@
                         </thead>
                         <tbody>
                         {% for hotel in hotels %}
+
                         <tr>
                             <td>{{ hotel.nomHotel }}</td>
                             <td>{{ hotel.nbrEtoiles }}</td>
@@ -41,7 +46,7 @@
                             <td>{{ hotel.pays }}</td>
                             <td>{{ hotel.tel }}</td>
                             <td>{{ hotel.email }}</td>
-                            <td><img src="{{ asset('uploads/' ~ hotel.image) }}" width="120" height="70"></td>
+                            <td><img src="{{ asset('uploads/' ~ hotel.image) }}" width="180" height="100"></td>
                             <td><a href="{{ path('updateHotel', {'id': hotel.idHotel}) }}" class="btn btn-success">Modifier</a></td>
                             <td><a href="{{ path('deleteHotel', {'id': hotel.idHotel}) }}" class="btn btn-danger">Supprimer</a></td>
                         </tr>

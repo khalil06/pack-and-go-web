@@ -306,27 +306,76 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Gallery -->
 
 <div class="contact">
+    <div class="box" id="box">
 
     <div class="container">
+
         <div class="contact-main">
             <div class="contact-top">
                 <h3>Booking Room</h3>
                 <label class="agile-se"></label>
                 <h4>Merci de choisir les dates</h4>
             </div>
-            <div class="contact-block1">
-                <div class="contact-block-left">
+                <div class="contact-block1">
+                    <div class="contact-block-left">
                         {{form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
-                        {{form_row(form.checkIn,{'attr':{'class':'form-control'}})}}
-                        {{form_row(form.checkOut,{'attr':{'class':'form-control'}})}}
-                        <input type="submit" value="Confirmer Réservation">
-                    {{ form_end(form) }}
+                            {{form_row(form.checkIn,{'attr':{'class':'form-control'}})}}
+                            {{form_row(form.checkOut,{'attr':{'class':'form-control'}})}}
+                            <br>
+                            <input type="submit" value="Confirmer Réservation">
+                            {{ form_label(form.idUser, 'user') }}
+                            {{ form_widget(form.idUser) }}
+                        {{ form_end(form) }}
+                    </div>
+                    <div class="clearfix"> </div>
                 </div>
-                <div class="clearfix"> </div>
             </div>
         </div>
     </div>
+    <style>
 
+        .box{
+            background: #E3F2FD;
+            box-sizing: border-box;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgb(23, 32, 90);
+            border: 2px solid #2a3cad;
+            color: white;
+            padding: 20px;
+            color:#0091EA;
+        }
+
+        .box:before{
+            width:100%;
+            height:100%;
+            background:#80CBC4;
+            transition:0.5s;
+            pointer-events: none;
+        }
+
+        .box:hover:before{
+            left:-50%;
+            transform: skewX(-5deg);
+        }
+
+        .box span{
+            width: 100%;
+            height: 100%;
+            display: block;
+            box-sizing: border-box;
+
+        }
+
+        .box span:before
+        {
+            width:100%;
+            height: 2px;
+            background: #50dfdb;
+            animation: animate 4s linear infinite;
+        }
+
+
+    </style>
 </div>
 <!-- //Gallery -->
 

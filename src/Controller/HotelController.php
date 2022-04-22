@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Hotel;
 use App\Form\HotelType;
-//use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +35,7 @@ class HotelController extends AbstractController
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $file =$hotel->getImage();
+            $file = $form->get('image')->getData();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $hotel->setImage($filename);
             try{
@@ -52,7 +51,7 @@ class HotelController extends AbstractController
             return $this->redirectToRoute('listHotels');
         }
         return $this->render("hotel/addHotel.html.twig",['hotel' => $hotel,
-        'form'=>$form->createView()]);
+            'form'=>$form->createView()]);
     }
 
 
@@ -75,8 +74,8 @@ class HotelController extends AbstractController
         $form = $this->createForm(HotelType::class, $hotel);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            if($hotel->getImage() == null) {
-                $file = $hotel->getImage();
+            if($form->get('image')->getData() != null) {
+                $file = $form->get('image')->getData();
                 $filename = md5(uniqid()) . '.' . $file->guessExtension();
                 $hotel->setImage($filename);
                 try {
@@ -88,7 +87,7 @@ class HotelController extends AbstractController
 
                 }
             }else{
-                $hotel->setImage($hotel->getImage());
+                $hotel->setImage($form->get('image')->getData());
             }
             $em = $this->getDoctrine()->getManager();
             $em->flush();

@@ -19,7 +19,7 @@
                     <div class="tile-body">
                         <table class="table table-hover table-bordered" id="sampleTable">
                             <thead>
-                            <td><a href="{{ path('addChambre')}} " class="btn">Ajouter une Chambre</td>
+                            <td><a href="{{ path('addChambre')}} " class="btn">Ajouter une Chambre</a></td>
                             <tr>
                                 <th>Numero chambre</th>
                                 <th>Type chambre</th>
@@ -36,7 +36,7 @@
                                     <td>{{ chambre.typeChambre }}</td>
                                     <td>{{ chambre.etage }}</td>
                                     <td>{{ chambre.prix }}</td>
-                                    <td><img src="{{ asset('uploads/' ~ chambre.image) }}" width="120" height="70"></td>
+                                    <td><img src="{{ asset('uploads/' ~ chambre.image) }}" width="180" height="100"></td>
                                     <td>{{ chambre.idHotel }}</td>
                                     <td><a href="{{ path('updateChambre', {'id': chambre.idChambre}) }}" class="btn btn-success">Modifier</a></td>
                                     <td><a href="{{ path('deleteChambre', {'id': chambre.idChambre}) }}" class="btn btn-danger">Supprimer</a></td>
