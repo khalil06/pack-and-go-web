@@ -17,25 +17,34 @@
         <div class="col-md-6">
             <div class="tile">
                 <div class="tile-body">
-                        <form method="post" >
-                            <div class="card-body">
-                                <div class="form-group">
+                    <div class="field_form">
+                        {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
                                     {{form_row(form.typer,{'attr':{'class':'form-control'}})}}
+
                                     {{form_row(form.nomr,{'attr':{'class':'form-control'}})}}
+
+
                                     {{form_row(form.adressr,{'attr':{'class':'form-control'}})}}
+
                                     {{form_row(form.paysr,{'attr':{'class':'form-control'}})}}
+
                                     {{form_row(form.telr,{'attr':{'class':'form-control'}})}}
+
                                     {{form_row(form.imgr)}}
+
                                     <div class="card-footer">
                                         <button  class="btn btn-primary" type="submit"  id="add">Submit</button>
                                     </div>
-                                </div>
+                                {{ form_end(form) }}
+
                             </div>
-                        </form>
+
 
                 </div>
             </div>
         </div>
+
 </main>
 </html>
 {% endblock %}

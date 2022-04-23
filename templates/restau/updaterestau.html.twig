@@ -19,9 +19,8 @@
             <h3 class="tile-title">Register</h3>
             <div class="tile-body">
 
-                <form method="post" >
-                    <div class="card-body">
-                        <div class="form-group">
+                            {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
                             {{form_row(form.typer,{'attr':{'class':'form-control'}})}}
 
                             {{form_row(form.nomr,{'attr':{'class':'form-control'}})}}
@@ -33,10 +32,9 @@
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" id="add">Modifier</button>
                             </div>
+                            {{ form_end(form) }}
+
                         </div>
-                    </div>
-                </form>
-            </div>
         </div>
         <div class="tile-footer">
             <div class="row">

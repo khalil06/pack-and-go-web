@@ -13,8 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 class RestauController extends AbstractController
 {
     /**
@@ -27,28 +29,34 @@ class RestauController extends AbstractController
         ]);
     }
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route ("/AddR",name="Ajoutrest")
+     * @param Request $request
+     * @return Response
      */
-    public function ajouterRestau(\Symfony\Component\HttpFoundation\Request $request)
+    public function ajouterRestau(Request $request):Response
     {
         $Resteau = new Resteau();
         $form = $this->createForm(RestauFormType::class, $Resteau);
-       $form->add('Ajouter', SubmitType::class);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() ) {
-            $file = $Resteau->getImgr() . ('uploads').'/'.'1.jpg';
-
-            $Resteau->setImgr($file);
+        if ($form->isSubmitted() &&$form->isValid()) {
+            $file = $form->get('imgr')->getData();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $Resteau->setImgr($filename);
+            try{
+                $file->move(
+                    $this->getParameter('uploads'),
+                    $filename
+                );
+            } catch(FileException $e){
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($Resteau);
             $em->flush();
          return $this->redirectToRoute('affiche');
         }
-        return $this->render("restau/index.html.twig", [
+        return $this->render("restau/index.html.twig", ['Resteau'=> $Resteau,
             'form' => $form->createView()
         ]);
 
@@ -60,11 +68,20 @@ class RestauController extends AbstractController
      *
      */
 
-    function affichageRestau()
+    function affichageRestau(Request  $request, PaginatorInterface $paginator)
     {
 
 
-        $liste = $this->getDoctrine()->getRepository(Resteau::class)->findall();
+
+        $donnees = $this->getDoctrine()->getRepository(Resteau::class)->findall();
+        $liste=$paginator->paginate(
+            $donnees, //on passe les donnees
+            $request->query->getInt('page',1),// num de la page en cours,1 par defaut
+            4
+
+        );
+
+       // $liste = $this->getDoctrine()->getRepository(Resteau::class)->findall();
 
         return $this->render('restau/affichageRestau.html.twig', ['tabResteau' => $liste]);
 
@@ -95,10 +112,20 @@ class RestauController extends AbstractController
     {
         $Resteau=$this->getDoctrine()->getRepository(Resteau::class)->find($idr);
 
-        $form = $this->createForm(RestauUpdateForm::class, $Resteau);
+        $form = $this->createForm(RestauFormType::class, $Resteau);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() ) {
+        if ($form->isSubmitted() &&$form->isValid() ) {
+            $file = $form->get('imgr')->getData();
+            $filename = md5(uniqid()).'.'.$file->guessExtension();
+            $Resteau->setImgr($filename);
+            try{
+                $file->move(
+                    $this->getParameter('uploads'),
+                    $filename
+                );
+            } catch(FileException $e){
+            }
 
             $em = $this->getDoctrine()->getManager();
 
@@ -135,5 +162,18 @@ class RestauController extends AbstractController
 
 
 }
+    /**
+     * @Route("/search", name="search")
+     */
+    public function searchcat(Request $request,NormalizerInterface $Normalizer)
+    {
+                $repository = $this->getDoctrine()->getRepository(Resteau::class);
+        $requestString=$request->get('searchValue');
+        $annonces = $repository->findBynomr($requestString);
+        $jsonContent = $Normalizer->normalize($annonces, 'json',['groups'=>'post:read']);
+        $retour=json_encode($jsonContent);
+        return new Response($retour);
+
+    }
 
 }

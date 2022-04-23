@@ -13,6 +13,7 @@
         <meta name="keywords" content="Travel Go Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
             function hideURLbar(){ window.scrollTo(0,1); } </script>
+
         <!--// Meta tag Keywords -->
 
         <!-- css files -->
@@ -51,6 +52,12 @@
                 <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
             </ul>
         </div>
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+        </script>
         <div class="search">
             <form action="#" method="post">
                 <input type="search" placeholder="Search here..." name="Search" required="">
@@ -58,6 +65,31 @@
             </form>
         </div>
     </div>
+    <div class="mode">
+        Dark mode:
+        <span class="change">OFF</span>
+    </div>
+
+
+    <style>
+
+        .mode {
+            float:right;
+        }
+        .change {
+            cursor: pointer;
+            border: 1px solid #555;
+            border-radius: 40%;
+            width: 20px;
+            text-align: center;
+            padding: 5px;
+            margin-left: 8px;
+        }
+        .dark{
+            background-color: #222;
+            color: #e6e6e6;
+        }
+    </style>
     <div class="clearfix"></div>
 </div>
 <!--bottom-->
@@ -143,6 +175,57 @@
 <!-- //Banner -->
 
 <!-- services -->
+<section class="services" id="services">
+    <h2 class="agile-se">Our Services</h2>
+    <label class="agile-se"></label>
+    <div class="w3l-serv">
+        <div class="container">
+            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s1">
+                <div class="w3-agile">
+                    <a href="#" class="hvr-rectangle-out"><i class="fa fa-plane" aria-hidden="true"></i></a>
+                </div>
+                <h4 class="text-center">Travel Arrangements</h4>
+                <p class="services-w3ls">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s2">
+                <div class="w3-agile">
+                    <a href="#" class="hvr-rectangle-out"><i class="fa fa-suitcase" aria-hidden="true"></i></a>
+                </div>
+                <h4 class="text-center">Special Activities</h4>
+                <p class="services-w3ls">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s3">
+                <div class="w3-agile">
+                    <a href="#" class="hvr-rectangle-out"><i class="fa fa-globe" aria-hidden="true"></i></a>
+                </div>
+                <h4 class="text-center">Beautiful Places</h4>
+                <p class="services-w3ls">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s4">
+                <div class="w3-agile">
+                    <a href="#" class="hvr-rectangle-out"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                </div>
+                <h4 class="text-center">Fast Booking</h4>
+                <p class="services-w3ls">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s5">
+                <div class="w3-agile">
+                    <a href="#" class="hvr-rectangle-out"><i class="fa fa-users" aria-hidden="true"></i></a>
+                </div>
+                <h4 class="text-center">Support Team</h4>
+                <p class="services-w3ls">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s6">
+                <div class="w3-agile ">
+                    <a href="{{ path('afficheF') }}" class="hvr-rectangle-out"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
+                </div>
+                <h4 class="text-center">restaurants</h4>
+                <p class="services-w3ls">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
 <!-- //services -->
 
 <!-- News -->
@@ -317,7 +400,117 @@
 {% endblock %}
 {% block body %}{% endblock %}
 {% block footer %}
-
+    <div class="w3ls-team" id="team">
+        <div class="container">
+            <h3 class="title-agile">Our Team</h3>
+            <label class="agile-se"></label>
+            <div class="row team-row">
+                <div class="col-md-3 team-grids">
+                    <div class="thumbnail team-w3agile">
+                        <img src="images/t1.jpg" class="img-responsive" alt="">
+                        <div class="caption">
+                            <h4>Eya Bouthouri </h4>
+                            <p>Lorem Ipsum generators on the Internet tend to repeat as necessary</p>
+                        </div>
+                        <div class="social-icons team-icons right-w3l fotw33">
+                            <ul class="top-links">
+                                <li><a href="https://www.facebook.com/people/Eya-Bouthoury/100010475178558/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 team-grids">
+                    <div class="thumbnail team-w3agile">
+                        <img src="images/t2.jpg" class="img-responsive" alt="">
+                        <div class="caption">
+                            <h4>Dorsaf Charfeddine</h4>
+                            <p>Lorem Ipsum generators on the Internet tend to repeat as necessary</p>
+                        </div>
+                        <div class="social-icons team-icons right-w3l fotw33">
+                            <ul class="top-links">
+                                <li><a href="https://www.facebook.com/dorsaf.charfeddine.39"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 team-grids">
+                    <div class="thumbnail team-w3agile">
+                        <img src="" class="img-responsive" alt="">
+                        <div class="caption">
+                            <h4>Khalil</h4>
+                            <p>Lorem Ipsum generators on the Internet tend to repeat as necessary</p>
+                        </div>
+                        <div class="social-icons team-icons right-w3l fotw33">
+                            <ul class="top-links">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 team-grids">
+                    <div class="thumbnail team-w3agile">
+                        <img src="" class="img-responsive" alt="">
+                        <div class="caption">
+                            <h4>Sami</h4>
+                            <p>Lorem Ipsum generators on the Internet tend to repeat as necessary</p>
+                        </div>
+                        <div class="social-icons team-icons right-w3l fotw33">
+                            <ul class="top-links">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 team-grids">
+                    <div class="thumbnail team-w3agile">
+                        <img src="" class="img-responsive" alt="">
+                        <div class="caption">
+                            <h4>Amir</h4>
+                            <p>Lorem Ipsum generators on the Internet tend to repeat as necessary</p>
+                        </div>
+                        <div class="social-icons team-icons right-w3l fotw33">
+                            <ul class="top-links">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 team-grids">
+                    <div class="thumbnail team-w3agile">
+                        <img src="" class="img-responsive" alt="">
+                        <div class="caption">
+                            <h4>wala</h4>
+                            <p>Lorem Ipsum generators on the Internet tend to repeat as necessary</p>
+                        </div>
+                        <div class="social-icons team-icons right-w3l fotw33">
+                            <ul class="top-links">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
     <div class="footer w3ls">
     <div class="container">
         <div class="footer-main">

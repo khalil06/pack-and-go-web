@@ -25,4 +25,13 @@ class RestauRespository extends  ServiceEntityRepository
             $this->_em->flush();
         }
     }
+    public function findBynomr($nomr)
+    {
+        return $this->createQueryBuilder('Resteau')
+            ->Where('Resteau.nomr LIKE :nomr')
+            ->setParameter('nomr','%'.$nomr.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

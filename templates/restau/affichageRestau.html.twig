@@ -2,18 +2,69 @@
 {% block body %}
 <!DOCTYPE html>
 <html lang="en">
-
 <main class="app-content">
     <div class="app-title">
         <div>
             <h1><i class="fa fa-th-list"></i>  Restaurant</h1>
+
         </div>
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         <ul class="app-breadcrumb breadcrumb side">
             <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
             <li class="breadcrumb-item">Tables</li>
             <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
         </ul>
     </div>
+<div>
+    <input type="text" id="search" class="form-control" placeholder="Search">
+
+
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(e){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('search') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#search').empty();
+                            $.each(JSON.parse(retour), function(i, obj) {
+                                $('#t tbody#all').hide();
+                                $('#t tbody#search').append('<tr><td> '+obj.nomr+'  </td><td><a href="update/'+obj.idr+'">modifier</a></td> <td><a href="supp/'+obj.idr+'">supprimer</a></td></tr>');
+                            });
+                        }
+                        else
+                        {
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+</div>
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
@@ -21,8 +72,8 @@
                     <table class="table table-hover table-bordered" id="sampleTable">
                         <thead>
                         <tr><th>Nom Retaurant</th>
-                            <th>Adresse</th>
                             <th>Pays</th>
+                            <th>Adresse</th>
                             <th>Tel</th>
                             <th>image</th>
                             <th>Type</th></tr>
@@ -31,17 +82,23 @@
                         {% for Resteau in tabResteau %}
                             <tr>
                                 <td>{{ Resteau.nomr }}</td>
-                                <td>{{ Resteau.adressr }}</td>
                                 <td>{{ Resteau.paysr }}</td>
+                                <td>
+                                <iframe style="border:0; width: 100%; height: 350px;" class="img-fluid" src="https://maps.google.com/maps?q=+{{ Resteau.adressr }}+&hl=fr&z=14&amp;output=embed" frameborder="0" allowfullscreen></iframe>
+                                </td>
                                 <td>{{ Resteau.telr }}</td>
-                                <td><img src=" {{asset(Resteau.imgr)}}" width="80" height="80">   </td>
+                                <td><img src="{{ asset('uploads/' ~ Resteau.imgr) }}" width="180" height="100"></td>
                                 <td>{{ Resteau.typer }}</td>
                                 <td><a href="{{ path('supp',{'idr':Resteau.idr}) }}"  type="submit" class="btn btn-danger" id="add" >delete</a></td>
                                 <td><a href="{{ path('update',{'idr':Resteau.idr}) }}" type="submit" class="btn btn-success" id="add" >update</a></td>
                             </tr>
                         {% endfor %}
+
                         </tbody>
                     </table>
+                    <div class="pagination pagination-lg" >
+                        {{ knp_pagination_render(tabResteau) }}
+                    </div>
                 </div>
             </div>
         </div>

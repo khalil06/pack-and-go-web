@@ -21,7 +21,7 @@ class RestauFormType extends AbstractType
             ->add('adressr')
             ->add('paysr', CountryType::class)
             ->add('telr')
-            ->add('imgr', FileType::class, array('data_class' => null,'required' => false))
+            ->add('imgr',FileType::class, array('data_class' => null,'required' => false ))
 
         ;
 
@@ -30,7 +30,7 @@ class RestauFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\Resteau',
+            'data_class' => Resteau::class,
             ]);
     }
 }

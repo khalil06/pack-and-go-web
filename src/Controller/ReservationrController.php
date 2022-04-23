@@ -43,7 +43,7 @@ class ReservationrController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted()&& $form->isValid()) {
             $Reservationr->setIdR($liste);
             $Reservationr->setIdUser($list);
 
@@ -110,5 +110,7 @@ class ReservationrController extends AbstractController
         return $this->render("reservationr/updaterserv.html.twig", [
             'formm' => $form->createView()
         ]);    }
+
+
 
 }

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Serializer\Annotation\Groups;
 /**
  * Resteau
  *
@@ -25,6 +26,7 @@ class Resteau
      * @var string
      * @Assert\NotBlank(message="nom Restau est obligatoire")
      * @ORM\Column(name="nomR", type="string", length=30, nullable=false)
+     * @Groups("post:read")
      */
     private $nomr;
 
@@ -56,7 +58,8 @@ class Resteau
     /**
      * @var string
      * @Assert\NotBlank(message="veuillez insérer une image")
-     * @Assert\File(mimeTypes={ "imgr/jpeg" , "imgr/png", "imgr/jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" , "image/png", "image/jpg"})
+     * @Assert\NotBlank(message="veuillez insérer une image")
      * @ORM\Column(name="imgR", type="string", length=50, nullable=false)
      */
     private $imgr;
@@ -223,5 +226,6 @@ class Resteau
 
 
     }
+
 
 }

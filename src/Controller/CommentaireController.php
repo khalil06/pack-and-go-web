@@ -45,16 +45,19 @@ class CommentaireController extends AbstractController
         $form = $this->createForm(CommentaireType::class, $Commentaire);
 
         $form->handleRequest($request);
+        $badWords = $this->filterwords($Commentaire->getContenuCommentairer() . ' ' . $Commentaire->getContenuCommentairer());
+        if (strpos($badWords, '**') !== false) {
+            $this->addFlash('info', 'Faites attention a ce que vous tapez  ! un peu de respect !!');
+        } else {
+            if ($form->isSubmitted()) {
+                $Commentaire->setIdr($liste);
+                $Commentaire->setIdUser($list);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($Commentaire);
+                $em->flush();
 
-        if ($form->isSubmitted()) {
-            $Commentaire->setIdr($liste);
-            $Commentaire->setIdUser($list);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($Commentaire);
-            $em->flush();
-
+            }
         }
-
         return $this->render("commentaire/addcommentaire.html.twig", array('form' => $form->createView(),'tabCmntr'=>$liste2,'imgr'=>$liste->getImgr()));
 
 
@@ -125,5 +128,39 @@ class CommentaireController extends AbstractController
         }
     }
 
+
+    function filterwords($text){
+        $delimiter = ',';
+        $enclosure = '"';
+        $header = NULL;
+        $data = array();
+
+        if (($handle = fopen("https://docs.google.com/spreadsheets/d/10P3ihV-l2Hz9Jm1Cprp8S7mTKqYsOZWxzaNOC8ij72M/export?format=csv", 'r')) !== FALSE) {
+
+            while (($row = fgetcsv($handle, 0, $delimiter, $enclosure)) !== FALSE) {
+
+                if(!$header) {
+                    $header = $row;
+
+                } else {
+                    array_push($data,$row);
+                }
+            }
+            fclose($handle);
+        }
+        #dd($data[300][0]);
+        $filterWords = array('badword');
+        foreach($data as $s)
+        {
+            array_push($filterWords,$s[0]);
+        }
+
+        #dd($filterWords);
+        $filterCount = sizeof($filterWords);
+        for ($i = 0; $i < $filterCount; $i++) {
+            $text = preg_replace_callback('/\b' . $filterWords[$i] . '\b/i', function($matches){return str_repeat('*', strlen($matches[0]));}, $text);
+        }
+        return $text;
+    }
 
 }
