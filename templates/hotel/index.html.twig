@@ -1,64 +1,117 @@
 {% extends 'base.html.twig' %}
+{% set menu_selected = 'hotel' %}
+
 {% block body %}
-<!DOCTYPE html>
-<html lang="en">
 
-<main class="app-content">
-    <div class="app-title">
-        <div>
-            <h1><i class="fa fa-th-licol-sm-12 col-md-5"></i> GESTION HOTELS</h1>
+    <style>
+        .mode {
+            float: right;
+        }
+
+        .change {
+            cursor: pointer;
+            border: 1px solid #555;
+            border-radius: 40%;
+            width: 20px;
+            text-align: center;
+            padding: 5px;
+            margin-left: 8px;
+        }
+
+        .dark {
+            background-color: #222;
+            color: #e6e6e6;
+        }
+    </style>
+
+    <main class="app-content">
+
+        <div class="app-title">
+            <div class="mode">
+                Dark mode:
+                <span class="change">OFF</span>
+            </div>
+            <div>
+                <h1><i class="fa fa-th-licol-sm-12 col-md-5"></i> {% trans %} GESTION HOTELS {% endtrans %}</h1>
+            </div>
+
+            <ul class="app-breadcrumb breadcrumb side">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item">Hotels</li>
+                <li class="breadcrumb-item active"><a href="#">Hotels</a></li>
+            </ul>
+            {% for locale in locales %}
+                {% if locale != app.request.locale %}
+                    <div class="button-block">
+                        <a class="btn btn-outline-info"
+                           href="{{ path('change_locale', {'locale': locale}) }}">{{ locale }}</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
-        <ul class="app-breadcrumb breadcrumb side">
-            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
-            <li class="breadcrumb-item">Tables</li>
-            <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
-        </ul>
-    </div>
+        <div class="row">
 
-    <div class="row">
+            <div class="col-md-12">
 
-        <div class="col-md-12">
-            <div class="tile">
-                <div class="tile-body">
-
-                    <table class="table table-hover table-bordered" id="sampleTable">
-                        <thead>
-                        <td><a href="{{ path('addHotel')}} " class="btn">Ajouter un Hotel</a></td>
-                        <tr>
-                            <th>Nom Hotel</th>
-                            <th>Nombre d'étoiles</th>
-                            <th>Nombre de chambres</th>
-                            <th>Adresse</th>
-                            <th>Pays</th>
-                            <th>Tel</th>
-                            <th>Email</th>
-                            <th>Image</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for hotel in hotels %}
-
-                        <tr>
-                            <td>{{ hotel.nomHotel }}</td>
-                            <td>{{ hotel.nbrEtoiles }}</td>
-                            <td>{{ hotel.nbrChambres }}</td>
-                            <td>{{ hotel.adresse }}</td>
-                            <td>{{ hotel.pays }}</td>
-                            <td>{{ hotel.tel }}</td>
-                            <td>{{ hotel.email }}</td>
-                            <td><img src="{{ asset('uploads/' ~ hotel.image) }}" width="180" height="100"></td>
-                            <td><a href="{{ path('updateHotel', {'id': hotel.idHotel}) }}" class="btn btn-success">Modifier</a></td>
-                            <td><a href="{{ path('deleteHotel', {'id': hotel.idHotel}) }}" class="btn btn-danger">Supprimer</a></td>
-                        </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                <div class="tile">
+                    <form onsubmit="return false;" class="search-form">
+                        <div class="filter-search-form-2 search-1-adjustment bg-white rounded-sm shadow-7 pr-6 py-6 pl-6">
+                            <div class="filter-inputs">
+                                <div class="form-group position-relative w-lg-45 w-xl-40 w-xxl-45">
+                                    <input class="form-control focus-reset pl-13" onkeyup="myFunction()" type="text"
+                                           id="keyword" placeholder="search">
+                                    <span class="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
+                                        <i class="icon icon-zoom-2 text-primary font-weight-bold"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="tile-body" id="aller">
+                        {{ include ('hotel/tabHotel.html.twig') }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
-<!-- Essential javascripts for application to work-->
-</body>
-</html>
+    </main>
+
+    <script>
+        function myFunction() {
+            var p = document.getElementById("keyword").value;
+            // window.location.href="{{ path('search') }}?searchValue="+p;
+            $.ajax({
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url: "{{ path('search') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                type: 'GET',
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                data: {
+                    'searchValue': p
+                },
+                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success: function (data) {
+                    $('#aller').html(data);
+                },
+            });
+        }
+    </script>
+    <script>
+        function changeColor(name) {
+            if ($(name).hasClass("dark")) {
+                $(name).removeClass("dark");
+                $(".change").text("OFF");
+            } else {
+                $(name).addClass("dark");
+                $(".change").text("ON");
+            }
+        }
+
+        $(".change").on("click", function () {
+            changeColor("body");
+            changeColor(".tile");
+            changeColor(".app-title");
+            changeColor(".app-content");
+
+        });
+    </script>
 {% endblock %}

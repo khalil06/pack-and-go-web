@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
+{% set menu_selected = 'hotel' %}
 
 {% block body %}
 
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-edit"></i> AJOUTER UN HOTEL</h1>
+                <h1><i class="fa fa-edit"></i> {% trans %}ADD HOTEL{% endtrans %}</h1>
                 <p>Pack & Go</p>
             </div>
             <ul class="app-breadcrumb breadcrumb">
@@ -14,6 +15,7 @@
                 <li class="breadcrumb-item"><a href="#">Form Components</a></li>
             </ul>
         </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">
@@ -21,7 +23,7 @@
                         <div class="col-lg-6">
                             {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
                                 <div class="form-group">
-                                    <label for="nomHotel">Nom de L'hotel</label>
+                                    <label for="nomHotel">{% trans %}Nom Hotel{% endtrans %}</label>
                                     <div class="col-sm-10">
                                         <div class="form-error">
                                         {{ form_errors(form.nomHotel)}}
@@ -30,33 +32,33 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nbreEtoiles">Nombre Etoiles</label>
+                                    <label for="nbreEtoiles"> {% trans %}Nombre d'étoiles{% endtrans %}</label>
                                     <div class="col-sm-10">
                                         {{ form_widget(form.nbrEtoiles,{'attr':{'class:':'form-control'}}) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="nbrChambres">Nombre Chambres</label>
+                                    <label for="nbrChambres"> {% trans %}Nombre de chambres{% endtrans %}</label>
                                     <div class="col-sm-10">
                                         {{ form_errors(form.nbrChambres)}}
                                         {{ form_widget(form.nbrChambres,{'attr':{'class:':'form-control'}}) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="adresse">Adresse</label>
+                                    <label for="adresse"> {% trans %}Adresse{% endtrans %}</label>
                                     <div class="col-sm-10">
                                         {{ form_errors(form.adresse)}}
                                         {{ form_widget(form.adresse,{'attr':{'class:':'form-control'}}) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleTextarea">Pays</label>
+                                    <label for="exampleTextarea"> {% trans %}Pays{% endtrans %}</label>
                                     <div class="col-sm-10">
                                         {{ form_widget(form.pays,{'attr':{'class:':'form-control'}}) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tel">Telephone</label>
+                                    <label for="tel"> {% trans %}Tel{% endtrans %}</label>
                                     <div class="col-sm-10">
                                         {{ form_errors(form.tel)}}
                                         {{ form_widget(form.tel,{'attr':{'class:':'form-control'}}) }}
@@ -70,7 +72,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-check-label">Image</label>
+                                    <label class="form-check-label"> {% trans %}Image{% endtrans %}</label>
                                     <div class="col-sm-10">
                                         {{ form_errors(form.image)}}
                                         {{ form_widget(form.image,{'attr':{'class:':'form-control'}}) }}
@@ -80,7 +82,7 @@
                         </div>
                     <div class="tile-footer">
                         {{ form_widget(form) }}
-                        <button class="btn btn-primary" type="submit">Ajouter</button>
+                        <button class="btn btn-primary" type="submit"> {% trans %}Ajouter{% endtrans %} </button>
                     </div>
                 </div>
             </div>
@@ -88,5 +90,15 @@
 
         </div>
         </div>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>
+        <script>
+            $(document).ready(function() {
+                // you may need to change this code if you are not using Bootstrap Datepicker
+                $('.js-datepicker').datepicker({
+                    format: 'yyyy-mm-dd'
+                });
+            });
+        </script>
     </main>
 {% endblock %}

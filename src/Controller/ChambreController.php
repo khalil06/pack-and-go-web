@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class ChambreController extends AbstractController
 {
@@ -116,6 +117,18 @@ class ChambreController extends AbstractController
         return $this->render('chambre/listChambresFront.html.twig', [
             "hotel" => $hotel,
             "chambres"=>$chambre]);
+    }
+
+    /**
+     * @Route("/searchCh", name="searchCh", methods={"GET"})
+     */
+    public function searchCh(Request $request, NormalizerInterface $normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Chambre::class);
+        $requestString = $request->get('searchValue');
+        $chambres = $repository->findEntitiesByString($requestString);
+        return $this->render("chambre/tabChambre.html.twig",
+            ['chambres' => $chambres]);
     }
 
 }

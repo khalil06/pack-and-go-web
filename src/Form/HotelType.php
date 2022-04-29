@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use \Symfony\Component\Form\Extension\Core\Type\DateType;
 use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;

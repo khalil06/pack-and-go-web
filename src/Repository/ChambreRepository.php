@@ -84,4 +84,16 @@ class ChambreRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findEntitiesByString($nomr)
+    {
+        return $this->createQueryBuilder('h')
+            ->where('h.typeChambre LIKE :nomr')
+            ->join('h.idHotel', 'c')
+            ->orWhere('c.nomHotel LIKE :nomr')
+            ->setParameter('nomr',$nomr.'%')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

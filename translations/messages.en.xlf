@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="hoSuwDg" resname="Gestion Hotels">
+        <source>Gestion Hotels</source>
+        <target>Hotels Management</target>
+      </trans-unit>
+      <trans-unit id="ZBsPwI4" resname="Nom Hotel">
+        <source>Nom hotel</source>
+        <target>Hotel Name</target>
+      </trans-unit>
+      <trans-unit id="TkTa7tV" resname="Stars">
+        <source>Stars</source>
+        <target>__Stars</target>
+      </trans-unit>
+      <trans-unit id="HTkFdRv" resname="Number of rooms">
+        <source>Number of rooms</source>
+        <target>__Number of rooms</target>
+      </trans-unit>
+      <trans-unit id="PN..9Ga" resname="Adress">
+        <source>Adress</source>
+        <target>__Adress</target>
+      </trans-unit>
+      <trans-unit id="cB0CHQj" resname="Country">
+        <source>Country</source>
+        <target>__Country</target>
+      </trans-unit>
+      <trans-unit id="Y9zriAC" resname="Phone">
+        <source>Phone</source>
+        <target>__Phone</target>
+      </trans-unit>
+      <trans-unit id="mhxU9V5" resname="Picture">
+        <source>Picture</source>
+        <target>__Picture</target>
+      </trans-unit>
+      <trans-unit id="DsuhNwu" resname="ADD">
+        <source>ADD</source>
+        <target>__ADD</target>
+      </trans-unit>
+      <trans-unit id="u85dd9a" resname="GESTION HOTELS">
+        <source>GESTION HOTELS</source>
+        <target>Hotel Management</target>
+      </trans-unit>
+      <trans-unit id="n.riFoj" resname="Ajouter un Hotel">
+        <source>Ajouter un Hotel</source>
+        <target>Add Hotel</target>
+      </trans-unit>
+      <trans-unit id="LIp5JSt" resname="Nom Hotel">
+        <source>Nom Hotel</source>
+        <target>Hotel Name</target>
+      </trans-unit>
+      <trans-unit id="OFuYcqn" resname="Nombre d'étoiles">
+        <source>Nombre d'étoiles</source>
+        <target>Stars</target>
+      </trans-unit>
+      <trans-unit id="EgKbCMh" resname="Nombre de chambres">
+        <source>Nombre de chambres</source>
+        <target>Number Of Rooms</target>
+      </trans-unit>
+      <trans-unit id="eeXPIN4" resname="Adresse">
+        <source>Adresse</source>
+        <target>Adress</target>
+      </trans-unit>
+      <trans-unit id=".nU._5u" resname="Pays">
+        <source>Pays</source>
+        <target>Country</target>
+      </trans-unit>
+      <trans-unit id="CoHTYmb" resname="Tel">
+        <source>Tel</source>
+        <target>Phone</target>
+      </trans-unit>
+      <trans-unit id="GqTLC8y" resname="Image">
+        <source>Image</source>
+        <target>Picture</target>
+      </trans-unit>
+      <trans-unit id="QuN2BLY" resname="Modifier">
+        <source>Modifier</source>
+        <target>Update</target>
+      </trans-unit>
+      <trans-unit id="Xl0CFs4" resname="Supprimer">
+        <source>Supprimer</source>
+        <target>Delete</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

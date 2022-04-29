@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  * Hotel
  *
  * @ORM\Table(name="hotel")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\HotelRepository")
  */
 class Hotel
 {
@@ -29,8 +30,10 @@ class Hotel
     /**
      * @var string
      * @Assert\NotBlank(message="nom hotel est obligatoire")
+     * @Groups("nom")
      * @Assert\NotEqualTo(0,
      *     message="doir être différent de 0")
+     *
      * @ORM\Column(name="nom_hotel", type="string", length=30, nullable=false)
      */
     private $nomHotel;

@@ -11,12 +11,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+
 
 
 class HotelController extends AbstractController
 {
     /**
-     * @Route("/back", name="app_hotel")
+     * @Route("/back", name="back")
      */
     public function index(): Response
     {
@@ -129,4 +131,27 @@ class HotelController extends AbstractController
         return $this->render('hotel/listHotelsFront.html.twig', ['hotels' => $listHotels]);
     }
 
+    /**
+     * @Route("/search", name="search", methods={"GET"})
+     */
+    public function search(Request $request, NormalizerInterface $normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $requestString = $request->get('searchValue');
+        $hotels = $repository->findEntitiesByString($requestString);
+        return $this->render("hotel/tabHotel.html.twig",
+            ['hotels' => $hotels]);
+    }
+
+    /**
+     * @Route("/change_locale/{locale}", name="change_locale")
+     */
+    public function changeLocale($locale, Request $request)
+    {
+        // On stocke la langue dans la session
+        $request->getSession()->set('_locale', $locale);
+
+        // On revient sur la page précédente
+        return $this->redirect($request->headers->get('referer'));
+    }
 }

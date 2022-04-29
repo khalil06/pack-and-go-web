@@ -9,9 +9,8 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Reservationchambre
- *
  * @ORM\Table(name="reservationchambre", indexes={@ORM\Index(name="fk_user_reservCh", columns={"id_user"}), @ORM\Index(name="fk_reserv_chambre", columns={"id_chambre"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ReservationChambreRepository")
  */
 class Reservationchambre
 {

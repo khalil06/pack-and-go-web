@@ -13,7 +13,7 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
-
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 
 class ReservationChambreController extends AbstractController
@@ -117,5 +117,17 @@ class ReservationChambreController extends AbstractController
             'form' => $form -> createView (),
         ]);
 
+    }
+
+    /**
+     * @Route("/searchRes", name="searchRes", methods={"GET"})
+     */
+    public function searchRes(Request $request, NormalizerInterface $normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Reservationchambre::class);
+        $requestString = $request->get('searchValue');
+        $reserv = $repository->findEntitiesByString($requestString);
+        return $this->render("reservation_chambre/tabReserv.html.twig",
+            ['reservChambre' => $reserv]);
     }
 }

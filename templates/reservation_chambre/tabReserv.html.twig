@@ -1,0 +1,23 @@
+<table class="table table-hover table-bordered" id="sampleTable">
+    <thead>
+    <tr>
+        <th>Numero Reservation</th>
+        <th>CHECK IN</th>
+        <th>CHECK OUT</th>
+        <th>Nom client</th>
+        <th>Numero chambre</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for reservChambre in reservChambre %}
+        <tr>
+            <td>{{ reservChambre.numReservation }}</td>
+            <td>{{ reservChambre.checkIn |date('d-m-Y') }}</td>
+            <td>{{ reservChambre.checkOut  |date('d-m-Y')}}</td>
+            <td>{{ reservChambre.idUser }}</td>
+            <td>{{ reservChambre.idChambre }}</td>
+            <td><a href="{{ path('deleteReservChambre', {'id': reservChambre.numReservation}) }}" class="btn btn-danger">Supprimer</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
