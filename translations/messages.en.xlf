@@ -13,7 +13,7 @@
         <source>Nom hotel</source>
         <target>Hotel Name</target>
       </trans-unit>
-      <trans-unit id="TkTa7tV" resname="Stars">
+      <trans-unit id="TkTa7tV" resname="Nombre ">
         <source>Stars</source>
         <target>__Stars</target>
       </trans-unit>

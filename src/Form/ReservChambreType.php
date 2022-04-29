@@ -21,7 +21,7 @@ class ReservChambreType extends AbstractType
                 'html5' => FALSE
             ])
             ->add('checkOut', DateType::class, [
-                'attr' => ['class' => 'js-datepicker'],
+                'attr' => ['class' => 'js-datepicker '],
                 'widget' => 'single_text',
                 'html5' => FALSE
             ])

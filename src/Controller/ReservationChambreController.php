@@ -53,47 +53,55 @@ class ReservationChambreController extends AbstractController
         $form = $this->createForm(ReservChambreType::class, $reservationCh);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
+          //  $prixx = $this->getDoctrine()->getRepository(Chambre::class)->Prix();
             $reservationCh->setIdChambre($chambre);
             $reservationCh = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservationCh);
             $em->flush();
 
+            $idChambre = $reservationCh->getIdChambre();
+            $query = $em->createQuery(
+                'SELECT p, c
+                FROM App\Entity\Hotel p
+                join p.chambre c
+                WHERE c.idChambre = :idChambre
+               '
+            )
+                ->setParameter('idChambre', $idChambre);
+            $prix=$query->getResult();
+
             $checkin = $reservationCh->getCheckIn();
             $checkout = $reservationCh->getCheckOut();
             $id = $reservationCh->getNumReservation();
+            $datediff = date_diff($checkout, $checkin);
+            $datef = (int)( $datediff->format('%d days'));
 
             $pdfOptions = new Options();
             $pdfOptions->set('isRemoteEnabled', true);
-
             $pdfOptions->set('defaultFont', 'Arial');
-
             // Instantiate Dompdf with our options
             $dompdf = new Dompdf($pdfOptions);
             // Retrieve the HTML generated in our twig file
             $html = $this->renderView('mail_hotel/pdfHotel.html.twig', array('check_in' => $checkin,
                 'check_out' => $checkout,
-                'num_reservation' => $id));
+                'num_reservation' => $id,
+                'chambre' => $chambre,
+                'prix' => $prix,
+                'datediff' => $datef));
             // Load HTML to Dompdf
             $dompdf->loadHtml($html);
-
             // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
             $dompdf->setPaper('A4', 'portrait');
-
             // Render the HTML as PDF
             $dompdf->render();
-
             // Output the generated PDF to Browser (inline view)
-
             $output = $dompdf->output();
-
             $pdf_directory = $this->getParameter('pdf');
             // e.g /var/www/project/public/mypdf.pdf
             $pdfFilepath = $pdf_directory . '/invoice.pdf';
-
             // Write file to the desired path
             file_put_contents($pdfFilepath, $output);
-
 
             $message = (new Email())
                 ->from('packandgomail@gmail.com')
@@ -106,6 +114,9 @@ class ReservationChambreController extends AbstractController
                         array('check_in' => $checkin,
                             'check_out' => $checkout,
                             'num_reservation' => $id,
+                            'chambre' => $chambre,
+                            'prix' => $prix,
+                            'datediff' => $datef
                         )),
                     'text/html'
                 );
@@ -113,9 +124,10 @@ class ReservationChambreController extends AbstractController
             $this->addFlash('success', 'réservation effectuée avec succes! Merci davoir choisir pack & go');
             return $this->redirectToRoute('listHotelsFront');
         }
+
             return $this->render('reservation_chambre/reserverChambre.html.twig', [
             'form' => $form -> createView (),
-        ]);
+            ]);
 
     }
 
@@ -130,4 +142,17 @@ class ReservationChambreController extends AbstractController
         return $this->render("reservation_chambre/tabReserv.html.twig",
             ['reservChambre' => $reserv]);
     }
+
+    /**
+     * @Route("/prix", name="prix")
+     */
+    public function prixSejour(Request $request)
+    {
+        $repository = $this->getDoctrine()->getRepository(Reservationchambre::class);
+        $requestString = $request->get('searchValue');
+        $reserv = $repository->findEntitiesByString($requestString);
+        return $this->render("reservation_chambre/tabReserv.html.twig",
+            ['reservChambre' => $reserv]);
+    }
+
 }
