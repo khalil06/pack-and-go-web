@@ -4,7 +4,10 @@ namespace App\Controller;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\Resteau;
+use App\services\QrcodeService;
 use App\Form\RestauFormType;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Form\RestauUpdateForm;
 use App\Repository\RestauRespository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,18 +34,21 @@ class RestauController extends AbstractController
     /**
      * @Route ("/AddR",name="Ajoutrest")
      * @param Request $request
+     * @param QrcodeService $qrcodeService
      * @return Response
      */
-    public function ajouterRestau(Request $request):Response
+    public function ajouterRestau(Request $request,QrcodeService $qrcodeService):Response
     {
         $Resteau = new Resteau();
         $form = $this->createForm(RestauFormType::class, $Resteau);
         $form->handleRequest($request);
+        $qrCode="";
 
         if ($form->isSubmitted() &&$form->isValid()) {
             $file = $form->get('imgr')->getData();
             $filename = md5(uniqid()).'.'.$file->guessExtension();
             $Resteau->setImgr($filename);
+
             try{
                 $file->move(
                     $this->getParameter('uploads'),
@@ -52,13 +58,14 @@ class RestauController extends AbstractController
             }
 
             $em = $this->getDoctrine()->getManager();
+            $data = $form->getData();
+            $qrCode= $qrcodeService->qrcode($data->getNomr());
             $em->persist($Resteau);
             $em->flush();
          return $this->redirectToRoute('affiche');
         }
         return $this->render("restau/index.html.twig", ['Resteau'=> $Resteau,
-            'form' => $form->createView()
-        ]);
+            'form' => $form->createView(),'qrCode'=>$qrCode]);
 
     }
 
@@ -71,8 +78,7 @@ class RestauController extends AbstractController
     function affichageRestau(Request  $request, PaginatorInterface $paginator)
     {
 
-
-
+        $qrCode="";
         $donnees = $this->getDoctrine()->getRepository(Resteau::class)->findall();
         $liste=$paginator->paginate(
             $donnees, //on passe les donnees
@@ -83,7 +89,7 @@ class RestauController extends AbstractController
 
        // $liste = $this->getDoctrine()->getRepository(Resteau::class)->findall();
 
-        return $this->render('restau/affichageRestau.html.twig', ['tabResteau' => $liste]);
+        return $this->render('restau/affichageRestau.html.twig',['tabResteau' => $liste]);
 
 
     }
@@ -162,18 +168,55 @@ class RestauController extends AbstractController
 
 
 }
-    /**
-     * @Route("/search", name="search")
-     */
-    public function searchcat(Request $request,NormalizerInterface $Normalizer)
-    {
-                $repository = $this->getDoctrine()->getRepository(Resteau::class);
-        $requestString=$request->get('searchValue');
-        $annonces = $repository->findBynomr($requestString);
-        $jsonContent = $Normalizer->normalize($annonces, 'json',['groups'=>'post:read']);
-        $retour=json_encode($jsonContent);
-        return new Response($retour);
 
+
+    /**
+     * @Route("/search", name="search", methods={"GET"})
+     */
+    public function search(Request $request, NormalizerInterface $normalizer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Resteau::class);
+        $requestString = $request->get('searchValue');
+        $liste = $repository->findEntitiesByString($requestString);
+        return $this->render('restau/affichageRestau.html.twig',['tabResteau' => $liste]);
     }
 
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route ("/pdf",name="pdf")
+     */
+
+    public function makepdf()
+    {
+        $pdfOptions = new Options();
+        $Resteau=new \App\Entity\Resteau();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf();
+        $liste2 = $this->getDoctrine()->getRepository(\App\Entity\Resteau::class)->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('restau/pdf.html.twig',['tab'=>$liste2]
+        );
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+        return $this->redirectToRoute("affiche");
+
+
+
+
+    }
 }

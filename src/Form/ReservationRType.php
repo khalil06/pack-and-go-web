@@ -19,7 +19,16 @@ class ReservationRType extends AbstractType
 
             ->add('nbrpersonner')
             ->add('timer')
-            ->add( 'dater')
+            ->add( 'dater',DateType::class, [
+                'placeholder' => [
+
+                    'year' => 'Year', 'month' => 'Month', 'day' => 'Day',
+                    'format' => 'yyyy-MM-dd',
+
+                ],
+                'input'  => 'string'
+            ])
+
         ;
     }
 

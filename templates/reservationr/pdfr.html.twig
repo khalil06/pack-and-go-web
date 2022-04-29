@@ -1,0 +1,114 @@
+<html>
+<head>
+    <style>
+        /**
+            Set the margins of the page to 0, so the footer and the header
+            can be of the full height and width !
+         **/
+        @page {
+            margin: 0cm 0cm;
+        }
+        /** Define now the real margins of every page in the PDF **/
+        body {
+            margin-top: 3.5cm;
+            margin-left: 1cm;
+            margin-right: 1cm;
+            margin-bottom: 2cm;
+        }
+        /** Define the header rules **/
+        header {
+            position: fixed;
+            top: 0cm;
+            left: 0cm;
+            right: 0cm;
+            height: 3cm;
+        }
+        /** Define the footer rules **/
+        footer {
+            position: fixed;
+            bottom: 0cm;
+            left: 0cm;
+            right: 0cm;
+            height: 2cm;
+        }
+    </style>
+</head>
+<body>
+<!-- Define header and footer blocks before your content -->
+<header>
+    <div class="intro_price" style="color: purple;margin-left: 10px;margin-top: 10px"><b>Pack & Go</b></div>
+    <div style="font-size: 15px;margin-left: 10px">  Adresse : Esprit Technopole Ghazela Ariana</div>
+    <div style="font-size: 15px;margin-left: 10px">  Numéro : +216 92141865</div>
+    <div style="font-size: 15px;margin-left: 10px">  E-mail : Pack&go@gmail.com</div>
+
+
+    <hr class="cmDEY eufYP cDHZq" style="color: dimgray;width: 750px;">
+</header>
+
+<footer>
+</footer>
+<body>
+
+</body>
+<style>
+    .box{
+        background: #806efa;
+        box-sizing: border-box;
+        overflow: hidden;
+        box-shadow: 0 20px 50px rgb(23, 32, 90);
+        border: 2px solid #2a3cad;
+        color: #f4d7d7;
+        padding: 20px;
+        color: #050d10;
+    }
+    .box:before{
+        width:100%;
+        height:100%;
+        background:#80CBC4;
+        transition:0.5s;
+        pointer-events: none;
+    }
+    .box:hover:before{
+        left:-50%;
+        transform: skewX(-5deg);
+    }
+    .box span{
+        width: 50%;
+        height: 50%;
+        display: block;
+        box-sizing: border-box;
+    }
+    .box span:before
+    {
+        width:100%;
+        height: 2px;
+        background: #50dfdb;
+        animation: animate 4s linear infinite;
+    }
+</style>
+<div class="box">
+    <table class="table table-hover text-nowrap" border="1">
+        <thead>
+        <tr>
+            <th>nombre personne</th>
+            <th>time</th>
+            <th>date</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for Reservationr in tab%}
+            <tr>
+                <td>{{ Reservationr.nbrpersonner }}</td>
+                <td>{{ Reservationr.timer }}</td>
+                <td>{{ Reservationr.dater }}</td>
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

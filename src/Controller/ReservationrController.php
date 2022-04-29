@@ -7,6 +7,8 @@ use App\Entity\Resteau;
 
 use App\Entity\User;
 use App\Form\RestauUpdateForm;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\ReservationRType;
 use App\Repository\ReservationRRepository;
@@ -31,7 +33,7 @@ class ReservationrController extends AbstractController
      * @return Response
      * @Route ("/addreservation",name="reserver")
      */
-    public function ajouterreservation(\Symfony\Component\HttpFoundation\Request $request)
+    public function ajouterreservation(\Symfony\Component\HttpFoundation\Request $request ,\Swift_Mailer $mailer)
     {
         $Reservationr = new ReservationR();
         $id=$_GET['id'];
@@ -48,6 +50,14 @@ class ReservationrController extends AbstractController
             $Reservationr->setIdUser($list);
 
             $em = $this->getDoctrine()->getManager();
+            $message= (new \Swift_Message('Pack and Go '))
+                ->setTo('eya.bouthouri@esprit.tn')
+                ->setFrom('packandgomail@gmail.com')
+                ->setBody(
+                    'Nous vous remercions d avoir choisir PACK AND GO Vous êtes la bienvenue chez notre restaurant  pour déguster nos délicieux nouveaux plat Merci pour votre confiance'
+                )
+            ;
+            $mailer->send($message);
             $em->persist($Reservationr);
             $em->flush();
 
@@ -110,7 +120,42 @@ class ReservationrController extends AbstractController
         return $this->render("reservationr/updaterserv.html.twig", [
             'formm' => $form->createView()
         ]);    }
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route ("/pdfr",name="pdfr")
+     */
+    public function makepdf()
+    {
+        $pdfOptions = new Options();
+        $Reservationr=new \App\Entity\Reservationr();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf();
+        $liste2 = $this->getDoctrine()->getRepository(\App\Entity\Reservationr::class)->findAll();
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('reservationr/pdfr.html.twig',['tab'=>$liste2]
+        );
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdfReservation.pdf", [
+            "Attachment" => true
+        ]);
+        return $this->redirectToRoute("affichee");
 
 
+
+
+    }
 
 }
