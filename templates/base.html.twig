@@ -209,9 +209,9 @@
                 <li><a class="treeview-item {% if menu_selected == 'hotel' %} active {% endif %}" href="/back"><i
                                 class="icon fa fa-circle-o"></i> Hotels</a></li>
                 <li><a class="treeview-item {% if menu_selected == 'chambre' %} active {% endif %}"
-                       href="{{ path('listChambres') }}"><i class="icon fa fa-circle-o"></i> Chambres</a></li>
+                       href="{{ path('listChambres') }}"><i class="icon fa fa-circle-o"></i>  {% trans %}Chambres{% endtrans %}</a></li>
                 <li><a class="treeview-item {% if menu_selected == 'reservation' %} active {% endif %}"
-                       href="/listReservChambres"><i class="icon fa fa-circle-o"></i> Réservations Chambres</a></li>
+                       href="/listReservChambres"><i class="icon fa fa-circle-o"></i>{% trans %} Réservations Chambres{% endtrans %}</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i

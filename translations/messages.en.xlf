@@ -5,16 +5,16 @@
       <tool tool-id="symfony" tool-name="Symfony"/>
     </header>
     <body>
-      <trans-unit id="hoSuwDg" resname="Gestion Hotels">
+      <trans-unit id="kIcR.Nz" resname="Gestion Hotels">
         <source>Gestion Hotels</source>
         <target>Hotels Management</target>
       </trans-unit>
-      <trans-unit id="ZBsPwI4" resname="Nom Hotel">
-        <source>Nom hotel</source>
+      <trans-unit id="LIp5JSt" resname="Nom Hotel">
+        <source>Nom Hotel</source>
         <target>Hotel Name</target>
       </trans-unit>
-      <trans-unit id="TkTa7tV" resname="Nombre ">
-        <source>Stars</source>
+      <trans-unit id="S6Z9QIH" resname="Nombre ">
+        <source>Nombre </source>
         <target>__Stars</target>
       </trans-unit>
       <trans-unit id="HTkFdRv" resname="Number of rooms">
@@ -49,10 +49,6 @@
         <source>Ajouter un Hotel</source>
         <target>Add Hotel</target>
       </trans-unit>
-      <trans-unit id="LIp5JSt" resname="Nom Hotel">
-        <source>Nom Hotel</source>
-        <target>Hotel Name</target>
-      </trans-unit>
       <trans-unit id="OFuYcqn" resname="Nombre d'étoiles">
         <source>Nombre d'étoiles</source>
         <target>Stars</target>
@@ -84,6 +80,66 @@
       <trans-unit id="Xl0CFs4" resname="Supprimer">
         <source>Supprimer</source>
         <target>Delete</target>
+      </trans-unit>
+      <trans-unit id="bXY1IWQ" resname="Chambres">
+        <source>Chambres</source>
+        <target>Rooms</target>
+      </trans-unit>
+      <trans-unit id="Z1Nu02K" resname="Réservations Chambres">
+        <source>Réservations Chambres</source>
+        <target>Rooms Reservations </target>
+      </trans-unit>
+      <trans-unit id="ZO.V_3I" resname="ADD HOTEL">
+        <source>ADD HOTEL</source>
+        <target>__ADD HOTEL</target>
+      </trans-unit>
+      <trans-unit id="APnFM0V" resname="Ajouter">
+        <source>Ajouter</source>
+        <target>ADD</target>
+      </trans-unit>
+      <trans-unit id="UhJP_82" resname="&gt;Nombre de chambres">
+        <source>&gt;Nombre de chambres</source>
+        <target>Number of rooms</target>
+      </trans-unit>
+      <trans-unit id="hOzWMou" resname="Telephone">
+        <source>Telephone</source>
+        <target>Phone</target>
+      </trans-unit>
+      <trans-unit id="lpzL089" resname="Email">
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="fuOeoka" resname="GESTION CHAMBRES">
+        <source>GESTION CHAMBRES</source>
+        <target>Rooms management</target>
+      </trans-unit>
+      <trans-unit id="oN_wOkm" resname="Numero chambre">
+        <source>Numero chambre</source>
+        <target>Room number</target>
+      </trans-unit>
+      <trans-unit id="Xx9yrgX" resname="Type chambre">
+        <source>Type chambre</source>
+        <target>Room type</target>
+      </trans-unit>
+      <trans-unit id="7zUkIfA" resname="Etage">
+        <source>Etage</source>
+        <target>Floor</target>
+      </trans-unit>
+      <trans-unit id="VMMk9sE" resname="Prix">
+        <source>Prix</source>
+        <target>Price</target>
+      </trans-unit>
+      <trans-unit id="sFJ8M8V" resname="Ajouter une Chambreend">
+        <source>Ajouter une Chambreend</source>
+        <target></target>
+      </trans-unit>
+      <trans-unit id="AdNkVvj" resname="Email&lt;">
+        <source>Email&lt;</source>
+        <target><![CDATA[__Email<]]></target>
+      </trans-unit>
+      <trans-unit id="jGM0yIM" resname="Ajouter une Chambre">
+        <source>Ajouter une Chambre</source>
+        <target>Add room</target>
       </trans-unit>
     </body>
   </file>

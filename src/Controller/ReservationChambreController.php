@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Chambre;
 use App\Entity\Reservationchambre;
 use App\Form\ReservChambreType;
+use App\Repository\ReservationChambreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -144,15 +145,21 @@ class ReservationChambreController extends AbstractController
     }
 
     /**
-     * @Route("/prix", name="prix")
+     * @Route("/tri", name="tri")
      */
-    public function prixSejour(Request $request)
+    public function tridate(Request $request, ReservationChambreRepository $repository)
     {
-        $repository = $this->getDoctrine()->getRepository(Reservationchambre::class);
-        $requestString = $request->get('searchValue');
-        $reserv = $repository->findEntitiesByString($requestString);
-        return $this->render("reservation_chambre/tabReserv.html.twig",
-            ['reservChambre' => $reserv]);
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT r FROM App\Entity\Reservationchambre r 
+            ORDER BY r.checkIn'
+        );
+        $repository=$this -> getDoctrine () -> getRepository (reservationchambre::class);
+        $reservationch = $query->getResult();
+
+        return $this->render('reservation_chambre/index.html.twig',
+            array('reservChambre' => $reservationch));
+
     }
 
 }

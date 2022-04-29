@@ -1,13 +1,13 @@
 <table class="table table-hover table-bordered" id="sampleTable">
     <thead>
-    <td><a href="{{ path('addChambre') }} " class="btn">Ajouter une Chambre</a></td>
+    <td><a href="{{ path('addChambre') }} " class="btn">{% trans %}Ajouter une Chambre{% endtrans %}</a></td>
     <tr>
-        <th>Numero chambre</th>
-        <th>Type chambre</th>
-        <th>Etage</th>
-        <th>Prix</th>
-        <th>Image</th>
-        <th>Nom de l'hotel</th>
+        <th>{% trans %}Numero chambre{% endtrans %}</th>
+        <th>{% trans %}Type chambre{% endtrans %}</th>
+        <th>{% trans %}Etage{% endtrans %}</th>
+        <th>{% trans %}Prix{% endtrans %}</th>
+        <th>{% trans %}Image{% endtrans %}</th>
+        <th>{% trans %}Nom Hotel{% endtrans %}</th>
     </tr>
     </thead>
     <tbody>
@@ -21,9 +21,9 @@
             </td>
             <td>{{ chambre.idHotel }}</td>
             <td><a href="{{ path('updateChambre', {'id': chambre.idChambre}) }}"
-                   class="btn btn-success">Modifier</a></td>
+                   class="btn btn-success">{% trans %}Modifier{% endtrans %}</a></td>
             <td><a href="{{ path('deleteChambre', {'id': chambre.idChambre}) }}"
-                   class="btn btn-danger">Supprimer</a></td>
+                   class="btn btn-danger">{% trans %}Supprimer{% endtrans %}</a></td>
         </tr>
     {% endfor %}
     </tbody>
