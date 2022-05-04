@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% set menu_selected = 'chambre' %}
+
+{% block body %}
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-edit"></i> AJOUTER UNE CHAMBRE </h1>
+                <p>Pack & Go</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item">Forms</li>
+                <li class="breadcrumb-item"><a href="#">Form Components</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                            <div class="form-group">
+                                <label for="idhotel">Hotel</label>
+                                <div class="col-sm-10">
+                                    {{ form_widget(form.idHotel,{'attr':{'class:':'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="numChambre">Numero chambre</label>
+                                <div class="col-sm-10">
+                                    {{ form_errors(form.numChambre) }}
+                                    {{ form_widget(form.numChambre,{'attr':{'class:':'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="typeChambre">Type chambre</label>
+                                <div class="col-sm-10">
+                                    {{ form_errors(form.typeChambre) }}
+                                    {{ form_widget(form.typeChambre,{'attr':{'class:':'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="etage">Etage</label>
+                                <div class="col-sm-10">
+                                    {{ form_errors(form.etage) }}
+                                    {{ form_widget(form.etage,{'attr':{'class:':'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="prix">Prix</label>
+                                <div class="col-sm-10">
+                                    {{ form_errors(form.prix) }}
+                                    {{ form_widget(form.prix,{'attr':{'class:':'form-control'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="imageCh">Image chambre</label>
+                                <div class="col-sm-10">
+                                    {{ form_errors(form.image) }}
+                                    {{ form_widget(form.image,{'attr':{'class:':'form-control'}}) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-footer">
+                        {{ form_widget(form) }}
+                        <button class="btn btn-primary" type="submit">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+        </div>
+    </main>
+{% endblock %}
