@@ -1,0 +1,88 @@
+{% extends 'baseFront.html.twig' %}
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+<div class="section pb_70">
+    <div class="container">
+        <div class="col-lg-12">
+
+
+
+        </div>
+    </div>
+
+
+    <div class="contact">
+        <div class="box" id="box">
+
+            <div class="container">
+
+                <div class="contact-main">
+                    <div class="contact-top">
+                        <h3>Reservation</h3>
+                        <label class="agile-se"></label>
+                    </div>
+                    <div class="contact-block">
+
+                            <img height="500" width="700" src=" {{ asset('uploads/' ~ imgr) }}">
+
+                        {{ form_start(formm,{'attr':{'novalidate':'novalidate'}}) }}
+
+                        {{form_row(formm.nbrpersonner,{'attr':{'class':'form-control'}})}}
+
+                            {{form_row(formm.dater,{'attr':{'class':'form-control'}})}}
+
+                        {{form_row(formm.timer,{'attr':{'class':'form-control'}})}}
+
+
+                            <br>
+                            <input type="submit" value="Confirmer Réservation">
+                             {{form_end(formm) }}
+                </div>
+                        </div>
+                <style>
+                    .box{
+                        background: #ffd54a;
+                        box-sizing: border-box;
+                        overflow: hidden;
+                        box-shadow: 0 20px 50px rgb(23, 32, 90);
+                        border: 2px solid #2a3cad;
+                        color: #fdd400;
+                        padding: 20px;
+                        color: #050d10;
+                    }
+                    .box:before{
+                        width:100%;
+                        height:100%;
+                        background:#80CBC4;
+                        transition:0.5s;
+                        pointer-events: none;
+                    }
+                    .box:hover:before{
+                        left:-50%;
+                        transform: skewX(-5deg);
+                    }
+                    .box span{
+                        width: 100%;
+                        height: 100%;
+                        display: block;
+                        box-sizing: border-box;
+                    }
+                    .box span:before
+                    {
+                        width:100%;
+                        height: 2px;
+                        background: #50dfdb;
+                        animation: animate 4s linear infinite;
+                    }
+                </style>
+
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+</html>
+{% endblock %}

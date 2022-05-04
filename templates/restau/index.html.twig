@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-edit"></i> Ajouter</h1>
+            <p>Restaurant</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Forms</li>
+            <li class="breadcrumb-item"><a href="#">Sample Forms</a></li>
+        </ul>
+    </div>
+        <div class="col-md-6">
+            <div class="tile">
+                <div class="tile-body">
+                    <div class="field_form">
+                        {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+                                    {{form_row(form.typer,{'attr':{'class':'form-control'}})}}
+
+                                    {{form_row(form.nomr,{'attr':{'class':'form-control'}})}}
+
+
+                                    {{form_row(form.adressr,{'attr':{'class':'form-control'}})}}
+
+                                    {{form_row(form.paysr,{'attr':{'class':'form-control'}})}}
+
+                                    {{form_row(form.telr,{'attr':{'class':'form-control'}})}}
+
+                                    {{form_row(form.imgr)}}
+
+                                    <div class="card-footer">
+                                        <button  class="btn btn-primary" type="submit"  id="add">Submit</button>
+                                    </div>
+
+                                {{ form_end(form) }}
+                        {% if qrCode %}
+                            <img src="{{ qrCode }}" alt="qr-code">
+                        {% endif %}
+
+                            </div>
+
+
+                </div>
+            </div>
+        </div>
+
+</main>
+</html>
+{% endblock %}

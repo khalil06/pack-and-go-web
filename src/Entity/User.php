@@ -73,23 +73,23 @@ class User
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="birthday", type="date", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="birthday", type="date", nullable=true)
      */
-    private $birthday = 'NULL';
+    private $birthday;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="date_created_user", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="date_created_user", type="datetime", nullable=true)
      */
-    private $dateCreatedUser = 'NULL';
+    private $dateCreatedUser;
 
     /**
      * @var \DateTime|null
      *
-     * @ORM\Column(name="last_updated_user", type="datetime", nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="last_updated_user", type="datetime", nullable=true)
      */
-    private $lastUpdatedUser = 'NULL';
+    private $lastUpdatedUser;
 
     public function getIdUser(): ?int
     {
@@ -100,7 +100,10 @@ class User
     {
         return $this->firstName;
     }
-
+public function  __toString()
+{
+    return (String) $this ->getFirstName();
+}
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
@@ -216,8 +219,5 @@ class User
         return $this;
     }
 
-    public function __toString() {
-        return $this->getLastName() ;
-    }
 
 }

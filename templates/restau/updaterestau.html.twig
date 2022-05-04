@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-edit"></i> Form Samples</h1>
+            <p>Sample forms</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Forms</li>
+            <li class="breadcrumb-item"><a href="#">Sample Forms</a></li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <div class="tile">
+            <h3 class="tile-title">Register</h3>
+            <div class="tile-body">
+
+                            {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+                            {{form_row(form.typer,{'attr':{'class':'form-control'}})}}
+
+                            {{form_row(form.nomr,{'attr':{'class':'form-control'}})}}
+
+                            {{form_row(form.adressr,{'attr':{'class':'form-control'}})}}
+                            {{form_row(form.paysr,{'attr':{'class':'form-control'}})}}
+
+                            {{form_row(form.telr,{'attr':{'class':'form-control'}})}}
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary" id="add">Modifier</button>
+                            </div>
+                            {{ form_end(form) }}
+
+                        </div>
+        </div>
+        <div class="tile-footer">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-3">
+                    <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Register</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="#"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearix"></div>
+    <div class="col-md-12">
+        <div class="tile">
+            <h3 class="tile-title">Subscribe</h3>
+            <div class="tile-body">
+                <form class="row">
+                    <div class="form-group col-md-3">
+                        <label class="control-label">Name</label>
+                        <input class="form-control" type="text" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label class="control-label">Email</label>
+                        <input class="form-control" type="text" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group col-md-4 align-self-end">
+                        <button class="btn btn-primary" type="button"><i class="fa fa-fw fa-lg fa-check-circle"></i>Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+</html>
+{% endblock %}

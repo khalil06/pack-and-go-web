@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i>  Restaurant</h1>
+
+        </div>
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <ul class="app-breadcrumb breadcrumb side">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+        </ul>
+    </div>
+<div>
+
+
+
+
+</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <table class="table table-hover table-bordered" id="sampleTable">
+                        <thead>
+                        <tr><th>Nom Retaurant</th>
+                            <th>Pays</th>
+                            <th>Adresse</th>
+                            <th>Tel</th>
+                            <th>image</th>
+                            <th>Type</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for Resteau in tabResteau %}
+                            <tr>
+                                <td>{{ Resteau.nomr }}</td>
+                                <td>{{ Resteau.paysr }}</td>
+                                <td>
+                                <iframe style="border:0; width: 100%; height: 350px;" class="img-fluid" src="https://maps.google.com/maps?q=+{{ Resteau.adressr }}+&hl=fr&z=14&amp;output=embed" frameborder="0" allowfullscreen></iframe>
+                                </td>
+                                <td>{{ Resteau.telr }}</td>
+
+                                <td><img src="{{ asset('uploads/' ~ Resteau.imgr) }}" width="180" height="100"></td>
+                                <td>{{ Resteau.typer }}</td>
+                                <td><a href="{{ path('supp',{'idr':Resteau.idr}) }}"  type="submit" class="btn btn-danger" id="add" >delete</a></td>
+                                <td><a href="{{ path('update',{'idr':Resteau.idr}) }}" type="submit" class="btn btn-success" id="add" >update</a></td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                        <form action="{{ path('pdf') }}">
+                            <button type="submit" class="btn btn-primary" id="add">pdf</button>
+                        </form>
+
+                    </table>
+                    <div class="pagination pagination-lg" >
+                        {{ knp_pagination_render(tabResteau) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+</html>
+{% endblock %}

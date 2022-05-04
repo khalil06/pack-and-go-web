@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-th-list"></i> Commentaire</h1>
+            </div>
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+                }
+            </script>
+
+            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <ul class="app-breadcrumb breadcrumb side">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item">Tables</li>
+                <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                            <tr><th>Id Commentaire</th>
+
+                                <th>Contenu Commentaire</th>
+                                <th>Id restau</th>
+
+                            </thead>
+                            <tbody>
+                            {% for Commentaire in tabCmntr %}
+                                <tr>
+                                    <td>{{ Commentaire.idcommentairer }}</td>
+                                    <td>{{ Commentaire.contenucommentairer }}</td>
+                                    <td>{{ Commentaire.idr }}</td>
+
+                                    <td><a href="{{ path('suppC',{'idcommentairer': Commentaire.idcommentairer}) }}"  type="submit" class="btn btn-danger" id="add" >delete</a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    </html>
+{% endblock %}
