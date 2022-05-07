@@ -19,6 +19,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+
 
 class RestauController extends AbstractController
 {
@@ -171,13 +173,13 @@ class RestauController extends AbstractController
 
 
     /**
-     * @Route("/search", name="search", methods={"GET"})
+     * @Route("/searchr", name="searchr", methods={"GET"})
      */
     public function search(Request $request, NormalizerInterface $normalizer)
     {
         $repository = $this->getDoctrine()->getRepository(Resteau::class);
         $requestString = $request->get('searchValue');
-        $liste = $repository->findEntitiesByString($requestString);
+        $liste = $repository->findBynomr($requestString);
         return $this->render('restau/affichageRestau.html.twig',['tabResteau' => $liste]);
     }
 
@@ -218,5 +220,74 @@ class RestauController extends AbstractController
 
 
 
+    }
+
+    /**
+     * @Route ("/test",name="tetttt")
+     */
+    public function  getRestau( SerializerInterface  $serializerInterface){
+
+        $Resteau = $this->getDoctrine()->getRepository(Resteau::class)->findall();
+
+        $json=$serializerInterface->serialize($Resteau,'json',['groups'=>'Resteau']);
+        return new Response($json);
+    }
+    /**
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route ("/addRestau",name="addRestau")
+     */
+    public function  addR(Request $request,SerializerInterface $serializer)
+    {
+        $Resteau = new Resteau();
+        $em = $this->getDoctrine()->getManager();
+        $nomr = $request->query->get("nomr");
+        $adressr = $request->query->get("adressr");
+        $typer = $request->query->get("typer");
+        $paysr = $request->query->get("paysr");
+        $telr = $request->query->get("telr");
+        $imgr = $request->query->get("imgr");
+        $Resteau->setNomr($nomr);
+        $Resteau->setAdressr($adressr);
+        $Resteau->setTyper($typer);
+        $Resteau->setPaysr($paysr);
+        $Resteau->setTelr($telr);
+        $Resteau->setImgr($imgr);
+        $data = $serializer->serialize($Resteau, 'json');
+        $em->persist($Resteau);
+        $em->flush();
+        return new Response($data);
+
+    }
+    /**
+     * @Route ("/updateResteau",name="updateResteau")
+     */
+    public function  updateResteau(Request $request,SerializerInterface $serializer)
+    {
+        $Resteau=$this->getDoctrine()->getRepository(Resteau::class)->find($request->get('idr'));
+        $em = $this->getDoctrine()->getManager();
+
+        $Resteau->setNomr($request->get('nomr'));
+        $Resteau->setAdressr($request->get('adressr'));
+        $Resteau->setTyper($request->get('typer'));
+        $Resteau->setPaysr($request->get('paysr'));
+        $Resteau->setTelr($request->get('telr'));
+        $Resteau->setImgr($request->get('imgr'));
+        $em->persist($Resteau);
+        $em->flush();
+        $json = $serializer->serialize($Resteau, 'json');
+        return new Response($json);
+
+    }
+    /**
+     * @Route ("/deleteRestau",name="deleteRestau")
+     */
+    public function deleteRestauu(Request $request,SerializerInterface $serializer){
+        $idr = $request->get('idr');
+        $Resteau=$this->getDoctrine()->getRepository(Resteau::class)->find($idr);
+        $em=$this->getDoctrine()->getManager();
+        $data = $serializer->serialize($Resteau,'json',['groups'=>'Resteau']);
+        $em->remove($Resteau);
+        $em->flush();
+        return new Response("tfasakh");
     }
 }

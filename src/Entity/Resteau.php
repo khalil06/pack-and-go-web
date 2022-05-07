@@ -19,6 +19,8 @@ class Resteau
      * @var string
      *
      * @ORM\Column(name="typeR", type="string", length=30, nullable=false)
+     * @Groups("Resteau")
+
      */
     private $typer;
 
@@ -26,7 +28,7 @@ class Resteau
      * @var string
      * @Assert\NotBlank(message="nom Restau est obligatoire")
      * @ORM\Column(name="nomR", type="string", length=30, nullable=false)
-     * @Groups("post:read")
+     * @Groups("Resteau")
      */
     private $nomr;
 
@@ -34,6 +36,8 @@ class Resteau
      * @var string
      * @Assert\NotBlank(message="adresse Restau est obligatoire")
      * @ORM\Column(name="adressR", type="string", length=30, nullable=false)
+     * @Groups("Resteau")
+
      */
     private $adressr;
 
@@ -41,6 +45,8 @@ class Resteau
      * @var string
      * @Assert\NotBlank(message="pays est obligatoire")
      * @ORM\Column(name="paysR", type="string", length=30, nullable=false)
+     * @Groups("Resteau")
+
      */
     private $paysr;
 
@@ -52,6 +58,8 @@ class Resteau
      *     message="Only numbers allowed"
      * )
      * @ORM\Column(name="telR", type="string", length=30, nullable=false)
+     * @Groups("Resteau")
+
      */
     private $telr;
 
@@ -61,6 +69,8 @@ class Resteau
      * @Assert\File(mimeTypes={ "image/jpeg" , "image/png", "image/jpg"})
      * @Assert\NotBlank(message="veuillez insérer une image")
      * @ORM\Column(name="imgR", type="string", length=50, nullable=false)
+     * @Groups("Resteau")
+
      */
     private $imgr;
 
@@ -70,6 +80,7 @@ class Resteau
      * @ORM\Column(name="idR", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY" )
+     * @Groups("Resteau")
      */
     private $idr;
 

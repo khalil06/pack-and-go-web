@@ -12,15 +12,14 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * Hotel
- *
- * @ORM\Table(name="hotel")
  * @ORM\Entity(repositoryClass="App\Repository\HotelRepository")
+ * @ORM\Table(name="hotel")
  */
 class Hotel
 {
     /**
      * @var int
-     *
+     * @Groups("hotels")
      * @ORM\Column(name="id_hotel", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -29,8 +28,9 @@ class Hotel
 
     /**
      * @var string
+     * @Groups("hotels")
      * @Assert\NotBlank(message="nom hotel est obligatoire")
-     * @Groups("nom")
+     * @Groups("hotels")
      * @Assert\NotEqualTo(0,
      *     message="doir être différent de 0")
      *
@@ -40,13 +40,14 @@ class Hotel
 
     /**
      * @var int
-     *
+     * @Groups("hotels")
      * @ORM\Column(name="nbr_etoiles", type="integer", nullable=false)
      */
     private $nbrEtoiles;
 
     /**
      * @var int
+     * @Groups("hotels")
      * @Assert\NotBlank(message="nombre chambres est obligatoire")
      * @Assert\NotEqualTo(0,
      *     message="doir être différent de 0")
@@ -64,6 +65,7 @@ class Hotel
 
     /**
      * @var string
+     * @Groups("hotels")
      * @Assert\NotBlank(message="adresse hotel est obligatoire")
      * @Assert\NotEqualTo(0,
      *     message="doir être différent de 0")
@@ -73,13 +75,14 @@ class Hotel
 
     /**
      * @var string
-     *
+     *@Groups("hotels")
      * @ORM\Column(name="pays", type="string", length=30, nullable=false)
      */
     private $pays;
 
     /**
      * @var int
+     * @Groups("hotels")
      * @Assert\NotBlank(message="numero tel est obligatoire")
      * @Assert\NotEqualTo(0,
      *     message="doir être différent de 0")
@@ -93,6 +96,7 @@ class Hotel
 
     /**
      * @var string
+     * @Groups("hotels")
      * @Assert\NotBlank(message="email hotel obligatoire")
      * @Assert\Email(message = "L'email '{{ value }}' n est pas valide")
      * @ORM\Column(name="email", type="string", length=30, nullable=false)
@@ -101,6 +105,7 @@ class Hotel
 
     /**
      * @var string
+     * @Groups("hotels")
      * @Assert\NotBlank(message="veuillez insérer une image")
      * @Assert\File(mimeTypes={ "image/jpeg" , "image/png", "image/jpg"})
      * @ORM\Column(name="image", type="string", length=200, nullable=false)
@@ -121,6 +126,12 @@ class Hotel
     public function getIdHotel(): ?int
     {
         return $this->idHotel;
+    }
+    public function setIdHotel(int $idHotel): self
+    {
+        $this->idHotel = idHotel;
+
+        return $this;
     }
 
     public function getNomHotel(): ?string
