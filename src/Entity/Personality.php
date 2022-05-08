@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,6 +16,7 @@ class Personality
     /**
      * @var string
      *
+     * @Groups("Personality")
      * @ORM\Column(name="personality_id", type="string", length=4, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -24,6 +26,7 @@ class Personality
     /**
      * @var \DecisionMakingStyle
      *
+     * @Groups("Personality")
      * @ORM\ManyToOne(targetEntity="DecisionMakingStyle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="decision_making", referencedColumnName="decision_making_id")
@@ -34,6 +37,7 @@ class Personality
     /**
      * @var \InteractionStyle
      *
+     * @Groups("Personality")
      * @ORM\ManyToOne(targetEntity="InteractionStyle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="interaction", referencedColumnName="interaction_id")
@@ -44,6 +48,7 @@ class Personality
     /**
      * @var \ProcessingStyle
      *
+     * @Groups("Personality")
      * @ORM\ManyToOne(targetEntity="ProcessingStyle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="processing", referencedColumnName="processing_id")
@@ -54,6 +59,7 @@ class Personality
     /**
      * @var \SocialStyle
      *
+     * @Groups("Personality")
      * @ORM\ManyToOne(targetEntity="SocialStyle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="social", referencedColumnName="social_id")

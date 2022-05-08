@@ -1,20 +1,12 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Hello Questions2Controller!{% endblock %}
-
+{% extends 'frontbasekhalil.html.twig' %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="flex justify-center items-center bg-teal-200">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="form-container ">
+    {{form(form_questions2, { 'attr': {'class': ' max-w-[800px]form-container bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4  p-3 flex flex-col justify-center items-start m-6'} }) }}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/khalil/WebDevelopment/pack_and_go_web/src/Controller/Questions2Controller.php'|file_link(0) }}">src/Controller/Questions2Controller.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/khalil/WebDevelopment/pack_and_go_web/templates/questions2/index.html.twig'|file_link(0) }}">templates/questions2/index.html.twig</a></code></li>
-    </ul>
 </div>
+</div>
+
 {% endblock %}

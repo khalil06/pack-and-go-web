@@ -1,20 +1,83 @@
-{% extends 'base.html.twig' %}
+{% extends 'frontbasekhalil.html.twig' %}
 
-{% block title %}Hello ResultController!{% endblock %}
+{# {% block title %}Hello ResultController!{% endblock %} #}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<script src="https://cdn.tailwindcss.com"></script>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/khalil/WebDevelopment/pack_and_go_web/src/Controller/ResultController.php'|file_link(0) }}">src/Controller/ResultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/khalil/WebDevelopment/pack_and_go_web/templates/result/index.html.twig'|file_link(0) }}">templates/result/index.html.twig</a></code></li>
-    </ul>
+<div class="flex flex-col items-center justify-center w-full pb-28">
+    <div class="header  w-full h-[500px] relative mb-7" style="display: block;
+    box-sizing: border-box;
+    height: 500px;
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,0.9682466736694678) 100%);   
+    clip-path: ellipse(85% 100% at 50% 0%);">
+        <h1 class="absolute z-1 top-1/4 left-0 text-center text-[#feeafa] text-9xl w-full" style="  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;">Your Personality Report is
+            Ready!</h1>
+        <svg="https: //static.neris-assets.com/images/system/research/united-states-personalities.svg"></svg>
+            <img src="https://static.neris-assets.com/images/system/research/united-states-personalities.svg" class=""
+                alt="personalities">
+    </div>
+    <div class="container flex flex-row w-full justify-around items-start  text-[#03045e]">
+        <div class="container-article">
+            <h1 class="border-t-4 border-indigo-500 font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600 py-9">
+                Your Personality Type Is {{personality.personalityId}}! </h1>
+            <div class="result-container w-auto  border-y-4 border-indigo-500 pt-2 pl-4">
+
+                <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600"> {{personality.personalityId}}
+                </h1>
+                <h2
+                    class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600 border-b-4 border-indigo-500 inline-block w-1/6">
+                    {{personality.social.socialName}}
+                </h2>
+                <p class="my-4">{{personality.social.socialDetails}}</p>
+                <h2
+                    class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600 border-b-4 border-indigo-500 inline-block w-1/6">
+                    {{personality.decisionMaking.decisionMakingName}}
+                </h2>
+                <p class="my-4">
+                    {{personality.decisionMaking.decisionMakingDetails}}
+                </p>
+                <h2
+                    class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600 border-b-4 border-indigo-500 inline-block w-1/6">
+                    {{personality.interaction.interactionName}}
+                </h2>
+                <p class="my-4">
+                    {{personality.interaction.interactionDetails}}
+                </p>
+                <h2
+                    class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600 border-b-4 border-indigo-500 inline-block w-1/6">
+                    {{personality.processing.processingName}}
+                </h2>
+                <p class="my-4">
+                    {{personality.processing.processingDetails}}
+                </p>
+            </div>
+        </div>
+        <div class="chart-container flex-row w-1/2 ">
+            <div class="chart-container  p-7 flex flex-col items-center justify-center">
+                <div id="div_piechart" class="rounded-md overflow-hidden m-4 border-solid border-4 border-indigo-600">
+                </div>
+                <div id="div_histogram" class="rounded-md overflow-hidden m-4 border-solid border-4 border-indigo-600">
+                </div>
+     
+            </div>
+
+        </div>
+  
+    </div>
+    <div id="div_chart" class="rounded-md overflow-hidden m-4 border-solid border-4 border-indigo-600 mt-9 p-4">
+    </div>
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw([piechart, histogram, chart], ['div_piechart', 'div_histogram', 'div_chart']) }}
+    </script>
+
 </div>
 {% endblock %}

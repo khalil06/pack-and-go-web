@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,6 +16,7 @@ class DecisionMakingStyle
     /**
      * @var string
      *
+     * @Groups("DecisionMakingStyle")
      * @ORM\Column(name="decision_making_id", type="string", length=1, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
