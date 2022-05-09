@@ -37,15 +37,6 @@ class DashboardController extends AbstractController
     /**
      * @Route("/dashboard/table", name="app_dashboard_table")
      */
-    public function table(): Response
-    {
-        return $this->render('dashboard/table-basic.html.twig', [
-            'controller_name' => 'DashboardController',
-        ]);
-    }
-    /**
-     * @Route("/dashboard/table", name="app_dashboard_table")
-     */
     public function createUserPersonality(Request $request)
     {
 
@@ -88,6 +79,8 @@ class DashboardController extends AbstractController
             'userPersonalities' => $userPersonalities,
         ]);
     }
+
+
 }
 
 // class UserPersonalityController extends AbstractController

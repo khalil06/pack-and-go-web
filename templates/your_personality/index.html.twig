@@ -43,11 +43,6 @@
         color: #fff;
       }
 </style>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <div class="flex flex-col items-center justify-center w-full pb-28">
     <div class="header  w-full h-[500px] relative mb-7" style="display: block;
     box-sizing: border-box;
@@ -58,8 +53,7 @@
         <h1 class="absolute z-1  left-0 text-center text-[#feeafa] text-9xl w-full h-full bg-[#03045e] bg-opacity-0 flex justify-center items-center hover:bg-opacity-10 transition ease-in delay-150 cursor-pointer"
             style="  -webkit-text-fill-color: white; 
         -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: black;">Your Personality Report is
-            Ready!</h1>
+        -webkit-text-stroke-color: black;">Your Personality Report !</h1>
         <svg="https: //static.neris-assets.com/images/system/research/united-states-personalities.svg"></svg>
             <img src="https://static.neris-assets.com/images/system/research/united-states-personalities.svg" class=""
                 alt="personalities">
@@ -108,20 +102,14 @@
                     </p>
                 </div>
             </div>
-        </div>
-        <div class="chart-container flex-row w-1/2 ">
-            <div class="chart-container  p-7 flex flex-col items-center justify-center">
-                <div id="div_piechart" class="rounded-md overflow-hidden m-4 border-solid border-4 border-indigo-600">
-                </div>
-                <div id="div_histogram" class="rounded-md overflow-hidden m-4 border-solid border-4 border-indigo-600">
-                </div>
-
+            <div class="w-full h-[200px] flex items-center justify-center">
+                <a href="/questions1"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-auto h-20 flex items-center justify-center underline-transparent">Do
+                    the test</a>
             </div>
-
         </div>
 
-    </div>
-    <div id="div_chart" class="rounded-md overflow-hidden m-4 border-solid border-4 border-indigo-600 mt-9 p-4">
+
     </div>
     <div class="share-buttons-container">
         <div class="share-list">
@@ -151,29 +139,20 @@
           </a>
         </div>
       </div>
- 
 
-
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        {{ gc_draw([piechart, histogram, chart], ['div_piechart', 'div_histogram', 'div_chart']) }}
         var pageLink = window.location.href;
         var pageTitle = String(document.title).replace(/\&/g, '%26');
-        
-        function fbs_click() { window.open(`http://www.facebook.com/sharer.php?u=${pageLink}&quote=${pageTitle}`,'sharer','toolbar=0,status=0,width=626,height=436');return false; }
-              
-        function tbs_click() { window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageLink}`,'sharer','toolbar=0,status=0,width=626,height=436');return false; }
-        
-        function lbs_click() { window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageLink}`,'sharer','toolbar=0,status=0,width=626,height=436');return false; }
-        
-        function rbs_click() { window.open(`https://www.reddit.com/submit?url=${pageLink}`,'sharer','toolbar=0,status=0,width=626,height=436');return false; }
-        
-        function pbs_click() { window.open(`https://www.pinterest.com/pin/create/button/?&text=${pageTitle}&url=${pageLink}&description=${pageTitle}`,'sharer','toolbar=0,status=0,width=626,height=436');return false; }
-    </script>
-    <script>
 
-    </script>
+        function fbs_click() { window.open(`http://www.facebook.com/sharer.php?u=${pageLink}&quote=${pageTitle}`, 'sharer', 'toolbar=0,status=0,width=626,height=436'); return false; }
 
+        function tbs_click() { window.open(`https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageLink}`, 'sharer', 'toolbar=0,status=0,width=626,height=436'); return false; }
+
+        function lbs_click() { window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageLink}`, 'sharer', 'toolbar=0,status=0,width=626,height=436'); return false; }
+
+        function rbs_click() { window.open(`https://www.reddit.com/submit?url=${pageLink}`, 'sharer', 'toolbar=0,status=0,width=626,height=436'); return false; }
+
+        function pbs_click() { window.open(`https://www.pinterest.com/pin/create/button/?&text=${pageTitle}&url=${pageLink}&description=${pageTitle}`, 'sharer', 'toolbar=0,status=0,width=626,height=436'); return false; }
+    </script>
 </div>
 {% endblock %}

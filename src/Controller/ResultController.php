@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Personality;
+use App\Entity\UserPersonality;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\Histogram;
 use CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\BarChart;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,7 +59,21 @@ class ResultController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Personality::class);
         $personality = $repository->findOneBy(['personalityId' => $answer]);
 
-
+        //adding userpersonatliy
+        $userPersonality = new UserPersonality();
+        $userPersonality->setPersonalityId($answer);
+        $userPersonality->setUserId("12");
+        $manager = $this->getDoctrine()->getManager();
+        if (!$productExist = $this->getDoctrine()->getRepository(UserPersonality::class)->findOneBy(['userId' => $userPersonality->getUserId()])) {
+            $manager->persist($userPersonality);
+            $manager->flush();
+        } else {
+            $manager->remove($productExist);
+            $manager->flush();
+            $manager->persist($userPersonality);
+            $manager->flush();
+        };
+        //adding userpersonatliy
         $pieChart = new PieChart();
         $pieChart->getData()->setArrayToDataTable(
             [
@@ -103,19 +118,20 @@ class ResultController extends AbstractController
         $histogram->getOptions()->getLegend()->setPosition('none');
         $histogram->getOptions()->setColors(['#e7711c']);
         $histogram->getOptions()->setBackgroundColor('#f8f9fa');
+
         // $histogram->getOptions()->getHistogram()->setLastBucketPercentile(10);
         // $histogram->getOptions()->getHistogram()->setBucketSize(10000000);
         $bar = new BarChart();
         $bar->getData()->setArrayToDataTable([
-            ['Personality Trait', 'trait 1','trait 2'],
+            ['Personality Trait', 'trait 1', 'trait 2'],
             ['Extroversion VS Introversion',   self::countNumbers($extrovertVsIntrovertAnswersStorage, 1),  self::countNumbers($extrovertVsIntrovertAnswersStorage, 0)],
- 
-            ['Sensing VS Intuition',  self::countNumbers($sensingVsIntuitionsAnswersStorage, 1),self::countNumbers($sensingVsIntuitionsAnswersStorage, 0)],
-        
-            ['Thinking VS Feeling',  self::countNumbers($thinkingVsFeelingAnswersStorage, 1),self::countNumbers($thinkingVsFeelingAnswersStorage, 0)],
-         
-            ['Judging VS Perceiving',  self::countNumbers($judgingVsPerceivingAnswersStorage, 1),self::countNumbers($judgingVsPerceivingAnswersStorage, 0)],
-    
+
+            ['Sensing VS Intuition',  self::countNumbers($sensingVsIntuitionsAnswersStorage, 1), self::countNumbers($sensingVsIntuitionsAnswersStorage, 0)],
+
+            ['Thinking VS Feeling',  self::countNumbers($thinkingVsFeelingAnswersStorage, 1), self::countNumbers($thinkingVsFeelingAnswersStorage, 0)],
+
+            ['Judging VS Perceiving',  self::countNumbers($judgingVsPerceivingAnswersStorage, 1), self::countNumbers($judgingVsPerceivingAnswersStorage, 0)],
+
         ]);
         $bar->getOptions()->setTitle('Form Statistics');
         $bar->getOptions()->getHAxis()->setTitle('Your answer');

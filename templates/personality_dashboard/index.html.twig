@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-th-list"></i> Basic Tables</h1>
+            <p>Basic bootstrap tables</p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Tables</li>
+            <li class="breadcrumb-item active"><a href="#">Simple Tables</a></li>
+        </ul>
+    </div>
+    <div class="form-group">
+        {# this form theme will be applied only to the form of this template #}
+        {# {% form_theme formUserPersonality 'bootstrap_4_layout.html.twig' %} #}
+        {# {{ form(formUserPersonality) }} #}
+        {# {{form_start(formUserPersonality)}}
+      {{form_row(formUserPersonality.personalityId,{'attr':{'placeholder':'personality type'} })}}
+      {{form_widget(formUserPersonality.userId,{'attr':{'placeholder':'user id'} })}}
+      <button type="submit" style="margin: 10px 0;" class="btn btn-info bg-teal-700 ">Enregistrer</button>
+      {{form_end(formUserPersonality)}} #}
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        {{form(form)}}
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        PersonalityId
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Social
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Processing
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        decisionMaking
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Interaction
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for personality in personalities %}
+                <tr
+                    class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                        {{ personality.personalityId }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ personality.social }}
+                    </td>
+                    <td class="px-6 py-4">
+                       {{ personality.processing }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ personality.decisionMaking }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ personality.interaction }}
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+</main>
+
+
+{% endblock %}

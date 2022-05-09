@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,7 +15,6 @@ class Personality
     /**
      * @var string
      *
-     * @Groups("Personality")
      * @ORM\Column(name="personality_id", type="string", length=4, nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -26,7 +24,6 @@ class Personality
     /**
      * @var \DecisionMakingStyle
      *
-     * @Groups("Personality")
      * @ORM\ManyToOne(targetEntity="DecisionMakingStyle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="decision_making", referencedColumnName="decision_making_id")
@@ -37,7 +34,6 @@ class Personality
     /**
      * @var \InteractionStyle
      *
-     * @Groups("Personality")
      * @ORM\ManyToOne(targetEntity="InteractionStyle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="interaction", referencedColumnName="interaction_id")
@@ -48,7 +44,6 @@ class Personality
     /**
      * @var \ProcessingStyle
      *
-     * @Groups("Personality")
      * @ORM\ManyToOne(targetEntity="ProcessingStyle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="processing", referencedColumnName="processing_id")
@@ -59,7 +54,6 @@ class Personality
     /**
      * @var \SocialStyle
      *
-     * @Groups("Personality")
      * @ORM\ManyToOne(targetEntity="SocialStyle")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="social", referencedColumnName="social_id")
@@ -71,56 +65,47 @@ class Personality
     {
         return $this->personalityId;
     }
-
+    public function setPersonalityId(string $personalityId): self
+    {
+        $this->personalityId = $personalityId;
+        return $this;
+    }
     public function getDecisionMaking(): ?DecisionMakingStyle
     {
         return $this->decisionMaking;
     }
-
     public function setDecisionMaking(?DecisionMakingStyle $decisionMaking): self
     {
         $this->decisionMaking = $decisionMaking;
-
         return $this;
     }
-
     public function getInteraction(): ?InteractionStyle
     {
         return $this->interaction;
     }
-
     public function setInteraction(?InteractionStyle $interaction): self
     {
         $this->interaction = $interaction;
-
         return $this;
     }
-
     public function getProcessing(): ?ProcessingStyle
     {
         return $this->processing;
     }
-
     public function setProcessing(?ProcessingStyle $processing): self
     {
         $this->processing = $processing;
-
         return $this;
     }
-
     public function getSocial(): ?SocialStyle
     {
         return $this->social;
     }
-
     public function setSocial(?SocialStyle $social): self
     {
         $this->social = $social;
-
         return $this;
     }
-    public function __toString()
-    {
-        return $this->decisionMaking;
-    }
+    
+
 }

@@ -44,6 +44,11 @@ class SocialStyle
     {
         return $this->socialName;
     }
+    public function setSocialId(string $socialId): self
+    {
+        $this->socialId = $socialId;
+        return $this;
+    }
 
     public function setSocialName(string $socialName): self
     {
