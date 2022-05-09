@@ -1,0 +1,72 @@
+{% extends 'baseFront.html.twig' %}
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+<style>
+    .mode {
+        float:right;
+    }
+    .change {
+        cursor: pointer;
+        border: 1px solid #555;
+        border-radius: 40%;
+        width: 20px;
+        text-align: center;
+        padding: 5px;
+        margin-left: 8px;
+    }
+    .dark{
+        background-color: #222;
+        color: #e6e6e6;
+    }
+</style>
+
+<section class="row news-grids pb-lg-3 mt-3 mt-lg-5">
+    <div class="mode" style="padding: 10px;">
+        Dark mode:
+        <span class="change">OFF</span>
+    </div>
+
+    <div class="nav3">
+        <ul class="gallery">
+
+            <h3 class="title-agile2">Chambres dans l'hotel</h3>
+
+            <label class="agile-se"></label>
+            <li>
+                <div class="w3layouts-main" >
+                        {% for chambre in chambres %}
+                            <div class="border:2px solid #E3F2FD;">
+                                <div class="ww" class="responsive">
+                                    <h2 style="color: #f2af00 "><span>Chambre {{  chambre.typeChambre }} </span></h2>
+                                    <h2 style="color: antiquewhite"> Prix nuitée: {{  chambre.prix }} TND</h2><br><br>
+                                    <img class="agile-img" src="{{ asset('uploads/' ~ chambre.image) }}" style="width: 220px; height: 200px; background-size: cover;" class="responsive" >
+                                    <br><br>
+                                    <p><h3 style="color: #0d1214"> Chambre numéro {{  chambre.numChambre }} <br> étage:  {{  chambre.etage }}</h3></p>
+                                    <a href="{{ path('reserverCh', {'id': chambre.idChambre}) }}" class="view">Réserver cette chambre</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    <div class="clearfix"></div>
+                </div>
+                <style>
+                .ww{
+                    float: left;
+                    width: 30%;
+                    margin-left: 40px;
+                    margin-bottom: 40px;
+                    background: #478bca;
+                    padding:4% 1.5% 4%;
+                }
+                </style>
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+</body>
+</html>
+{% endblock %}

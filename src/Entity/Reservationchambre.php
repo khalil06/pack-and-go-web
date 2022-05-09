@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 
 /**
  * Reservationchambre
- *
- * @ORM\Table(name="reservationchambre", indexes={@ORM\Index(name="fk_reserv_chambre", columns={"id_chambre"}), @ORM\Index(name="fk_user_reservCh", columns={"id_user"})})
- * @ORM\Entity
+ * @ORM\Table(name="reservationchambre", indexes={@ORM\Index(name="fk_user_reservCh", columns={"id_user"}), @ORM\Index(name="fk_reserv_chambre", columns={"id_chambre"})})
+ * @ORM\Entity(repositoryClass="App\Repository\ReservationChambreRepository")
  */
 class Reservationchambre
 {
@@ -23,31 +25,46 @@ class Reservationchambre
 
     /**
      * @var \DateTime
-     *
+     * @Assert\GreaterThan(
+     *     value="+1 days",
+     *     message="La date saisie doit être sup ou égale au {{ compared_value }}"
+     * )
      * @ORM\Column(name="check_in", type="date", nullable=false)
      */
     private $checkIn;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\GreaterThan(propertyPath="checkIn",
+     *     message="date check out doit etre sup a date check in")
      * @ORM\Column(name="check_out", type="date", nullable=false)
      */
     private $checkOut;
 
     /**
-     * @var int
+     * @var \User
      *
-     * @ORM\Column(name="id_user", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_user", referencedColumnName="id_user")
+     * })
      */
     private $idUser;
 
     /**
-     * @var int
+     * @var \Chambre
      *
-     * @ORM\Column(name="id_chambre", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="reservationCh")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_chambre", referencedColumnName="id_chambre")
+     * })
      */
     private $idChambre;
+
+  /*  /**
+     * @ORM\ManyToOne(targetEntity=Chambre::class, inversedBy="reservationCh")
+     */
+  /*  private $chambre;*/
 
     public function getNumReservation(): ?int
     {
@@ -78,29 +95,40 @@ class Reservationchambre
         return $this;
     }
 
-    public function getIdUser(): ?int
+    public function getIdUser(): ?User
     {
         return $this->idUser;
     }
 
-    public function setIdUser(int $idUser): self
+    public function setIdUser(?User $idUser): self
     {
         $this->idUser = $idUser;
 
         return $this;
     }
 
-    public function getIdChambre(): ?int
+    public function getIdChambre(): ?Chambre
     {
         return $this->idChambre;
     }
 
-    public function setIdChambre(int $idChambre): self
+    public function setIdChambre(?Chambre $idChambre): self
     {
         $this->idChambre = $idChambre;
 
         return $this;
     }
 
+    public function getChambre(): ?Chambre
+    {
+        return $this->chambre;
+    }
+
+    public function setChambre(?Chambre $chambre): self
+    {
+        $this->chambre = $chambre;
+
+        return $this;
+    }
 
 }
