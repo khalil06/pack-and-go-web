@@ -28,7 +28,7 @@ class YourPersonalityController extends AbstractController
      
                 
                 // look for a single person$personality by name
-                $personalityUser = $repository->findOneBy(['userId' => 12]);
+                $personalityUser = $repository->findOneBy(['userId' => 1]);
                 $personality = $repositoryPersonality->findOneBy(['personalityId' => $personalityUser->getPersonalityId()]);
 
         return $this->render('your_personality/index.html.twig', [

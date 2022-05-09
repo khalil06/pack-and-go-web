@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Hotel;
 use App\Form\HotelType;
+use Monolog\Logger;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,10 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Psr\Log\LoggerInterface;
+
 
 
 class HotelController extends AbstractController
 {
+
     /**
      * @Route("/back", name="back")
      */
@@ -190,6 +194,34 @@ class HotelController extends AbstractController
     }
 
     /**
+     * @Route("/addQrImage", name="imagee")
+     */
+    public function addQrImage(Request $request, SerializerInterface $serializer){
+       $qrName= $this->addImageHotel($request, 'file', "qr_");
+       $hotelImg = $this->addImageHotel($request, 'hotel', "");
+       if($qrName && $hotelImg) {
+           return new Response($hotelImg."//".$qrName);
+       }
+       return new \Error("erreur");
+    }
+
+    public function addImageHotel(Request $request, String $postname, String $prefix){
+        $file = $request->files->get($postname);
+        $filename = $prefix . md5(uniqid()) . '.' . $file->guessExtension();
+        try {
+            $file->move(
+                $this->getParameter('uploads'),
+                $filename
+            );
+            return $filename;
+        } catch (FileException $e) {
+            return null;
+        }
+
+    }
+
+
+    /**
      * @Route("/deleteHotell", name="deleteHotell")
      */
     public function deleteHotell(Request $request, SerializerInterface $serializer)
@@ -222,6 +254,19 @@ class HotelController extends AbstractController
         $em->flush();
         $json = $serializer->serialize($hotel, 'json');
         return new Response($json);
+    }
+
+    /**
+     * @Route("/searchh", name="searchh", methods={"GET"})
+     */
+    public function searchh(Request $request, NormalizerInterface $normalizer, SerializerInterface $serializer)
+    {
+        $repository = $this->getDoctrine()->getRepository(Hotel::class);
+        $requestString = $request->get('searchValue');
+        $hotels = $repository->findEntitiesByString($requestString);
+        $json = $serializer->serialize($hotels, 'json', ['groups' =>'hotels']);
+        return new Response($json);
+
     }
 
 }
