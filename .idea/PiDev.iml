@@ -153,6 +153,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/twig/extra-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cmen/google-charts-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ideato/star-rating-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/twig/extensions" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+
+
+
+
+  <main class="app-content">
+    <div class="app-title">
+      <div>
+        <h1><i class="fa fa-th-list"></i> Basic Tables</h1>
+        <p>Basic bootstrap tables</p>
+      </div>
+      <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+        <li class="breadcrumb-item">Tables</li>
+        <li class="breadcrumb-item active"><a href="#">Simple Tables</a></li>
+      </ul>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-20 ">
+        <div class="tile">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>id activité</th>
+              <th>nom activité</th>
+              <th>type activité</th>
+              <th>prix</th>
+              <th>adresse</th>
+              <th>pays</th>
+              <th>image</th>
+              <th>modification</th>
+              <th>suppression</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for activite in activites %}
+              <tr>
+                <td>{{  activite.idActivite}}</td>
+                <td>{{  activite.nomActivite}}</td>
+                <td>{{  activite.typeActivite}}</td>
+                <td>{{  activite.prix}}</td>
+                <td>{{  activite.adresse}}</td>
+                <td>{{  activite.pays}}</td>
+                <td><img src="{{ asset('uploads/' ~ activite.ImagePath ) }}" style="width: 220px; height: 200px; background-size: cover;" /></td>
+                <td><a href="{{ path('updateActivite', {'id': activite.idActivite}) }}" class="btn btn-success">Modifier</a></td>
+                <td><a href="{{ path('deleteActivite', {'id': activite.idActivite}) }}" class="btn btn-danger">Supprimer</a></td>
+
+
+
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+
+    </div>
+  </main>
+{% endblock %}

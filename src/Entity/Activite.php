@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Activite
  *
@@ -20,11 +20,17 @@ class Activite
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idActivite;
+    /**
+     * @var int
+     *
+     */
+    private $nombre;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nom_activite", type="string", length=50, nullable=false)
+     * @Assert\NotBlank(message="Nom d'activité obligatoire")
      */
     private $nomActivite;
 
@@ -32,6 +38,7 @@ class Activite
      * @var string
      *
      * @ORM\Column(name="type_activite", type="string", length=20, nullable=false)
+     *@Assert\NotBlank(message="Type d'activité obligatoire")
      */
     private $typeActivite;
 
@@ -39,6 +46,7 @@ class Activite
      * @var float
      *
      * @ORM\Column(name="prix", type="float", precision=10, scale=0, nullable=false)
+     *@Assert\NotBlank(message="Prix d'activité obligatoire")
      */
     private $prix;
 
@@ -46,6 +54,7 @@ class Activite
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=50, nullable=false)
+     *@Assert\NotBlank(message="Adresse d'activité obligatoire")
      */
     private $adresse;
 
@@ -53,6 +62,7 @@ class Activite
      * @var string
      *
      * @ORM\Column(name="pays", type="string", length=20, nullable=false)
+     *@Assert\NotBlank(message="Pays d'activité obligatoire")
      */
     private $pays;
 
@@ -112,6 +122,12 @@ class Activite
     public function setAdresse(string $adresse): self
     {
         $this->adresse = $adresse;
+
+        return $this;
+    }
+    public function setNombreTicket(int $nombre): self
+    {
+        $this->nombre = $nombre;
 
         return $this;
     }
