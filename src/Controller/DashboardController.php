@@ -15,9 +15,7 @@ use App\Entity\UserPersonality;
 use App\Entity\Activite;
 use App\Entity\Ticket;
 use App\Form\ActiviteType;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+
 use PhpParser\Node\Stmt\Label;
 use PhpParser\Node\Stmt\TryCatch;
 use Symfony\Bridge\Doctrine\Form\Type\DoctrineType;
