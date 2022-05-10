@@ -21,7 +21,7 @@
 		<div class="limiter">
 			<div class="container-login100">
 				<div class="wrap-login100">
-					<form class="login100-form validate-form" method="post">
+					<form class="login100-form validate-form" method="post" onsubmit="return verifier_recaptcha(event)">
 
 						{% if error %}
 							<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -42,6 +42,8 @@
 							<span class="focus-input100"></span>
 							<span class="label-input100">Password</span>
 						</div>
+
+						<div class="g-recaptcha" data-sitekey="6Ld1Xa0fAAAAAGY_0BtTrmF47eXsI3g1_n-hJDLV"></div>
 
 						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -85,7 +87,7 @@
 				</div>
 			</div>
 		</div>
-
+		 <script src='https://www.google.com/recaptcha/api.js'></script>
 		<script src="vendor-login/jquery/jquery-3.2.1.min.js"></script>
 		<script src="vendor-login/animsition/js/animsition.min.js"></script>
 		<script src="vendor-login/bootstrap/js/popper.js"></script>
@@ -95,6 +97,16 @@
 		<script src="vendor-login/daterangepicker/daterangepicker.js"></script>
 		<script src="vendor-login/countdowntime/countdowntime.js"></script>
 		<script src="js-login/main.js"></script>
+		<script>
+			function verifier_recaptcha(e) {
+				if (grecaptcha.getResponse() == ""){
+					alert("Verifier Recaptcha");
+					return false
+				} else {
+					return true
+				}
+			}
 
+		</script>
 	</body>
 </html>

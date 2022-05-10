@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -25,6 +26,7 @@ class User implements UserInterface
      *     message = "The email '{{ value }}' is not a valid email.",
      *     checkMX = true
      * )
+     * @Assert\NotNull
      */
     private $email;
 
@@ -36,6 +38,10 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\Length(
+     *      min = 6,
+     *      minMessage = "Password contain at least {{ limit }} characters long",
+     * )
      */
     private $password;
 
@@ -47,6 +53,7 @@ class User implements UserInterface
      *      minMessage = "Your first name must be at least {{ limit }} characters long",
      *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
      * )
+     * @Assert\NotNull
      */
     private $first_name;
 
@@ -58,6 +65,7 @@ class User implements UserInterface
      *      minMessage = "Your first name must be at least {{ limit }} characters long",
      *      maxMessage = "Your first name cannot be longer than {{ limit }} characters"
      * )
+     * @Assert\NotNull
      *
      */
     private $last_name;
@@ -65,16 +73,17 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="integer")
      *  @Assert\Length(
-     *
      *      max = 8,
      *      min = 8,
      *      exactMessage = "Your number must have 8 digits"
      * )
+     * @Assert\NotNull
      */
     private $number;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotNull
      */
     private $birthday;
 
@@ -87,6 +96,11 @@ class User implements UserInterface
      * @ORM\Column(type="datetime")
      */
     private $last_updated_user;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default" : 0})
+     */
+    private $blocked;
 
     public function getId(): ?int
     {
@@ -239,5 +253,17 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getBlocked(): ?bool
+    {
+        return $this->blocked;
+    }
+
+    public function setBlocked(bool $blocked): self
+    {
+        $this->blocked = $blocked;
+
+        return $this;
     }
 }

@@ -1,4 +1,10 @@
 {
+    "bacon/bacon-qr-code": {
+        "version": "2.0.7"
+    },
+    "dasprid/enum": {
+        "version": "1.0.3"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -82,8 +88,39 @@
     "egulias/email-validator": {
         "version": "3.1.2"
     },
+    "endroid/installer": {
+        "version": "1.4.0"
+    },
+    "endroid/qr-code": {
+        "version": "4.4.8"
+    },
+    "endroid/qr-code-bundle": {
+        "version": "4.0.7"
+    },
+    "excelwebzone/recaptcha-bundle": {
+        "version": "1.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "fd4da7bc71749db65bc83abf5d164bfa9c839cf4"
+        },
+        "files": [
+            "./config/packages/dev/ewz_recaptcha.yaml",
+            "./config/packages/ewz_recaptcha.yaml"
+        ]
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.7"
+    },
+    "google/recaptcha": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.1",
+            "ref": "e5a4aa21f2e98d7440ae9aab6b56e307f99dd084"
+        }
     },
     "laminas/laminas-code": {
         "version": "4.5.1"

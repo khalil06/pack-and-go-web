@@ -3,10 +3,11 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use EWZ\Bundle\RecaptchaBundle\Form\Type\EWZRecaptchaType;
 
 class ResetPasswordRequestFormType extends AbstractType
 {
@@ -21,7 +22,18 @@ class ResetPasswordRequestFormType extends AbstractType
                     ]),
                 ],
             ])
-        ;
+            ->add('recaptcha', EWZRecaptchaType::class, [
+                'attr' => [
+                    'options' => [
+                        'theme' => 'light',
+                        'type'  => 'image',
+                        'size'  => 'normal',
+                        'defer' => true,
+                        'async' => true,
+                    ]
+                ],
+                'mapped' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

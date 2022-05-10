@@ -1,44 +1,54 @@
 {% extends 'base-back.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}User index
+{% endblock %}
 
 {% block content %}
 
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Number</th>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Birthday</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.number }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-sm btn-primary">Show</a>
-                    <a href="{{ path('app_user_edit', {'id': user.id}) }}"class="btn btn-sm btn-warning">Edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Number</th>
+				<th>Username</th>
+				<th>Role</th>
+				<th>Birthday</th>
+				<th>Profile</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user.firstName }}</td>
+					<td>{{ user.lastName }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.number }}</td>
+					<td>{{ user.username }}</td>
+					<td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+					<td>{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
+					<td>
+						<img src="{{ qr_code_url('http://127.0.0.1:8000/profile/' ~ user.id) }}" width="75px"/>
+					</td>
+					<td>
+						<a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-sm btn-primary">Show</a>
+						<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-warning">Edit</a>
+						{% if user.blocked %}
+							<a href="{{ path('app_user_unblock', {'id': user.id}) }}" class="btn btn-sm btn-success">Unblock</a>
+						{% else %}
+							<a href="{{ path('app_user_block', {'id': user.id}) }}" class="btn btn-sm btn-danger">Block</a>
+						{% endif %}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="12">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_user_new') }}" class="btn btn-sm btn-success">Create new</a>
+	<a href="{{ path('app_user_new') }}" class="btn btn-sm btn-success">Create new</a>
 {% endblock %}
