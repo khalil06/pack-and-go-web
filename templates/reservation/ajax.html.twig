@@ -1,0 +1,17 @@
+{% for reservation in reservations %}
+    <tr>
+        <td>{{ reservation.id }}</td>
+        <td>{{ reservation.type }}</td>
+        <td>{{ reservation.class }}</td>
+        <td>{{ reservation.finalPrice }}</td>
+        <td>{{ reservation.getClient().getName() }}</td>
+        <td>
+            <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
+            <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="5">no records found</td>
+    </tr>
+{% endfor %}
