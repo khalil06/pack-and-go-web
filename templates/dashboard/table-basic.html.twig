@@ -1,11 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello DashboardController!{% endblock %}
-<<<<<<< HEAD
-
-=======
 {% set menu_selected = 'reservationA' %}
->>>>>>> dev
 {% block body %}
 
 
@@ -14,7 +10,6 @@
 <main class="app-content">
   <div class="app-title">
     <div>
-<<<<<<< HEAD
       <h1><i class="fa fa-th-list"></i> Basic Tables</h1>
       <p>Basic bootstrap tables</p>
     </div>
@@ -37,259 +32,152 @@
 
   <div class="row">
     <div class="col-md-6 ">
-=======
-      <h1><i class="fa fa-th-list"></i> Activité Dashboard</h1>
+      </tr>
+      {% endfor %}
+      </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="tile">
+      <h3 class="tile-title">User Personality</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>User Id</th>
+            <th>PersonalityId</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for userPersonality in userPersonalities %}
+          <tr>
+            <td>{{ userPersonality.userPersonalityId}}</td>
+            <td>{{ userPersonality.userId }}</td>
+            <td>{{ userPersonality.personalityId }}</td>
+            <td><a href="/user/personality/dashboard/{{userPersonality.userPersonalityId}}"
+                class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Delete</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
 
   </div>
-  <div class="form-group">
-    {# this form theme will be applied only to the form of this template #}
-    {% form_theme formActivite 'bootstrap_4_layout.html.twig' %}
-    {# {{ form(formUserPersonality) }} #}
-    {{form_start(formActivite)}}
-
-    {{form_end(formActivite)}}
-
-  </div>
-
   <div class="row">
-    <div class="col-md-20 ">
->>>>>>> dev
+    <div class="col-md-6 ">
       <div class="tile">
         <table class="table">
           <thead>
             <tr>
-<<<<<<< HEAD
-              <th>personality id</th>
-              <th>social</th>
-              <th>processing</th>
-              <th>decision making</th>
-              <th>interaction</th>
+              <th>social id</th>
+              <th>social name</th>
+              <th>social details</th>
               <th>Edit</th>
             </tr>
           </thead>
           <tbody>
-            {% for personality in personalities %}
+            {% for socialStyle in socialStyles %}
             <tr>
-              <td>{{  personality.personalityId}}</td>
-              <td>{{ personality.social }}</td>
-              <td>{{ personality.processing }}</td>
-              <td>{{ personality.decisionMaking }}</td>
-              <td>{{ personality.interaction }}</td>
-              <td><a href="/personality/dashboard/{{personality.personalityId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
-=======
-              <th>id activité</th>
-              <th>nom activité</th>
-              <th>type activité</th>
-              <th>prix</th>
-              <th>adresse</th>
-              <th>pays</th>
-              <th>image</th>
-              <th>modification</th>
-              <th>suppression</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for activite in activites %}
-            <tr>
-              <td>{{  activite.idActivite}}</td>
-              <td>{{  activite.nomActivite}}</td>
-              <td>{{  activite.typeActivite}}</td>
-              <td>{{  activite.prix}}</td>
-              <td>{{  activite.adresse}}</td>
-              <td>{{  activite.pays}}</td>
-              <td><img src="{{ asset('uploads/' ~ activite.ImagePath ) }}" style="width: 220px; height: 200px; background-size: cover;" /></td>
-              <td><a href="{{ path('updateActivite', {'id': activite.idActivite}) }}" class="btn btn-success">Modifier</a></td>
-              <td><a href="{{ path('deleteActivite', {'id': activite.idActivite}) }}" class="btn btn-danger">Supprimer</a></td>
+              <td>{{  socialStyle.socialId}}</td>
+              <td>{{ socialStyle.socialName }}</td>
+              <td>{{ socialStyle.socialDetails }}</td>
+
+              <td><a href="/social/dashboard/{{socialStyle.socialId}}" class="btn btn-info btn-lg active" role="button"
+                  aria-pressed="true">Edit</a></td>
 
 
-
->>>>>>> dev
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
     </div>
-<<<<<<< HEAD
     <div class="col-md-6">
       <div class="tile">
-        <h3 class="tile-title">User Personality</h3>
-        <table class="table table-striped">
+        <table class="table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>User Id</th>
-              <th>PersonalityId</th>
-              <th>Delete</th>
+              <th>Processing id</th>
+              <th>Processing name</th>
+              <th>Processing details</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
-            {% for userPersonality in userPersonalities %}
+            {% for processingStyle in processingStyles %}
             <tr>
-              <td>{{ userPersonality.userPersonalityId}}</td>
-              <td>{{ userPersonality.userId }}</td>
-              <td>{{ userPersonality.personalityId }}</td>
-              <td><a href="/user/personality/dashboard/{{userPersonality.userPersonalityId}}"  class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Delete</a></td>
+              <td>{{  processingStyle.processingId}}</td>
+              <td>{{ processingStyle.processingName }}</td>
+              <td>{{ processingStyle.processingDetails }}</td>
+              <td><a href="/processing/dashboard/{{processingStyle.processingId}}" class="btn btn-info btn-lg active"
+                  role="button" aria-pressed="true">Edit</a></td>
+
             </tr>
             {% endfor %}
           </tbody>
         </table>
       </div>
-
     </div>
-    <div class="row">
-      <div class="col-md-6 ">
-        <div class="tile">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>social id</th>
-                <th>social name</th>
-                <th>social details</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for socialStyle in socialStyles %}
-              <tr>
-                <td>{{  socialStyle.socialId}}</td>
-                <td>{{ socialStyle.socialName }}</td>
-                <td>{{ socialStyle.socialDetails }}</td>
-             
-              <td><a href="/social/dashboard/{{socialStyle.socialId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+  </div>
 
-                
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="tile">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Processing id</th>
-                <th>Processing name</th>
-                <th>Processing details</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for processingStyle in processingStyles %}
-              <tr>
-                <td>{{  processingStyle.processingId}}</td>
-                <td>{{ processingStyle.processingName }}</td>
-                <td>{{ processingStyle.processingDetails }}</td>
-                <td><a href="/processing/dashboard/{{processingStyle.processingId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="tile">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Decision Making Id</th>
+              <th>Decision Making Name</th>
+              <th>Decision Making Details</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for decisionMakingStyle in decisionMakingStyles %}
+            <tr>
+              <td>{{  decisionMakingStyle.decisionMakingId}}</td>
+              <td>{{ decisionMakingStyle.decisionMakingName }}</td>
+              <td>{{ decisionMakingStyle.decisionMakingDetails }}</td>
+              <td><a href="/decision/dashboard/{{decisionMakingStyle.decisionMakingId}}"
+                  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
 
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
     </div>
+    <div class="col-md-6 ">
+      <div class="tile">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Interaction Id</th>
+              <th>Interaction Name</th>
+              <th>Interaction Details</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for interactionStyle in interactionStyles %}
+            <tr>
+              <td>{{ interactionStyle.interactionId}}</td>
+              <td>{{ interactionStyle.interactionName }}</td>
+              <td>{{ interactionStyle.interactionDetails }}</td>
+              <td><a href="/interaction/dashboard/{{interactionStyle.interactionId}}" class="btn btn-info btn-lg active"
+                  role="button" aria-pressed="true">Edit</a></td>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="tile">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Decision Making Id</th>
-                <th>Decision Making Name</th>
-                <th>Decision Making Details</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for decisionMakingStyle in decisionMakingStyles %}
-              <tr>
-                <td>{{  decisionMakingStyle.decisionMakingId}}</td>
-                <td>{{ decisionMakingStyle.decisionMakingName }}</td>
-                <td>{{ decisionMakingStyle.decisionMakingDetails }}</td>
-                <td><a href="/decision/dashboard/{{decisionMakingStyle.decisionMakingId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
-
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
       </div>
-      <div class="col-md-6 ">
-        <div class="tile">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Interaction Id</th>
-                <th>Interaction Name</th>
-                <th>Interaction Details</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for interactionStyle in interactionStyles %}
-              <tr>
-                <td>{{ interactionStyle.interactionId}}</td>
-                <td>{{ interactionStyle.interactionName }}</td>
-                <td>{{ interactionStyle.interactionDetails }}</td>
-                <td><a href="/interaction/dashboard/{{interactionStyle.interactionId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
-
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-=======
-
->>>>>>> dev
-
     </div>
 
   </div>
-<<<<<<< HEAD
-=======
-  <script src="{{asset('libback/chart-master/Chart.js')}}"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
-  <div>
-    <canvas id="myChart"></canvas>
+
   </div>
-  <script>
-    const labels = [
-      'Cinéma',
-      'Musée',
-      'Plage',
-      'Espace vert'
-
-    ];
-
-    const data = {
-      labels: labels,
-      datasets: [{
-        label:   '',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: {{ table|raw }},
-      }]
-    };
-
-    const config = {
-      type: 'bar',
-      data: data,
-      options: {}
-    };
-  </script>
-  <script>
-    const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-    );
-  </script>
->>>>>>> dev
 </main>
 {% endblock %}
