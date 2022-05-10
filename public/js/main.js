@@ -1,31 +1,59 @@
 
-(function () {
-	"use strict";
 
-	var treeviewMenu = $('.app-menu');
+// (function () {
+// 	"use strict";
 
-	// Toggle Sidebar
-	$('[data-toggle="sidebar"]').click(function(event) {
-		event.preventDefault();
-		$('.app').toggleClass('sidenav-toggled');
-	});
+//     var updateArrows = function(){
+//         $('.carouselGallery-right').removeClass('disabled');
+//         $('.carouselGallery-left').removeClass('disabled');
+//         var curIndex = $('.carouselGallery-carousel.active').data('index');
+//         updateArrows.nbrOfItems = updateArrows.nbrOfItems || $('.carouselGallery-carousel').length -1;
 
-	// Activate sidebar treeview toggle
-	$("[data-toggle='treeview']").click(function(event) {
-		event.preventDefault();
-		if(!$(this).parent().hasClass('is-expanded')) {
-			treeviewMenu.find("[data-toggle='treeview']").parent().removeClass('is-expanded');
-		}
-		$(this).parent().toggleClass('is-expanded');
-	});
+//         curIndex === updateArrows.nbrOfItems && $('.carouselGallery-right').addClass('disabled');
+//         curIndex === 0 && $('.carouselGallery-left').addClass('disabled');
+//     }
+//     $('.carouselGallery-carousel').on('click', function(e){
+//         scrollTo = $('body').scrollTop();
+//        $('body').addClass('noscroll');
+//        $('body').css('position', 'fixed');
+//         $('.carouselGallery-col-1, .carouselGallery-col-2').removeClass('active');
+//         $(this).addClass('active');
+//         showModal($(this));
+//         updateArrows();
+//     });
 
-	// Set initial active toggle
-	$("[data-toggle='treeview.'].is-expanded").parent().toggleClass('is-expanded');
+//     $('body').on('click', '.carouselGallery-right, .carouselGallery-left', function(e){
+//         if($(this).hasClass('disabled')) return;
+//         var curIndex = $('.carouselGallery-carousel.active').data('index');
+//         var nextItemIndex = parseInt(curIndex+1);
+//         if($(this).hasClass('carouselGallery-left')){
+//             nextItemIndex-=2;
+//         }
+//         var nextItem = $('.carouselGallery-carousel[data-index='+nextItemIndex+']');
+//        // console.log(nextItemIndex);
+//         if(nextItem.length > 0){
+//             $('.carouselGallery-col-1, .carouselGallery-col-2').removeClass('active');
+//             $('body').find('.carouselGallery-wrapper').remove();
+//             showModal($(nextItem.get(0)));
+//             nextItem.first().addClass('active');
+//         }
+//         updateArrows();
+//     });
 
-	//Activate bootstrip tooltips
-	$("[data-toggle='tooltip']").tooltip();
+//     var modalHtml = '';
+//     showModal = function(that){
+//      //   console.log(that);
+//         var username = that.data('username'),
+//         location = that.data('location'),
+//         imagetext = that.data('imagetext'),
+//         likes =  that.data('likes'),
+//         imagepath = that.data('imagepath'),
+//         carouselGalleryUrl = that.data('url');
+//         postURL =  that.data('posturl');
 
-})();
+//         maxHeight = $(window).height()-100;
+
+// })();
 jQuery(function($) {
 
     var updateArrows = function(){

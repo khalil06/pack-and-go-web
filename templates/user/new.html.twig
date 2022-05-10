@@ -1,0 +1,10 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block content %}
+
+    {{ include('user/_form.html.twig') }}
+
+    <a href="{{ path('app_user_index') }}" class="btn btn-sm btn-primary">Back to list</a>
+{% endblock %}

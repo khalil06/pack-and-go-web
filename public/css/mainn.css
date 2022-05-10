@@ -348,7 +348,8 @@ box-shadow: 0 0 0 4px rgba(255,255,255,1);
         width: 50%;
     }
 }
-@media (max-width: 640px){
+@media (max-width: 640px)
+{
 	.carouselGallery-item-meta { 
 		font-size: 1.5em; 
 	}

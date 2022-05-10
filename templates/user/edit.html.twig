@@ -1,0 +1,16 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}Edit User
+{% endblock %}
+
+{% block content %}
+	{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+	<a href="{{ path('app_user_index') }}" class="btn btn-sm btn-primary">Back to list</a>
+
+	{% if user.blocked %}
+		<a href="{{ path('app_user_unblock', {'id': user.id}) }}" class="btn btn-sm btn-success">Unblock</a>
+	{% else %}
+		<a href="{{ path('app_user_block', {'id': user.id}) }}" class="btn btn-sm btn-danger">Block</a>
+	{% endif %}
+{% endblock %}
