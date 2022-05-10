@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Activite;
+use App\Entity\Ticket;
 use App\Form\ActiviteType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,6 +68,17 @@ class DashboardController extends AbstractController
         return $this->render("dashboard/updateActivite.html.twig",array('formUpdateActivite'=>$form->createView()));
     }
     /**
+     * @Route("/reserverActivitee", name="reserverActivitee")
+     */
+    public function reserverActivite(Request $request){
+        $tickets = $this->getDoctrine()->getRepository(Ticket::class)->findall();
+        return $this->render('reservationA/table-basic.html.twig', [
+            'tickets'=>$tickets,
+
+
+        ]);
+    }
+    /**
      * @Route("/dashboard/table", name="app_dashboard_table")
      */
     public function createActivite(Request $request)
@@ -106,6 +118,7 @@ class DashboardController extends AbstractController
 
                 $manager->persist($activite);
                 $manager->flush();
+
 
 
 

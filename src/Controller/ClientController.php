@@ -6,6 +6,8 @@ use App\Entity\Activite;
 use App\Entity\Ticket;
 use App\Entity\User;
 use App\Form\ActiviteType;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Knp\Component\Pager\Paginator;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,23 +32,14 @@ class ClientController extends AbstractController
             'controller_name' => 'ClientController',
         ]);
     }
-    /**
-     * @Route("/client/table", name="app_client_table")
-     */
-    public function table(): Response
-    {
 
-        return $this->render('client/table-basic.html.twig', [
-            'controller_name' => 'ClientController',
-        ]);
-    }
     /**
      * @Route("/reserverActivite/{id}", name="reserverActivite")
      */
     public function reserverActivite(Request $request,$id):Response
     {
 
-        $user = $this->getDoctrine()->getRepository(User::class)->find(12);
+        $user = $this->getDoctrine()->getRepository(User::class)->find(10);
         $activite = $this->getDoctrine()->getRepository(Activite ::class)->find($id);
         $ticket= new Ticket();
 
@@ -55,10 +48,12 @@ class ClientController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($ticket);
         $em->flush();
-        return $this->redirectToRoute('app_client_table');
+
+
+        return $this->redirectToRoute('app_client_table2');
     }
     /**
-     * @Route("/client/table", name="app_client_table")
+     * @Route("/client/table", name="app_client_table2")
      */
     public function createActivite(Request $request,PaginatorInterface $paginator)
     {
@@ -91,7 +86,7 @@ class ClientController extends AbstractController
         }
 
         return $this->render('client/index.html.twig', [
-            'formActivite' => $form->createView(),
+
             'activites'=>$activites,
 
         ]);
