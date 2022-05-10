@@ -87,37 +87,6 @@ class DashboardController extends AbstractController
         ]);
     }
 
-
-
-
-    // class UserPersonalityController extends AbstractController
-    // {
-
-    //     public function new(Request $request): Response
-    //     {
-    //         // creates a task object and initializes some data for this example
-    //         $userPersonality = new UserPersonality();
-    //         $userPersonality->setPersonalityId('INTP');
-    //         $userPersonality->setUserId("5");
-
-    //         $form = $this->createFormBuilder($userPersonality)
-    //             ->add('personalityId', TextType::class)
-    //             ->add('userId', TextType::class)
-    //             // ->add('save', SubmitType::class, ['label' => 'Create Task'])
-    //             ->getForm();
-
-    //             return $this->render('dashboard/table-basic.html.twig', [
-    //                 'formUserPersonality' => $form->createView(),
-    //             ]);
-    //         // ...
-    //     }
-    // }
-    public function table(): Response
-    {
-        return $this->render('dashboard/table-basic.html.twig', [
-            'controller_name' => 'DashboardController',
-        ]);
-    }
     /**
      * @Route("/deleteActivite/{id}", name="deleteActivite")
      */
@@ -151,14 +120,14 @@ class DashboardController extends AbstractController
     public function reserverActivite(Request $request)
     {
         $tickets = $this->getDoctrine()->getRepository(Ticket::class)->findall();
-        return $this->render('reservationA/table-basic.html.twig', [
+        return $this->render('reservationA/table-activite.html.twig', [
             'tickets' => $tickets,
 
 
         ]);
     }
     /**
-     * @Route("/dashboard/table", name="app_dashboard_table")
+     * @Route("/dashboard/tableactivite", name="app_dashboard_table")
      */
     public function createActivite(Request $request)
     {
@@ -228,7 +197,7 @@ class DashboardController extends AbstractController
             ->getSingleScalarResult();
 
         $table = [$cinema, $musée, $plage, $espace, 0];
-        return $this->render('dashboard/table-basic.html.twig', [
+        return $this->render('dashboard/table-activite.html.twig', [
             'formActivite' => $form->createView(),
             'activites' => $activites,
 
