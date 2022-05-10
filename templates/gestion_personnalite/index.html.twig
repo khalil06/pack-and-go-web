@@ -1,0 +1,199 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+
+
+
+
+<main class="app-content">
+  <div class="app-title">
+    <div>
+      <h1><i class="fa fa-th-list"></i> Basic Tables</h1>
+      <p>Basic bootstrap tables</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+      <li class="breadcrumb-item">Tables</li>
+      <li class="breadcrumb-item active"><a href="#">Simple Tables</a></li>
+    </ul>
+  </div>
+  <div class="form-group">
+    {# this form theme will be applied only to the form of this template #}
+    {% form_theme formUserPersonality 'bootstrap_4_layout.html.twig' %}
+    {# {{ form(formUserPersonality) }} #}
+    {{form_start(formUserPersonality)}}
+    {{form_row(formUserPersonality.personalityId,{'attr':{'placeholder':'personality type'} })}}
+    {{form_widget(formUserPersonality.userId,{'attr':{'placeholder':'user id'} })}}
+    <button type="submit" style="margin: 10px 0;" class="btn btn-info bg-teal-700 ">Enregistrer</button>
+    {{form_end(formUserPersonality)}}
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 ">
+      <div class="tile">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>personality id</th>
+              <th>social</th>
+              <th>processing</th>
+              <th>decision making</th>
+              <th>interaction</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for personality in personalities %}
+            <tr>
+              <td>{{  personality.personalityId}}</td>
+              <td>{{ personality.social }}</td>
+              <td>{{ personality.processing }}</td>
+              <td>{{ personality.decisionMaking }}</td>
+              <td>{{ personality.interaction }}</td>
+              <td><a href="/personality/dashboard/{{personality.personalityId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">User Personality</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>User Id</th>
+              <th>PersonalityId</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for userPersonality in userPersonalities %}
+            <tr>
+              <td>{{ userPersonality.userPersonalityId}}</td>
+              <td>{{ userPersonality.userId }}</td>
+              <td>{{ userPersonality.personalityId }}</td>
+              <td><a href="/gestion/personnalite/delete/{{userPersonality.userPersonalityId}}"  class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Delete</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-6 ">
+        <div class="tile">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>social id</th>
+                <th>social name</th>
+                <th>social details</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for socialStyle in socialStyles %}
+              <tr>
+                <td>{{  socialStyle.socialId}}</td>
+                <td>{{ socialStyle.socialName }}</td>
+                <td>{{ socialStyle.socialDetails }}</td>
+             
+              <td><a href="/social/dashboard/{{socialStyle.socialId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+
+                
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="tile">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Processing id</th>
+                <th>Processing name</th>
+                <th>Processing details</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for processingStyle in processingStyles %}
+              <tr>
+                <td>{{  processingStyle.processingId}}</td>
+                <td>{{ processingStyle.processingName }}</td>
+                <td>{{ processingStyle.processingDetails }}</td>
+                <td><a href="/processing/dashboard/{{processingStyle.processingId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="tile">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Decision Making Id</th>
+                <th>Decision Making Name</th>
+                <th>Decision Making Details</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for decisionMakingStyle in decisionMakingStyles %}
+              <tr>
+                <td>{{  decisionMakingStyle.decisionMakingId}}</td>
+                <td>{{ decisionMakingStyle.decisionMakingName }}</td>
+                <td>{{ decisionMakingStyle.decisionMakingDetails }}</td>
+                <td><a href="/decision/dashboard/{{decisionMakingStyle.decisionMakingId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <div class="tile">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Interaction Id</th>
+                <th>Interaction Name</th>
+                <th>Interaction Details</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for interactionStyle in interactionStyles %}
+              <tr>
+                <td>{{ interactionStyle.interactionId}}</td>
+                <td>{{ interactionStyle.interactionName }}</td>
+                <td>{{ interactionStyle.interactionDetails }}</td>
+                <td><a href="/interaction/dashboard/{{interactionStyle.interactionId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+{% endblock %}
