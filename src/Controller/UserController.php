@@ -5,13 +5,15 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/user")
@@ -38,7 +40,7 @@ class UserController extends AbstractController
         //$user->setRoles(["CLIENT"]);
         $user->setCreatedDateUser(new \DateTime());
         $user->setLastUpdatedUser(new \DateTime());
-        
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
@@ -60,7 +62,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_user_show", methods={"GET"})
+     * @Route("/show/{id}", name="app_user_show", methods={"GET"})
      */
     public function show(User $user): Response
     {
@@ -106,5 +108,71 @@ class UserController extends AbstractController
         $user->setBlocked(false);
         $em->flush();
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /* API */
+
+    /**
+     * @Route("/add", name="api_add_user", methods={"POST"})
+     */
+    public function addUser(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
+    {
+        $content = $request->getContent();
+        $user = $serializer->deserialize($content, User::class, 'json');
+        $user->setCreatedDateUser(new \DateTime());
+        $user->setLastUpdatedUser(new \DateTime());
+        $em->persist($user);
+        $em->flush();
+        return new Response("User added successfully");
+    }
+
+
+    /**
+     * @Route("/get-all", name="api_get_users", methods={"GET"})
+     */
+    public function getAllUsers(UserRepository $userRepository, SerializerInterface $serializer)
+    {
+        $users = $userRepository->findAll();
+        return new Response($serializer->serialize($users, 'json'));
+    }
+
+    /**
+     * @Route("/get-user/{id}", name="api_get_user", methods={"GET"})
+     */
+    public function getSingleUser(SerializerInterface $serializer, User $user)
+    {
+        return new Response($serializer->serialize($user, 'json'));
+    }
+
+    /**
+     * @Route("/update-user/{id}", name="api_update_user", methods={"PUT"})
+     */
+    public function editUser(Request $request, UserRepository $userRepository, SerializerInterface $serializer, EntityManagerInterface $em, User $user)
+    {
+        $content = $request->getContent();
+        $user = $serializer->deserialize($content, User::class, 'json');
+        $em->persist($user);
+        $em->flush();
+        return new Response("User Updated successfully");
+    }
+
+    /**
+     * @Route("/block-user/{id}", name="api_block_user", methods={"PUT"})
+     */
+    public function blockUser(User $user, EntityManagerInterface $em)
+    {
+        $user->setBlocked(true);
+        $em->flush();
+        return new Response("User Blocked successfully");
+    }
+
+    /**
+     * @Route("/unblock-user/{id}", name="api_unblock_user", methods={"PUT"})
+     */
+    public function unblockUser(User $user, EntityManagerInterface $em)
+    {
+        $user->setBlocked(false);
+        $em->flush();
+        return new Response("User Unblocked successfully");
     }
 }

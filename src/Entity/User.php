@@ -88,19 +88,19 @@ class User implements UserInterface
     private $birthday;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $created_date_user;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $last_updated_user;
 
     /**
      * @ORM\Column(type="boolean", options={"default" : 0})
      */
-    private $blocked;
+    private $blocked = false;
 
     public function getId(): ?int
     {
