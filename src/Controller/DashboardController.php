@@ -40,7 +40,7 @@ class DashboardController extends AbstractController
         ]);
     }
     /**
-     * @Route("/dashboard/table", name="app_dashboard_table")
+     * @Route("/dashboard/table", name="app_dashboard_tablee")
      */
     public function createUserPersonality(Request $request)
     {

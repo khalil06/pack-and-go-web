@@ -149,7 +149,6 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
       <path value="$PROJECT_DIR$/vendor/twig/extra-bundle" />
       <path value="$PROJECT_DIR$/vendor/cmen/google-charts-bundle" />
-      <path value="$PROJECT_DIR$/vendor/ideato/star-rating-bundle" />
       <path value="$PROJECT_DIR$/vendor/twig/extensions" />
     </include_path>
   </component>

@@ -13,7 +13,6 @@
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         {# {{ encore_entry_link_tags('app') }} #}
-        <script src="https://cdn.tailwindcss.com"></script>
 
     {% endblock %}
 </head>
@@ -47,7 +46,6 @@
             ga('create', 'UA-72504830-1', 'auto');
             ga('send', 'pageview');
         }
-
     </script>
     <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 
@@ -189,7 +187,7 @@
                         Notifications</a></li>
             </ul>
         </li>
-        <li class="treeview is-expanded "><a class="app-menu__item" href="/afficheR" data-toggle="treeview"><i
+        <li class="treeview is-expanded "><a class="app-menu__item" href="/afficheR" data-toggle=""><i
                         class="app-menu__icon fa fa-cutlery"></i><span class="app-menu__label">Restaurants</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
@@ -201,7 +199,7 @@
                        href="{{ path('AFFommentaire') }}"><i class="icon fa fa-circle-o"></i>{% trans %} Commentaires{% endtrans %}</a></li>
             </ul>
         </li>
-        <li class="treeview is-expanded"><a class="app-menu__item" href="/back" data-toggle="treeview"><i
+        <li class="treeview is-expanded"><a class="app-menu__item" href="/back" data-toggle=""><i
                         class="app-menu__icon fa fa-building"></i><span class="app-menu__label">HOTELS</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
@@ -211,53 +209,21 @@
                        href="{{ path('listChambres') }}"><i class="icon fa fa-circle-o"></i>  {% trans %}Chambres{% endtrans %}</a></li>
                 <li><a class="treeview-item {% if menu_selected == 'reservationch' %} active {% endif %}"
                        href="/listReservChambres"><i class="icon fa fa-circle-o"></i>{% trans %} Réservations Chambres{% endtrans %}</a></li>
-
-
-
             </ul>
         </li>
-
-
-        <li class="treeview is-expanded"><a class="app-menu__item" href="/dashboard/table" data-toggle="treeview"><i
+        <li class="treeview is-expanded"><a class="app-menu__item" href="/dashboard/tableactivite" data-toggle=""><i
                         class="app-menu__icon fa fa-fort-awesome"></i><span class="app-menu__label">Activities</span><i
                         class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item {% if menu_selected == 'activite' %} active {% endif %}" href="/dashboard/table"><i
+                <li><a class="treeview-item {% if menu_selected == 'activite' %} active {% endif %}" href="/dashboard/tableactivite"><i
                                 class="icon fa fa-circle-o"></i> Activites</a></li>
                 <li><a class="treeview-item {% if menu_selected == 'reservationA' %} active {% endif %}" href="/reserverActivitee"><i
                                 class="icon fa fa-circle-o"></i>{% trans %} Réservations Activités{% endtrans %}</a></li>
-
-
-
             </ul>
         </li>
         <li><a class="app-menu__item" href="/gestion/personnalite"><i class="app-menu__icon fa fa-suitcase"></i><span
                         class="app-menu__label">Personality</span></a></li>
         <ul>
-
-        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
-                        class="app-menu__icon fa fa-suitcase"></i><span class="app-menu__label">Packs</span><i
-                        class="treeview-indicator fa fa-angle-right"></i></a>
-            <ul class="treeview-menu">
-                <li><a class="treeview-item" href="blank-page.html"><i class="icon fa fa-circle-o"></i> Blank Page</a>
-                </li>
-                <li><a class="treeview-item" href="page-login.html"><i class="icon fa fa-circle-o"></i> Login Page</a>
-                </li>
-                <li><a class="treeview-item" href="page-lockscreen.html"><i class="icon fa fa-circle-o"></i> Lockscreen
-                        Page</a></li>
-                <li><a class="treeview-item" href="page-user.html"><i class="icon fa fa-circle-o"></i> User Page</a>
-                </li>
-                <li><a class="treeview-item" href="page-invoice.html"><i class="icon fa fa-circle-o"></i> Invoice
-                        Page</a></li>
-                <li><a class="treeview-item" href="page-calendar.html"><i class="icon fa fa-circle-o"></i> Calendar Page</a>
-                </li>
-                <li><a class="treeview-item" href="page-mailbox.html"><i class="icon fa fa-circle-o"></i> Mailbox</a>
-                </li>
-                <li><a class="treeview-item" href="page-error.html"><i class="icon fa fa-circle-o"></i> Error Page</a>
-                </li>
-            </ul>
-        </li>
-    </ul>
 </aside>
 <body>
 
