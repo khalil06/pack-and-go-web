@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vol{% endblock %}
+
+{% block body %}
+
+    <main class="app-content">
+        <div class="tile mb-4">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2 class="mb-3 line-head" id="buttons" style="color: #1c7430">
+                            {{ vol.origin }}
+                            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            {{ vol.destination }}
+                        </h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="bs-component">
+                        <img style="width:80px;height: 80px;" src="{{ asset('uploads/') ~vol.company.logo}}">
+                        <h4>{{ vol.company.name }}</h4>
+                        <div>
+                            <button disabled class="btn btn-primary btn-lg " type="button">Price : {{ vol.initialPrice }} $</button>
+                        </div>
+                    </div>
+                </div>
+
+               <div class="col-lg-5">
+                    <p class="bs-component">
+                       <h4>Departure :  </h4>{{ vol.departureDate ? vol.departureDate|date('Y-m-d H:i:s') : '' }}
+                       <h4>Arrival : </h4> {{ vol.arrivalDate ? vol.arrivalDate|date('Y-m-d H:i:s') : '' }}
+                       <div>
+                           <h4>Status :  </h4>{{ vol.Status ? 'Finished' : 'Pending' }}
+                       </div>
+
+                    </p>
+                </div>
+
+                </div>
+            <div>
+                <a class="btn btn-danger btn-lg "  href="{{ path('reservation_new', {'id_vol': vol.id}) }}">Reserve now</a>
+            </div>
+            </div>
+        </div>
+        </div>
+        <p class="bs-component">
+            <a class="btn btn-secondary"  href="{{ path('vol_index') }}">Back to list</a>
+            <a  class="btn btn-info" href="{{ path('vol_edit', {'id': vol.id}) }}">Edit</a>
+            {{ include('vol/_delete_form.html.twig') }}
+
+        </p>
+    </main>
+
+{% endblock %}

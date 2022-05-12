@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <title>{% block title %}Pack & Go!{% endblock %}</title>
@@ -7,26 +8,30 @@
     <!-- Meta tag Keywords -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Travel Go Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <meta name="keywords"
+        content="Travel Go Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
     <!--// Meta tag Keywords -->
     <script type="text/javascript" src="{{ asset('js/jquery-2.1.4.min.js')}}"></script>
     <!-- css files -->
     {% block stylesheets %}
 
-        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
-        <link rel="stylesheet" href="{{ asset ('css/bootstrap.css') }}"> <!-- Bootstrap-Core-CSS -->
-        <link rel="stylesheet" href="{{ asset('css/style.css')}}" type="text/css" media="all" /> <!-- Style-CSS -->
-        <link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}"> <!-- Font-Awesome-Icons-CSS -->
-        <link href="{{ asset('css/component.css')}}" rel="stylesheet" type="text/css"  /> <!-- For-Nav-CSS -->
-        <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" type="text/css" media="screen" /> <!-- For-News-CSS -->
-        <link href="{{ asset('css/mainn.css')}}" rel="stylesheet"/> <!-- For-Portfolio-CSS -->
-                                                                    <!-- //css files -->
-                                                                    <script src="https://cdn.tailwindcss.com"></script>
-                                                                    <!-- online-fonts -->
-        <link href="//fonts.googleapis.com/css?family=Oleo+Script:400,700&amp;subset=latin-ext" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
-        <!-- //online-fonts -->
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <link rel="stylesheet" href="{{ asset ('css/bootstrap.css') }}"> <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}" type="text/css" media="all" /> <!-- Style-CSS -->
+    <link rel="stylesheet" href="{{ asset('css/font-awesome.css')}}"> <!-- Font-Awesome-Icons-CSS -->
+    <link href="{{ asset('css/component.css')}}" rel="stylesheet" type="text/css" /> <!-- For-Nav-CSS -->
+    <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}" type="text/css" media="screen" />
+    <!-- For-News-CSS -->
+    <link href="{{ asset('css/mainn.css')}}" rel="stylesheet" /> <!-- For-Portfolio-CSS -->
+    <!-- //css files -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- online-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Oleo+Script:400,700&amp;subset=latin-ext" rel="stylesheet">
+    <link
+        href="//fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+        rel="stylesheet">
+    <!-- //online-fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
     {% endblock %}
 </head>
 <!--start-home-->
@@ -34,96 +39,100 @@
 
 <body class="cbp-spmenu-push" id="home">
 
-<!-- Banner -->
-<div id="house" class="top-header">
-    <div class="col-md-6 logo-w3l w32">
+    <!-- Banner -->
+    <div id="house" class="top-header">
+        <div class="col-md-6 logo-w3l w32">
 
-        <h1 class="location"><span class="icon-w3"></span><a href="index.html">Travel Go</a></h1>
-    </div>
-    <div class="col-md-6 logo-w3l w31 sea">
-        <div class="right-w3l">
-            <ul class="top-links">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
+            <h1 class="location"><span class="icon-w3"></span><a href="index.html">Travel Go</a></h1>
         </div>
-        <div class="search">
-            <form action="#" method="post">
-                <input type="search" placeholder="Search here..." name="Search" required="">
-                <input type="submit" value="">
-            </form>
+        <div class="col-md-6 logo-w3l w31 sea">
+            <div class="right-w3l">
+                <ul class="top-links">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                </ul>
+            </div>
+            <div class="search">
+                <form action="#" method="post">
+                    <input type="search" placeholder="Search here..." name="Search" required="">
+                    <input type="submit" value="">
+                </form>
+            </div>
         </div>
+        <div class="clearfix"></div>
     </div>
-    <div class="clearfix"></div>
-</div>
 
-<div class="button">
-    <button id="showLeftPush"><img src="images/menu-icon.png" alt=""></button>
-</div>
-<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
-    <h3>Menu</h3>
-    <a href="/front" >Home</a>
-    <a href="{{path('app_questions1')}}" >Do The Test</a>
-    <a href="/your/personality" >Your Report</a>
-    <a href="/clientactivite/table" >Client</a>
-    <a href="#services" >Services</a>
-    <a href="#team" >Team</a>
-    <a href="#footerr" >About Us</a>
-</nav>
-<!--start-slider-->
-{% block body %}{% endblock %}
-<!--//end-slider-->
+    <div class="button">
+        <button id="showLeftPush"><img src="images/menu-icon.png" alt=""></button>
+    </div>
+    <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+        <h3>Menu</h3>
+        <a href="/front">Home</a>
+        <a href="{{path('app_questions1')}}">Do The Test</a>
+        <a href="/your/personality">Your Report</a>
+        <a href="/clientactivite/table">Client</a>
+        <a href="#services">Services</a>
+        <a href="#team">Team</a>
+        <a href="#footerr">About Us</a>
+    </nav>
+    <!--start-slider-->
+    {% block body %}{% endblock %}
+    <!--//end-slider-->
 
-<!-- //Banner -->
+    <!-- //Banner -->
 
-<!-- services -->
+    <!-- services -->
 
-<section class="services" id="services">
-    <h2 class="agile-se">Our Services</h2>
-    <label class="agile-se"></label>
-    <div class="w3l-serv">
-        <div class="container">
-            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s1">
-                <div class="w3-agile">
-                    <a href="#" class="hvr-rectangle-out"><i class="fa fa-plane" aria-hidden="true"></i></a>
+    <section class="services" id="services">
+        <h2 class="agile-se">Our Services</h2>
+        <label class="agile-se"></label>
+        <div class="w3l-serv">
+            <div class="container">
+                <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s1">
+                    <div class="w3-agile">
+                        <a href="#" class="hvr-rectangle-out"><i class="fa fa-plane" aria-hidden="true"></i></a>
+                    </div>
+                    <h4 class="text-center">Travel Arrangements</h4>
+                    <p class="services-w3ls">Book your flights with the best prices! </p>
                 </div>
-                <h4 class="text-center">Travel Arrangements</h4>
-                <p class="services-w3ls">Book your flights with the best prices! </p>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s2">
-                <div class="w3-agile">
-                    <a href="/listHotelsFront" class="hvr-rectangle-out"><i class="fa fa-calendar" aria-hidden="true"></i></a>
+                <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s2">
+                    <div class="w3-agile">
+                        <a href="/listHotelsFront" class="hvr-rectangle-out"><i class="fa fa-calendar"
+                                aria-hidden="true"></i></a>
+                    </div>
+                    <h4 class="text-center">Fast Hotel Booking</h4>
+                    <p class="services-w3ls">Book your stay wherever you want in the world! Best hotels with affordable
+                        prices </p>
                 </div>
-                <h4 class="text-center">Fast Hotel Booking</h4>
-                <p class="services-w3ls">Book your stay wherever you want in the world! Best hotels with affordable prices </p>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s3">
-                <div class="w3-agile">
-                    <a href="/affRF" class="hvr-rectangle-out"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
+                <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s3">
+                    <div class="w3-agile">
+                        <a href="/affRF" class="hvr-rectangle-out"><i class="fa fa-cutlery" aria-hidden="true"></i></a>
+                    </div>
+                    <h4 class="text-center">Restaurants</h4>
+                    <p class="services-w3ls">Good food is a good mood! </p>
                 </div>
-                <h4 class="text-center">Restaurants</h4>
-                <p class="services-w3ls">Good food is a good mood! </p>
+
+                <div class="clearfix"></div>
             </div>
- 
-            <div class="clearfix"></div>
         </div>
+    </section>
+
+    <!-- //services -->
+
+
+    <!-- Contact -->
+
+    <div class="contact-map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d212126.07899261903!2d150.68928304602147!3d-33.82598834810063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney+NSW%2C+Australia!5e0!3m2!1sen!2sin!4v1463468876401"
+            allowfullscreen></iframe>
     </div>
-</section>
+    <!-- //Contact -->
+    {% endblock %}
 
-<!-- //services -->
-
-
-<!-- Contact -->
-
-<div class="contact-map">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d212126.07899261903!2d150.68928304602147!3d-33.82598834810063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b129838f39a743f%3A0x3017d681632a850!2sSydney+NSW%2C+Australia!5e0!3m2!1sen!2sin!4v1463468876401"  allowfullscreen></iframe>
-</div>
-<!-- //Contact -->
-{% endblock %}
-
-{% block footer %}
+    {% block footer %}
     <div class="w3ls-team" id="team">
         <div class="container">
             <h3 class="title-agile">Our Team</h3>
@@ -138,7 +147,8 @@
                         </div>
                         <div class="social-icons team-icons right-w3l fotw33">
                             <ul class="top-links">
-                                <li><a href="https://www.facebook.com/people/Eya-Bouthoury/100010475178558/"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.facebook.com/people/Eya-Bouthoury/100010475178558/"><i
+                                            class="fa fa-facebook"></i></a></li>
                                 <li><a href=""><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                             </ul>
@@ -154,7 +164,8 @@
                         </div>
                         <div class="social-icons team-icons right-w3l fotw33">
                             <ul class="top-links">
-                                <li><a href="https://www.facebook.com/dorsaf.charfeddine.39"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://www.facebook.com/dorsaf.charfeddine.39"><i
+                                            class="fa fa-facebook"></i></a></li>
                                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                             </ul>
@@ -236,9 +247,16 @@
                     <div class="col-md-4 ftr-grid fg1">
                         <h3>About Us</h3>
                         <p>Pack & Go is the largest independently owned travel agency headquartered in Tunisia.
-                            Quality is very important to us and we want it to be consistent no matter where you travel with us. You will always have total transparency with us and know exactly what you will get for your money.
+                            Quality is very important to us and we want it to be consistent no matter where you travel
+                            with us. You will always have total transparency with us and know exactly what you will get
+                            for your money.
 
-                            We specialise in creating innovative, fun and exciting tours for the open minded traveller and we are always looking for new ways to add value and excitement to your travel experiences with us so that you see and experience more than just the usual tourist spots and have great fun at the same time. Throughout this process we are committed to travelling responsibly, and leaving a positive impression and impact on the countries through which we travel.
+                            We specialise in creating innovative, fun and exciting tours for the open minded traveller
+                            and we are always looking for new ways to add value and excitement to your travel
+                            experiences with us so that you see and experience more than just the usual tourist spots
+                            and have great fun at the same time. Throughout this process we are committed to travelling
+                            responsibly, and leaving a positive impression and impact on the countries through which we
+                            travel.
 
                         </p>
                     </div>
@@ -292,11 +310,11 @@
         </div>
     </div>
 
-{% endblock %}
+    {% endblock %}
 
-<!-- Footer -->
+    <!-- Footer -->
 
-{% block javascripts %}
+    {% block javascripts %}
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
         function hideURLbar(){ window.scrollTo(0,1); } </script>
 
@@ -304,29 +322,30 @@
     <!-- js -->
     <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 
-    <script type="text/javascript" src="{{ asset('js/bootstrap.js')}}"></script> <!-- Necessary-JavaScript-File-For-Bootstrap -->
-                                                                                 <!-- //js -->
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js')}}"></script>
+    <!-- Necessary-JavaScript-File-For-Bootstrap -->
+    <!-- //js -->
 
-                                                                                 <!-- nav-script -->
-                                                                                 <!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
+    <!-- nav-script -->
+    <!-- Classie - class helper functions by @desandro https://github.com/desandro/classie -->
     <script src="{{ asset('js/classie.js')}}"></script>
     <script>
-        var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
-            showLeftPush = document.getElementById( 'showLeftPush' ),
-            showRightPush = document.getElementById( 'showRightPush' ),
+        var menuLeft = document.getElementById('cbp-spmenu-s1'),
+            showLeftPush = document.getElementById('showLeftPush'),
+            showRightPush = document.getElementById('showRightPush'),
             body = document.body;
-        showLeftPush.onclick = function() {
-            classie.toggle( this, 'active' );
-            classie.toggle( body, 'cbp-spmenu-push-toright' );
-            classie.toggle( menuLeft, 'cbp-spmenu-open' );
-            disableOther( 'showLeftPush' );
+        showLeftPush.onclick = function () {
+            classie.toggle(this, 'active');
+            classie.toggle(body, 'cbp-spmenu-push-toright');
+            classie.toggle(menuLeft, 'cbp-spmenu-open');
+            disableOther('showLeftPush');
         };
-        function disableOther( button ) {
-            if( button !== 'showLeftPush' ) {
-                classie.toggle( showLeftPush, 'disabled' );
+        function disableOther(button) {
+            if (button !== 'showLeftPush') {
+                classie.toggle(showLeftPush, 'disabled');
             }
-            if( button !== 'showRightPush' ) {
-                classie.toggle( showRightPush, 'disabled' );
+            if (button !== 'showRightPush') {
+                classie.toggle(showRightPush, 'disabled');
             }
         }
     </script>
@@ -360,12 +379,12 @@
 
     <script defer src="{{ asset('js/jquery.flexslider.js')}}"></script>
     <script type="text/javascript">
-        $(function(){
+        $(function () {
         });
-        $(window).load(function(){
+        $(window).load(function () {
             $('.flexslider').flexslider({
                 animation: "slide",
-                start: function(slider){
+                start: function (slider) {
                     $('body').removeClass('loading');
                 }
             });
@@ -381,10 +400,10 @@
     <script type="text/javascript" src="{{ asset('js/move-top.js')}}"></script>
     <script type="text/javascript" src="{{ asset('js/easing.js')}}"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $(".scroll").click(function(event){
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
                 event.preventDefault();
-                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
             });
         });
     </script>
@@ -392,7 +411,7 @@
 
     <!-- for-bottom-to-top smooth scrolling -->
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             /*
                 var defaults = {
                 containerID: 'toTop', // fading element id
@@ -408,22 +427,23 @@
     <!-- //for-bottom-to-top smooth scrolling -->
 
     <script>
-        $( ".change" ).on("click", function() {
-            if( $( "body" ).hasClass( "dark" )) {
-                $( "body" ).removeClass( "dark" );
-                $( ".change" ).text( "OFF" );
+        $(".change").on("click", function () {
+            if ($("body").hasClass("dark")) {
+                $("body").removeClass("dark");
+                $(".change").text("OFF");
             } else {
-                $( "body" ).addClass( "dark" );
-                $( ".change" ).text( "ON" );
+                $("body").addClass("dark");
+                $(".change").text("ON");
             }
         });
     </script>
-    
 
 
-{% endblock %}
 
-<!-- //js-scripts -->
+    {% endblock %}
+
+    <!-- //js-scripts -->
 
 </body>
+
 </html>

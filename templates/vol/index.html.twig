@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Flight index{% endblock %}
+
+{% block body %}
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-th-list"></i> Flights Table</h1>
+                <p>Display analytical data effectively</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb side">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item">Tables</li>
+                <li class="breadcrumb-item active"><a href="#">Flights Table</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="sampleTable_filter" class="dataTables_filter">
+                                <label>Search:<input id="search" type="search" class="form-control form-control-sm" placeholder="search" aria-controls="sampleTable"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tile-body">
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Origin</th>
+                                <th>Destination</th>
+                                <th>Departure_date</th>
+                                <th>Arrival_date</th>
+                                <th>Status</th>
+                                <th>Initial_price</th>
+                                <th>actions</th>
+                            </tr>
+                            </thead>
+                            <tbody id="all">
+                            {% include 'vol/ajax.html.twig' %}
+                            </tbody>
+                            <tbody id="search">
+
+                            </tbody>
+                        </table>
+                        <a href="{{ path('vol_new') }}">Create new</a>
+                        {{ knp_pagination_render(vols) }}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}
