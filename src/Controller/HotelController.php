@@ -154,7 +154,7 @@ class HotelController extends AbstractController
 
 
     /**
-     * @Route("/front", name="front")
+     * @Route("/HotelMobile", name="front")
      */
     public function indexFront(SerializerInterface $serializerInterface)
     {
@@ -207,7 +207,7 @@ class HotelController extends AbstractController
 
     public function addImageHotel(Request $request, String $postname, String $prefix){
         $file = $request->files->get($postname);
-        $filename = $prefix . md5(uniqid()) . '.' . $file->guessExtension();
+        $filename =  $prefix . md5(uniqid()) . '.' . $file->guessExtension();
         try {
             $file->move(
                 $this->getParameter('uploads'),

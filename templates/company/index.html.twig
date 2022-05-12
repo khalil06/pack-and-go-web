@@ -1,0 +1,62 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Company index{% endblock %}
+
+{% block body %}
+    <main class="app-content">
+        <div class="app-title">
+            <div>
+                <h1><i class="fa fa-th-list"></i> Data Table</h1>
+                <p>Table to display analytical data effectively</p>
+            </div>
+            <ul class="app-breadcrumb breadcrumb side">
+                <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+                <li class="breadcrumb-item">Tables</li>
+                <li class="breadcrumb-item active"><a href="#">Data Table</a></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <div class="tile-body">
+                        <table class="table table-hover table-bordered" id="sampleTable">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Logo</th>
+                                <th>Description</th>
+                                <th>actions</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for company in companies %}
+                            <tr>
+                                <td>{{ company.id }}</td>
+                                <td>{{ company.name }}</td>
+                                <td><img style="width:50px;height: 50px;" src="{{ asset('uploads/') ~company.logo}}"></td>
+                                <td>{{ company.description }}</td>
+                                <td>
+                                    <a href="{{ path('company_show', {'id': company.id}) }}">show</a>
+                                    <a href="{{ path('company_edit', {'id': company.id}) }}">edit</a>
+                                </td>
+                            </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        <a href="{{ path('company_new') }}">Create new</a>
+                        {{ knp_pagination_render(companies) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}

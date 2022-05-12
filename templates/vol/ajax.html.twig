@@ -1,0 +1,19 @@
+{% for vol in vols %}
+    <tr>
+        <td>{{ vol.id }}</td>
+        <td>{{ vol.origin }}</td>
+        <td>{{ vol.destination }}</td>
+        <td>{{ vol.departureDate ? vol.departureDate|date('Y-m-d H:i:s') : '' }}</td>
+        <td>{{ vol.arrivalDate ? vol.arrivalDate|date('Y-m-d H:i:s') : '' }}</td>
+        <td>{{ vol.status ? 'Finished' : 'Pending' }}</td>
+        <td>{{ vol.initialPrice }}</td>
+        <td>
+            <a href="{{ path('vol_show', {'id': vol.id}) }}">show</a>
+            <a href="{{ path('vol_edit', {'id': vol.id}) }}">edit</a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="8">no records found</td>
+    </tr>
+{% endfor %}
