@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ClientController extends AbstractController
+class ClientActiviteController extends AbstractController
 {
     /**
      * @Route("/client", name="app_client")
@@ -28,7 +28,8 @@ class ClientController extends AbstractController
     public function index(): Response
     {
 
-        return $this->render('client/index.html.twig', [
+        return $this->render('client_activite/index.html.twig', [
+
             'controller_name' => 'ClientController',
         ]);
     }
@@ -53,7 +54,7 @@ class ClientController extends AbstractController
         return $this->redirectToRoute('app_client_table2');
     }
     /**
-     * @Route("/client/table", name="app_client_table2")
+     * @Route("/clientactivite/table", name="app_client_table2")
      */
     public function createActivite(Request $request,PaginatorInterface $paginator)
     {
@@ -85,7 +86,7 @@ class ClientController extends AbstractController
 
         }
 
-        return $this->render('client/index.html.twig', [
+        return $this->render('client_activite/index.html.twig', [
 
             'activites'=>$activites,
 

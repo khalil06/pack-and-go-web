@@ -80,11 +80,13 @@
 </div>
 <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
     <h3>Menu</h3>
-    <a href="#home" class="scroll">Home</a>
-    <a href="#services" class="scroll">Services</a>
-    <a href="#team" class="scroll">Team</a>
-    <a href="#footerr" class="scroll">About Us</a>
-
+    <a href="/front" >Home</a>
+    <a href="{{path('app_questions1')}}" >Do The Test</a>
+    <a href="/your/personality" >Your Report</a>
+    <a href="/clientactivite/table" >Client</a>
+    <a href="#services" >Services</a>
+    <a href="#team" >Team</a>
+    <a href="#footerr" >About Us</a>
 </nav>
 <!--start-slider-->
 
@@ -185,14 +187,14 @@
             </div>
             <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s4">
                 <div class="w3-agile">
-                    <a href="/client/table" class="hvr-rectangle-out"><i class="fa fa-globe" aria-hidden="true"></i></a>
+                    <a href="#" class="hvr-rectangle-out"><i class="fa fa-globe" aria-hidden="true"></i></a>
                 </div>
                 <h4 class="text-center">Beautiful Activities</h4>
                 <p class="services-w3ls">Explore and do more activities </p>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s6">
                 <div class="w3-agile ">
-                    <a href="#" class="hvr-rectangle-out"><i class="fa fa-suitcase" aria-hidden="true"></i></a>
+                    <a href="/questions1" class="hvr-rectangle-out"><i class="fa fa-suitcase" aria-hidden="true"></i></a>
                 </div>
                 <h4 class="text-center">Personnality Packs</h4>
                 <p class="services-w3ls"> We know you more than you do</p>
@@ -412,14 +414,12 @@
             showLeftPush = document.getElementById( 'showLeftPush' ),
             showRightPush = document.getElementById( 'showRightPush' ),
             body = document.body;
-
         showLeftPush.onclick = function() {
             classie.toggle( this, 'active' );
             classie.toggle( body, 'cbp-spmenu-push-toright' );
             classie.toggle( menuLeft, 'cbp-spmenu-open' );
             disableOther( 'showLeftPush' );
         };
-
         function disableOther( button ) {
             if( button !== 'showLeftPush' ) {
                 classie.toggle( showLeftPush, 'disabled' );
@@ -450,7 +450,6 @@
                     $('.events').append("<li>after event fired.</li>");
                 }
             });
-
         });
     </script>
     <!-- //banner-slide -->
@@ -461,7 +460,6 @@
     <script defer src="{{ asset('js/jquery.flexslider.js')}}"></script>
     <script type="text/javascript">
         $(function(){
-
         });
         $(window).load(function(){
             $('.flexslider').flexslider({
