@@ -49,6 +49,34 @@ class ClientActiviteController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $em->persist($ticket);
         $em->flush();
+        $pdfOptions = new Options();
+        $pdfOptions->set('isRemoteEnabled', true);
+        $pdfOptions->set('defaultFont', 'Arial');
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('pdf_activite/pdfActivite.html.twig', array('numTicket' => $ticket->getNumTicket(),
+            'adresse' => $activite->getAdresse(),
+            'prix' => $activite->getPrix(),
+            'typeActivite' => $activite->getTypeActivite(),
+            'nomActivite' => $activite->getNomActivite(),
+            'nom'=>$user->getLastName(),
+            'prenom'=>$user->getFirstName(),
+            'pays'=>$activite->getPays()
+            ));
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser (inline view)
+        $output = $dompdf->output();
+        $pdf_directory = $this->getParameter('pdf');
+        // e.g /var/www/project/public/mypdf.pdf
+        $pdfFilepath = $pdf_directory."/ticket".$user->getLastName()." ".$user->getFirstName()." ".$ticket->getNumTicket().".pdf";
+        // Write file to the desired path
+        file_put_contents($pdfFilepath, $output);
 
 
         return $this->redirectToRoute('app_client_table2');
