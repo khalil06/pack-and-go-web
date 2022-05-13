@@ -1,0 +1,59 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Flight index{% endblock %}
+
+{% block body %}
+<main class="app-content" style="margin-left: 30px;margin-right: 30px;margin-top: 30px ;">
+
+    {% for vol in vols %}
+        {% if vol.status == false %}
+    <div class="tile mb-4" style="border: solid;border-color: #4e555b; padding-bottom: 20px;padding-left: 20px ">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="mb-3 line-head" id="buttons" style="color: #c69500">
+                        {{ vol.origin }}
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                        {{ vol.destination }}
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="bs-component">
+                    <img style="width:80px;height: 80px;" src="{{ asset('uploads/') ~vol.company.logo}}">
+
+                    <h4>{{ vol.company.name }} </h4>
+                    <br>
+                    <div>
+                        <button disabled="" class="btn btn-primary btn-lg " type="button">Price : {{ vol.initialPrice}}$</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <p class="bs-component">
+                </p><h4>Departure :  </h4>{{ vol.departureDate ? vol.departureDate|date('Y-m-d H:i:s') : '' }}
+                <h4>Arrival : </h4>{{ vol.arrivalDate ? vol.arrivalDate|date('Y-m-d H:i:s') : '' }}
+                <div>
+                    <h4>Status :  </h4>{{ vol.status ? 'Finished' : 'Pending' }}
+                </div>
+
+                <p></p>
+            </div>
+
+        </div>
+        <br>
+        <div>
+            <a class="btn btn-danger btn-lg " href="/reservation/frontOffice/add/{{ vol.id }}">Reserve now</a>
+        </div>
+    </div>
+        <br>
+        {% endif  %}
+
+    {% endfor%}
+
+</main>
+{% endblock %}

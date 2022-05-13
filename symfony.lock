@@ -134,6 +134,9 @@
             "config/packages/google_recaptcha.yaml"
         ]
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.12"
+    },
     "knplabs/knp-components": {
         "version": "v3.4.0"
     },

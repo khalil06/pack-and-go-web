@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Company{% endblock %}
+
+{% block body %}
+<main class="app-content">
+    <div class="app-title">
+        <div>
+            <h1><i class="fa fa-edit"></i> Company Form </h1>
+            <p>Add new company </p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+            <li class="breadcrumb-item">Forms</li>
+            <li class="breadcrumb-item"><a href="#">New Company</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <h3 class="tile-title">Add new Company</h3>
+                    {{ form_start(form) }}
+                <div class="tile-body">
+                        {{ form_widget(form) }}
+                </div>
+                <div class="tile-footer">
+                    <button class="btn btn-primary" ><i class="fa fa-fw fa-lg fa-check-circle"></i>{{ button_label|default('Save') }}</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="{{ path('company_index') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>back to list</a>
+                </div>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+
+        <div class="clearix"></div>
+
+    </div>
+</main>
+
+{% endblock %}

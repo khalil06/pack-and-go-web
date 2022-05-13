@@ -1,0 +1,27 @@
+{% extends 'baseFront.html.twig' %}
+{% block body %}
+    <main class="app-content" style="margin-right: 50px;margin-left: 50px; margin-top:50px; margin-bottom: 50px " >
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tile">
+                    <h3 class="tile-title">Add new Reservation</h3>
+                    {{ form_start(form) }}
+                    <div class="tile-body">
+                        {{ form_widget(form) }}
+                    </div>
+
+                    <div class="tile-footer">
+                        Price for One Way economic class flight :<h3 id="finalPrice" class="tile-title">{{ vol.getInitialPrice() }}</h3>
+                        <button class="btn btn-primary" ><i class="fa fa-fw fa-lg fa-check-circle"></i>{{ button_label|default('Save') }}</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="{{ path('vol_index_front') }}"><i class="fa fa-fw fa-lg fa-times-circle"></i>back to list</a>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+
+            <div class="clearix"></div>
+
+        </div>
+    </main>
+{% endblock body %}
