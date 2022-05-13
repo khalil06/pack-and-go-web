@@ -24,8 +24,8 @@ class ReservChambreType extends AbstractType
                 'attr' => ['class' => 'js-datepicker '],
                 'widget' => 'single_text',
                 'html5' => FALSE
-            ])
-            ->add('idUser');
+            ]);
+            // ->add('idUser');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

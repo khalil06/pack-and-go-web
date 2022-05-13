@@ -40,7 +40,7 @@ class ClientActiviteController extends AbstractController
     public function reserverActivite(Request $request,$id):Response
     {
 
-        $user = $this->getDoctrine()->getRepository(User::class)->find(10);
+        $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser()->getId());
         $activite = $this->getDoctrine()->getRepository(Activite ::class)->find($id);
         $ticket= new Ticket();
 

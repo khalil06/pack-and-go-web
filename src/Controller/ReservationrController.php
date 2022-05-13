@@ -39,7 +39,7 @@ class ReservationrController extends AbstractController
         $id=$_GET['id'];
 
         $liste = $this->getDoctrine()->getRepository(Resteau::class)->find($id);
-        $list = $this->getDoctrine()->getRepository(User::class)->find(1);
+        $list = $this->getDoctrine()->getRepository(User::class)->find($this->getUser()->getId());
 
         $form = $this->createForm(ReservationRType::class, $Reservationr);
 

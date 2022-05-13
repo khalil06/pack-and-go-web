@@ -39,6 +39,7 @@ class GestionPersonnaliteController extends AbstractController
             // ->add("save",SubmitType::class,["label"=>"enregistrer"])
             // ->add('save', SubmitType::class, ['label' => 'Create Task'])
             ->getForm();
+        //dd($userPersonalities);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             # code...

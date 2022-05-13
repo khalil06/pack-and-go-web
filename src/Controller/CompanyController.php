@@ -44,7 +44,7 @@ class CompanyController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file= $request->files->get('company')['logo'];
 
-            $uploads_directory=$this->getParameter('uploads_directory');
+            $uploads_directory=$this->getParameter('uploads');
             $file_name=md5(uniqid())    . '.'   . $file->guessExtension();
             $file->move(
                 $uploads_directory,

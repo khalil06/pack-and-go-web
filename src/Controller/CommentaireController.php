@@ -35,7 +35,7 @@ class CommentaireController extends AbstractController
         $id=$_GET['id'];
 
         $liste = $this->getDoctrine()->getRepository(Resteau::class)->find($id);
-        $list = $this->getDoctrine()->getRepository(User::class)->find(1);
+        $list = $this->getDoctrine()->getRepository(User::class)->find($this->getUser()->getId());
 
         $idd=$liste->getIdr();
        // $iddd=$list->getIdUser();

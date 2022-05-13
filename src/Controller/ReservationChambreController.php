@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Chambre;
 use App\Entity\Reservationchambre;
+use App\Entity\User;
 use App\Form\ReservChambreType;
 use App\Repository\ReservationChambreRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -51,12 +52,16 @@ class ReservationChambreController extends AbstractController
         $reservationCh = new Reservationchambre();
         $id= $request->get('id');
         $chambre = $this->getDoctrine()->getRepository(Chambre::class)->find($id);
+        $list = $this->getDoctrine()->getRepository(User::class)->find($this->getUser()->getId());
         $form = $this->createForm(ReservChambreType::class, $reservationCh);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
           //  $prixx = $this->getDoctrine()->getRepository(Chambre::class)->Prix();
             $reservationCh->setIdChambre($chambre);
+            $reservationCh->setIdUser($list);
+
             $reservationCh = $form->getData();
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservationCh);
             $em->flush();

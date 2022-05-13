@@ -89,7 +89,7 @@ class ResultController extends AbstractController
 
             ]
         );
-        $pieChart->getOptions()->setTitle('My Daily Activities');
+        $pieChart->getOptions()->setTitle('Answer Proportions');
         $pieChart->getOptions()->setHeight(450);
         $pieChart->getOptions()->setWidth(450);
         $pieChart->getOptions()->getTitleTextStyle()->setBold(true);

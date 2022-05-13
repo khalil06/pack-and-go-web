@@ -41,6 +41,12 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     * @ORM\Column(name="role",type="string")
+     * 
+     */
+    private $role ;
+
+    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Assert\Length(
@@ -122,6 +128,10 @@ class User implements UserInterface
         $this->email = $email;
 
         return $this;
+    }
+    public function getRole(): ?string
+    {
+        return $this->role;
     }
 
     /**
