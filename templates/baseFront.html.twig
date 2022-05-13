@@ -55,15 +55,6 @@
                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                 </ul>
             </div>
-
-            <div class="search">
-                <form action="#" method="post">
-                    <input type="search" placeholder="Search here..." name="Search" required="">
-                    <input type="submit" value="">
-                </form>
-            </div>
-            <br>
-            <br>
             <script type="text/javascript"
                 src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
             <div id="google_translate_element" align="right"></div>
@@ -171,7 +162,7 @@
             <div class="container flex flex-wrap">
                 <div class="col-md-4 col-sm-4 col-xs-4 serv-agile s1 ">
                     <div class="w3-agile">
-                        <a href="#" class="hvr-rectangle-out"><i class="fa fa-plane" aria-hidden="true"></i></a>
+                        <a href="/vol/frontOffice/flights" class="hvr-rectangle-out"><i class="fa fa-plane" aria-hidden="true"></i></a>
                     </div>
                     <h4 class="text-center">Travel Arrangements</h4>
                     <p class="services-w3ls">Book your flights with the best prices! </p>
@@ -233,113 +224,113 @@
     {% endblock %}
 
     {% block footer %}
-    <div class="w3ls-team" id="team">
-        <div class="container">
-            <h3 class="title-agile">Our Team</h3>
-            <label class="agile-se"></label>
-            <div class="row team-row">
-                <div class="col-md-3 team-grids">
-                    <div class="thumbnail team-w3agile">
-                        <img src="images/t1.jpg" class="img-responsive" alt="">
-                        <div class="caption">
-                            <h4>Eya Bouthouri </h4>
-                            <p>Travel Advisor Expert</p>
-                        </div>
-                        <div class="social-icons team-icons right-w3l fotw33">
-                            <ul class="top-links">
-                                <li><a href="https://www.facebook.com/people/Eya-Bouthoury/100010475178558/"><i
-                                            class="fa fa-facebook"></i></a></li>
-                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 team-grids">
-                    <div class="thumbnail team-w3agile">
-                        <img src="images/t2.jpg" class="img-responsive" alt="">
-                        <div class="caption">
-                            <h4>Dorsaf Charfeddine</h4>
-                            <p>Founder</p>
-                        </div>
-                        <div class="social-icons team-icons right-w3l fotw33">
-                            <ul class="top-links">
-                                <li><a href="https://www.facebook.com/dorsaf.charfeddine.39"><i
-                                            class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
+        <div class="w3ls-team flex flex-wrap" id="team">
+            <div class="container">
+                <h3 class="title-agile">Our Team</h3>
+                <label class="agile-se"></label>
+                <div class="row team-row">
+                    <div class="col-md-3 team-grids">
+                        <div class="thumbnail team-w3agile">
+                            <img src="{{ asset('images/eya.png')}}" class="img-responsive" alt="">
+                            <div class="caption">
+                                <h4>Eya Bouthouri </h4>
+                                <p>Travel Advisor Expert</p>
+                            </div>
+                            <div class="social-icons team-icons right-w3l fotw33">
+                                <ul class="top-links">
+                                    <li><a href="https://www.facebook.com/people/Eya-Bouthoury/100010475178558/"><i
+                                                    class="fa fa-facebook"></i></a></li>
+                                    <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 team-grids">
-                    <div class="thumbnail team-w3agile">
-                        <img src="" class="img-responsive" alt="">
-                        <div class="caption">
-                            <h4>Khalil Assef Chettaoui</h4>
-                            <p></p>
-                        </div>
-                        <div class="social-icons team-icons right-w3l fotw33">
-                            <ul class="top-links">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 team-grids">
-                    <div class="thumbnail team-w3agile">
-                        <img src="" class="img-responsive" alt="">
-                        <div class="caption">
-                            <h4>Sami Brahim Ben Fadhel</h4>
-                            <p></p>
-                        </div>
-                        <div class="social-icons team-icons right-w3l fotw33">
-                            <ul class="top-links">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
+                    <div class="col-md-3 team-grids">
+                        <div class="thumbnail team-w3agile">
+                            <img src="{{ asset('images/dorsaf.jpg')}}" class="img-responsive" alt="">
+                            <div class="caption">
+                                <h4>Dorsaf Charfeddine</h4>
+                                <p>Founder</p>
+                            </div>
+                            <div class="social-icons team-icons right-w3l fotw33">
+                                <ul class="top-links">
+                                    <li><a href="https://www.facebook.com/dorsaf.charfeddine.39"><i
+                                                    class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 team-grids">
-                    <div class="thumbnail team-w3agile">
-                        <img src="" class="img-responsive" alt="">
-                        <div class="caption">
-                            <h4>Amir Daghsen</h4>
-                            <p></p>
-                        </div>
-                        <div class="social-icons team-icons right-w3l fotw33">
-                            <ul class="top-links">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 team-grids">
-                    <div class="thumbnail team-w3agile">
-                        <img src="" class="img-responsive" alt="">
-                        <div class="caption">
-                            <h4>Wala Djobbi</h4>
-                            <p></p>
-                        </div>
-                        <div class="social-icons team-icons right-w3l fotw33">
-                            <ul class="top-links">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            </ul>
+                    <div class="col-md-3 team-grids">
+                        <div class="thumbnail team-w3agile">
+                            <img src="{{ asset('images/khalil.jpg')}}" class="img-responsive" alt="">
+                            <div class="caption">
+                                <h4>Khalil Assef Chettaoui</h4>
+                                <p></p>
+                            </div>
+                            <div class="social-icons team-icons right-w3l fotw33">
+                                <ul class="top-links">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-3 team-grids">
+                        <div class="thumbnail team-w3agile">
+                            <img src="{{ asset('images/sami.jpeg')}}" class="img-responsive" alt="">
+                            <div class="caption">
+                                <h4>Sami Brahim Ben Fadhel</h4>
+                                <p></p>
+                            </div>
+                            <div class="social-icons team-icons right-w3l fotw33">
+                                <ul class="top-links">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 team-grids">
+                        <div class="thumbnail team-w3agile">
+                            <img src="{{ asset('images/emir.png')}}" class="img-responsive" alt="">
+                            <div class="caption">
+                                <h4>Amir Daghsen</h4>
+                                <p></p>
+                            </div>
+                            <div class="social-icons team-icons right-w3l fotw33">
+                                <ul class="top-links">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 team-grids">
+                        <div class="thumbnail team-w3agile">
+                            <img src="" class="img-responsive" alt="">
+                            <div class="caption">
+                                <h4>Wala Djobbi</h4>
+                                <p></p>
+                            </div>
+                            <div class="social-icons team-icons right-w3l fotw33">
+                                <ul class="top-links">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"> </div>
                 </div>
-                <div class="clearfix"> </div>
             </div>
         </div>
-    </div>
     <div class="footer w3ls" id="footerr">
         <div class="container">
             <div class="footer-main">
