@@ -4,16 +4,17 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
-use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/user")
@@ -110,15 +111,51 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    /**
+     * @Route("/search", name="search_user")
+     */
+    public function search(Request $request, UserRepository $userRepository)
+    {
+        $req = $request->request->get('req');
+
+ 
+        if ($request->isXmlHttpRequest()) {
+            $users = $userRepository->findUserByReq($req);
+            $jsonData = array();
+            $idx = 0;
+            foreach ($users as $user) {
+                $temp = array(
+                    'firstName' => $user->getFirstName(),
+                    'lastName' => $user->getLastName(),
+                    'email' => $user->getEmail(),
+                    'role' => $user->getRoles(),
+                    'number' => $user->getNumber(),
+                    'birthday' => $user->getBirthday(),
+                    'id' => $user->getId()
+                );
+                $jsonData[$idx++] = $temp;
+            }
+            return new JsonResponse($jsonData);
+        }
+    }
+
     /* API */
 
     /**
-     * @Route("/add", name="api_add_user", methods={"POST"})
+     * @Route("/add", name="api_add_user")
+     * methods={"POST"}
      */
     public function addUser(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
     {
         $content = $request->getContent();
-        $user = $serializer->deserialize($content, User::class, 'json');
+        $user = new User();
+        $user->setFirstName($request->get('FirstName'));
+        $user->setLastName($request->get('LastName'));
+        $user->setEmail($request->get('Email'));
+        $user->setPassword($request->get('Password'));
+        $user->setNumber($request->get('Number'));
+        $user->setBirthday(new \DateTime($request->get('Birthday')));
+        //$user = $serializer->deserialize($content, User::class, 'json');
         $user->setCreatedDateUser(new \DateTime());
         $user->setLastUpdatedUser(new \DateTime());
         $em->persist($user);
@@ -145,19 +182,30 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/update-user/{id}", name="api_update_user", methods={"PUT"})
+     * @Route("/update-user/{id}", name="api_update_user")
+     * methods={"POST"}
      */
-    public function editUser(Request $request, UserRepository $userRepository, SerializerInterface $serializer, EntityManagerInterface $em, User $user)
+    public function editUser(Request $request, UserRepository $userRepository, SerializerInterface $serializer, EntityManagerInterface $em, User $user, $id)
     {
-        $content = $request->getContent();
-        $user = $serializer->deserialize($content, User::class, 'json');
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        $user->setFirstName($request->get('FirstName'));
+        $user->setLastName($request->get('LastName'));
+        $user->setEmail($request->get('Email'));
+        $user->setPassword($request->get('Password'));
+        $user->setNumber($request->get('Number'));
+        //$user->setBirthday(new \DateTime($request->get('Birthday')));
+        //$user = $serializer->deserialize($content, User::class, 'json');
+        $user->setCreatedDateUser(new \DateTime());
+        $user->setLastUpdatedUser(new \DateTime());
         $em->persist($user);
+
         $em->flush();
         return new Response("User Updated successfully");
     }
 
     /**
-     * @Route("/block-user/{id}", name="api_block_user", methods={"PUT"})
+     * @Route("/block-user/{id}", name="api_block_user", )
+     * methods={"POST"}
      */
     public function blockUser(User $user, EntityManagerInterface $em)
     {
@@ -167,7 +215,8 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/unblock-user/{id}", name="api_unblock_user", methods={"PUT"})
+     * @Route("/unblock-user/{id}", name="api_unblock_user",)
+     * methods={"POST"}
      */
     public function unblockUser(User $user, EntityManagerInterface $em)
     {
