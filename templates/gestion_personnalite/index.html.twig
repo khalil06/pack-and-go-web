@@ -32,7 +32,14 @@
 
   <div class="row">
     <div class="col-md-6 ">
+      
       <div class="tile">
+        <div class="flex w-full justify-center items-center">
+          <div class="form-group flex justify-center items-center">
+            <input type="text" class="form-control" id="req" name="req" placeholder="Search...">
+            <button class="btn btn-sm btn-info mt-1" id="search-personality">Search</button>
+          </div>
+        </div>
         <table class="table">
           <thead>
             <tr>
@@ -44,7 +51,7 @@
               <th>Edit</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="personalities">
             {% for personality in personalities %}
             <tr>
               <td>{{  personality.personalityId}}</td>
@@ -52,7 +59,7 @@
               <td>{{ personality.processing }}</td>
               <td>{{ personality.decisionMaking }}</td>
               <td>{{ personality.interaction }}</td>
-              <td><a href="/personality/dashboard/{{personality.personalityId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
+              <td id="actions"><a href="/personality/dashboard/{{personality.personalityId}}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>
             </tr>
             {% endfor %}
           </tbody>
@@ -196,4 +203,46 @@
 
   </div>
 </main>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+
+$("#search-personality").click(function(e) {
+  e.preventDefault();
+  req = $("#req").val()
+  data = { 'req' : req }
+
+  $.ajax({  
+    url: '/search/personality',  
+    type: 'POST',   
+    dataType: 'json', 
+    data: data,
+    //async: true,  
+    
+    success: function(data, status) {  
+      // var e = $('<tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Number</th><th>Role</th><th>Birthday</th><th>Profile</th><th>Actions</th></tr>');  
+      $('#personalities').html('');  
+      //$('#users').append(e);
+      console.log(data)
+      for(i = 0; i < data.length; i++) {  
+        personality = data[i];  
+        var e = $('<tr><td id="personalityId"></td><td id="social"></td><td id="processing"></td><td id="decisionMaking"></td><td id="interaction"></td><td id="actions"></td></tr>');
+        $('#personalityId', e).html(personality.personalityId);
+        $('#social', e).html(personality.social);
+        $('#processing', e).html(personality.processing);
+        $('#decisionMaking', e).html(personality.decisionMaking);
+        $('#interaction', e).html(personality.interaction);
+
+        $('#actions', e).append(`<td><a href="/personality/dashboard/${personality.personalityId}"  class="btn btn-info btn-lg active" role="button" aria-pressed="true">Edit</a></td>`);
+        $('#personalities').append(e);  
+      } 
+      
+    },  
+    error : function(xhr, textStatus, errorThrown) {  
+      alert('Ajax request failed.');  
+    }  
+  });  
+})
+
+</script>
 {% endblock %}

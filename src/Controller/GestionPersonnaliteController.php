@@ -11,6 +11,7 @@ use App\Entity\UserPersonality;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,5 +74,29 @@ class GestionPersonnaliteController extends AbstractController
         $manager->flush();
         return $this->redirectToRoute('app_gestion_personnalite');
 
+    }
+    /**
+     * @Route("/search/personality", name="search_personality")
+     */
+    public function search(Request $request)
+    {
+        $req = $request->request->get('req');
+ 
+        if ($request->isXmlHttpRequest()) {
+            $personalities=$this->getDoctrine()->getRepository(Personality::class)->findBy(['personalityId' => $req]);
+            $jsonData = array();
+            $idx = 0;
+            foreach ($personalities as $personality) {
+                $temp = array(
+                    'personalityId' => $personality->getPersonalityId(),
+                    'social' => $personality->getPersonalityId()[0],
+                    'processing' => $personality->getPersonalityId()[1],
+                    'decisionMaking' => $personality->getPersonalityId()[2],
+                    'interaction' => $personality->getPersonalityId()[3],
+                );
+                $jsonData[$idx++] = $temp;
+            }
+            return new JsonResponse($jsonData);
+        }
     }
 }

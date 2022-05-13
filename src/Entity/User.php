@@ -35,7 +35,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(name="roles",type="json")
      * 
      */
     private $roles = [];
@@ -270,5 +270,9 @@ class User implements UserInterface
         $this->blocked = $blocked;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->getFirstName() . ' ' . $this->getLastName();
     }
 }

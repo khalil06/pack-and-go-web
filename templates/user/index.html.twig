@@ -91,58 +91,6 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 	<script>
-	/*	$("#search-user").click(function(e) {
-			e.preventDefault();
-			console.log('click')
-			req = $("#req").val()
-			console.log(req)
-			data = { 'req' : req }
-
-			$.ajax({  
-               url: '/user/search',  
-               type: 'POST',   
-               dataType: 'json', 
-			   data
-               //async: true,  
-               
-               success: function(data, status) {  
-                 // var e = $('<tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Number</th><th>Role</th><th>Birthday</th><th>Profile</th><th>Actions</th></tr>');  
-                  $('#users').html('');  
-                  //$('#users').append(e);
-
-                  console.log(data)
-				  for(i = 0; i < data.length; i++) {  
-                     user = data[i];  
-                     var e = $('<tr><td id="firstName"></td><td id="lastName"></td><td id="email"></td><td id="number"></td><td id="roles"></td><td id="birthday"></td><td id="qr"></td><td id="actions"></td></tr>');
-                     
-                     $('#firstName', e).html(user.firstName);
-                     $('#lastName', e).html(user.lastName);
-                     $('#email', e).html(user.email);
-                     $('#number', e).html(user.number);
-                     $('#roles', e).html(user.role);
-					 $('#birthday', e).html(new Date(user.birthday.date).toLocaleDateString());
-                     $('#qr', e).html(`<img src="http://127.0.0.1:8000/profile/${user.id}" width="75px"/>`);
-
-					 $('#actions', e).append(`<a href="show/${user.id}" class="btn btn-sm btn-primary">Show</a>`);
-					 $('#actions', e).append(`<a href="${user.id}/edit" class="btn btn-sm btn-warning">Edit</a>`);
-					 if(user.blocked)
-					 	$('#actions', e).append(`<a href="unblock/${user.id}" class="btn btn-sm btn-success">Unblock</a>`);
-					 else 
-					 	$('#actions', e).append(`<a href="block/${user.id}" class="btn btn-sm btn-danger">Block</a>`);
-                     $('#users').append(e);  
-                  } 
-				  
-               },  
-               error : function(xhr, textStatus, errorThrown) {  
-                  alert('Ajax request failed.');  
-               }  
-            });  
-		
-
-		
-		});
-	
-	*/
 
 	$("#search-user").click(function(e) {
 		e.preventDefault();
@@ -189,13 +137,6 @@
 			}  
 		});  
 	})
-
-
-	
-	
-	
-	
-	
 	
 	</script>
 {% endblock %}

@@ -1,79 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>{% block title %}Dashboard{% endblock %}</title>
     {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
     {% block stylesheets %}
-        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}"/>
-        <!-- Main CSS-->
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
-        <!-- Font-icon css-->
-        <link rel="stylesheet" type="text/css"
-              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-              <script src="https://cdn.tailwindcss.com"></script>
-        {# {{ encore_entry_link_tags('app') }} #}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    {# {{ encore_entry_link_tags('app') }} #}
 
     {% endblock %}
 </head>
 
 {% block javascripts %}
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
-    <!-- The javascript plugin to display page loading on top-->
-    <script src="{{ asset('js/plugins/pace.min.js') }}"></script>
-    <!-- Page specific javascripts-->
-    <!-- Data table plugin-->
-    <script type="text/javascript" src="{{ asset('js/plugins/jquery.dataTables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/plugins/dataTables.bootstrap.min.js') }}"></script>
-    <script type="text/javascript">$('#sampleTable').DataTable();</script>
-    <!-- Google analytics script-->
-    <script type="text/javascript">
-        if (document.location.hostname == 'pratikborsadiya.in') {
-            (function (i, s, o, g, r, a, m) {
-                i['GoogleAnalyticsObject'] = r;
-                i[r] = i[r] || function () {
-                    (i[r].q = i[r].q || []).push(arguments)
-                }, i[r].l = 1 * new Date();
-                a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-                a.async = 1;
-                a.src = g;
-                m.parentNode.insertBefore(a, m)
-            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-            ga('create', 'UA-72504830-1', 'auto');
-            ga('send', 'pageview');
-        }
-    </script>
-    <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/popper.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
+<!-- The javascript plugin to display page loading on top-->
+<script src="{{ asset('js/plugins/pace.min.js') }}"></script>
+<!-- Page specific javascripts-->
+<!-- Data table plugin-->
+<script type="text/javascript" src="{{ asset('js/plugins/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/plugins/dataTables.bootstrap.min.js') }}"></script>
+<script type="text/javascript">$('#sampleTable').DataTable();</script>
+<!-- Google analytics script-->
+<script type="text/javascript">
+    if (document.location.hostname == 'pratikborsadiya.in') {
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-72504830-1', 'auto');
+        ga('send', 'pageview');
+    }
+</script>
+<script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
 
-    {# {{ encore_entry_script_tags('app') }} #}
+{# {{ encore_entry_script_tags('app') }} #}
 
 {% endblock %}
 {% block header %}
-    <head>
-        <meta name="description"
-              content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-        <!-- Twitter meta-->
-        <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:site" content="@pratikborsadiya">
-        <meta property="twitter:creator" content="@pratikborsadiya">
-        <!-- Open Graph Meta-->
-        <meta property="og:type" content="website">
-        <meta property="og:site_name" content="Vali Admin">
-        <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
-        <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
-        <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
-        <meta property="og:description"
-              content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
-        <title>Data Table - Vali Admin</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </head>
+<head>
+    <meta name="description"
+        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description"
+        content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <title>Data Table - Vali Admin</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
 {% endblock %}
 
 {% block sidebar %}
@@ -81,75 +83,80 @@
 {% if not menu_selected is defined %}{% set menu_selected = '' %}{% endif %}
 
 <body class="app sidebar-mini rtl">
-<!-- Navbar-->
-<header class="app-header"><a class="app-header__logo" href="#">Pack & Go</a>
-    <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
-                                    aria-label="Hide Sidebar"></a>
-    <!-- Navbar Right Menu-->
-</header>
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="#">Pack & Go</a>
+        <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+            aria-label="Hide Sidebar"></a>
+        <!-- Navbar Right Menu-->
+    </header>
 </body>
 
 <!-- Sidebar menu-->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
     <ul class="app-menu">
-        <li><a class="app-menu__item" href="#"><i class="app-menu__icon fa fa-user"></i><span
-                        class="app-menu__label">Users</span></a></li>
+        <li><a class="app-menu__item" href="/user"><i class="app-menu__icon fa fa-user"></i><span
+            class="app-menu__label">User Space</span></a></li>
         <li class="treeview is-expanded "><a class="app-menu__item" href="/afficheR" data-toggle=""><i
-                        class="app-menu__icon fa fa-plane"></i><span class="app-menu__label">Flights</span><i
-                        class="treeview-indicator fa fa-angle-right"></i></a>
+                    class="app-menu__icon fa fa-plane"></i><span class="app-menu__label">Flights</span><i
+                    class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item" href="/vol"><i
-                                class="icon fa fa-circle-o"></i> Flights</a></li>
-                <li><a class="treeview-item"
-                       href="/company"><i class="icon fa fa-circle-o"></i> Companies</a></li>
-                <li><a class="treeview-item"
-                       href="/reservation"><i class="icon fa fa-circle-o"></i>Reservations</a></li>
+                <li><a class="treeview-item" href="/vol"><i class="icon fa fa-circle-o"></i> Flights</a></li>
+                <li><a class="treeview-item" href="/company"><i class="icon fa fa-circle-o"></i> Companies</a></li>
+                <li><a class="treeview-item" href="/reservation"><i class="icon fa fa-circle-o"></i>Reservations</a>
+                </li>
             </ul>
         </li>
         <li class="treeview is-expanded "><a class="app-menu__item" href="/afficheR" data-toggle=""><i
-                        class="app-menu__icon fa fa-cutlery"></i><span class="app-menu__label">Restaurants</span><i
-                        class="treeview-indicator fa fa-angle-right"></i></a>
+                    class="app-menu__icon fa fa-cutlery"></i><span class="app-menu__label">Restaurants</span><i
+                    class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item {% if menu_selected == 'restaurant' %} active {% endif %}" href="/afficheR"><i
-                                class="icon fa fa-circle-o"></i> Restaurants</a></li>
+                <li><a class="treeview-item {% if menu_selected == 'restaurant' %} active {% endif %}"
+                        href="/afficheR"><i class="icon fa fa-circle-o"></i> Restaurants</a></li>
                 <li><a class="treeview-item {% if menu_selected == 'reservationr' %} active {% endif %}"
-                       href="{{ path('affichee') }}"><i class="icon fa fa-circle-o"></i>  {% trans %}Reservations{% endtrans %}</a></li>
+                        href="{{ path('affichee') }}"><i class="icon fa fa-circle-o"></i>
+                        {% trans %}Reservations{% endtrans %}</a></li>
                 <li><a class="treeview-item {% if menu_selected == 'commentaire' %} active {% endif %}"
-                       href="{{ path('AFFommentaire') }}"><i class="icon fa fa-circle-o"></i>{% trans %} Commentaires{% endtrans %}</a></li>
+                        href="{{ path('AFFommentaire') }}"><i class="icon fa fa-circle-o"></i>{% trans %}
+                        Commentaires{% endtrans %}</a></li>
             </ul>
         </li>
         <li class="treeview is-expanded"><a class="app-menu__item" href="/back" data-toggle=""><i
-                        class="app-menu__icon fa fa-building"></i><span class="app-menu__label">HOTELS</span><i
-                        class="treeview-indicator fa fa-angle-right"></i></a>
+                    class="app-menu__icon fa fa-building"></i><span class="app-menu__label">HOTELS</span><i
+                    class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item {% if menu_selected == 'hotel' %} active {% endif %}" href="/back"><i
-                                class="icon fa fa-circle-o"></i> Hotels</a></li>
+                            class="icon fa fa-circle-o"></i> Hotels</a></li>
                 <li><a class="treeview-item {% if menu_selected == 'chambre' %} active {% endif %}"
-                       href="{{ path('listChambres') }}"><i class="icon fa fa-circle-o"></i>  {% trans %}Chambres{% endtrans %}</a></li>
+                        href="{{ path('listChambres') }}"><i class="icon fa fa-circle-o"></i>
+                        {% trans %}Chambres{% endtrans %}</a></li>
                 <li><a class="treeview-item {% if menu_selected == 'reservationch' %} active {% endif %}"
-                       href="/listReservChambres"><i class="icon fa fa-circle-o"></i>{% trans %} Réservations Chambres{% endtrans %}</a></li>
+                        href="/listReservChambres"><i class="icon fa fa-circle-o"></i>{% trans %} Réservations
+                        Chambres{% endtrans %}</a></li>
             </ul>
         </li>
         <li class="treeview is-expanded"><a class="app-menu__item" href="/dashboard/tableactivite" data-toggle=""><i
-                        class="app-menu__icon fa fa-fort-awesome"></i><span class="app-menu__label">Activities</span><i
-                        class="treeview-indicator fa fa-angle-right"></i></a>
+                    class="app-menu__icon fa fa-fort-awesome"></i><span class="app-menu__label">Activities</span><i
+                    class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-                <li><a class="treeview-item {% if menu_selected == 'activite' %} active {% endif %}" href="/dashboard/tableactivite"><i
-                                class="icon fa fa-circle-o"></i> Activites</a></li>
-                <li><a class="treeview-item {% if menu_selected == 'reservationA' %} active {% endif %}" href="/reserverActivitee"><i
-                                class="icon fa fa-circle-o"></i>{% trans %} Réservations Activités{% endtrans %}</a></li>
+                <li><a class="treeview-item {% if menu_selected == 'activite' %} active {% endif %}"
+                        href="/dashboard/tableactivite"><i class="icon fa fa-circle-o"></i> Activites</a></li>
+                <li><a class="treeview-item {% if menu_selected == 'reservationA' %} active {% endif %}"
+                        href="/reserverActivitee"><i class="icon fa fa-circle-o"></i>{% trans %} Réservations
+                        Activités{% endtrans %}</a></li>
             </ul>
         </li>
         <li><a class="app-menu__item" href="/gestion/personnalite"><i class="app-menu__icon fa fa-suitcase"></i><span
-                        class="app-menu__label">Personality</span></a></li>
-    
+                    class="app-menu__label">Personality</span></a></li>
+
     </ul>
 </aside>
+
 <body>
 
-{% endblock %}
+    {% endblock %}
 
-{% block body %}{% endblock %}
+    {% block body %}{% endblock %}
 </body>
+
 </html>
