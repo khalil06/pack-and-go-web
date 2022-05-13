@@ -1,20 +1,204 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<main class="app-content">
+	<div class="app-title">
+		<div>
+			<h1><i class="fa fa-th-list"></i> Basic Tables</h1>
+			<p>Basic bootstrap tables</p>
+		</div>
+		<ul class="app-breadcrumb breadcrumb">
+			<li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+			<li class="breadcrumb-item">Tables</li>
+			<li class="breadcrumb-item active"><a href="#">Simple Tables</a></li>
+		</ul>
+	</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/hp/PiDev/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/hp/PiDev/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<div class="row">
+
+		<div class="col-md-12">
+			<div class="tile">
+				<h3 class="tile-title">User</h3>
+				<div class="row">
+					<div class="col-4"></div>
+					<div class="col-4">
+						<div class="form-group">
+							<input type="text" class="form-control" id="req" name="req" placeholder="Search...">
+							<button class="btn btn-sm btn-info mt-1" id="search-user">Search</button>
+						</div>
+					</div>
+					<div class="col-4"></div>
+				</div>
+			
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Email</th>
+							<th>Number</th>
+							<th>Role</th>
+							<th>Birthday</th>
+							<th>Profile</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody id="users">
+						{% for user in users %}
+							<tr>
+								<td id="firstName">{{ user.firstName }}</td>
+								<td id="lastName">{{ user.lastName }}</td>
+								<td id="email">{{ user.email }}</td>
+								<td id="number">{{ user.number }}</td>
+								<td id="roles">{{ user.roles ? user.roles|json_encode : '' }}</td>
+								<td id="birthday">{{ user.birthday ? user.birthday|date('Y-m-d') : '' }}</td>
+								<td id="qr">
+									<img src="{{ qr_code_url('http://127.0.0.1:8000/profile/' ~ user.id) }}" width="75px"/>
+								</td>
+								<td id="actions">
+									<a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-sm btn-primary">Show</a>
+									<a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-warning">Edit</a>
+									{% if user.blocked %}
+										<a href="{{ path('app_user_unblock', {'id': user.id}) }}" class="btn btn-sm btn-success">Unblock</a>
+									{% else %}
+										<a href="{{ path('app_user_block', {'id': user.id}) }}" class="btn btn-sm btn-danger">Block</a>
+									{% endif %}
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="12">no records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+
+
+
+	</div>
+</main>
+
+
+	<a href="{{ path('app_user_new') }}" class="btn btn-sm btn-success">Create new</a>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script>
+	/*	$("#search-user").click(function(e) {
+			e.preventDefault();
+			console.log('click')
+			req = $("#req").val()
+			console.log(req)
+			data = { 'req' : req }
+
+			$.ajax({  
+               url: '/user/search',  
+               type: 'POST',   
+               dataType: 'json', 
+			   data
+               //async: true,  
+               
+               success: function(data, status) {  
+                 // var e = $('<tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Number</th><th>Role</th><th>Birthday</th><th>Profile</th><th>Actions</th></tr>');  
+                  $('#users').html('');  
+                  //$('#users').append(e);
+
+                  console.log(data)
+				  for(i = 0; i < data.length; i++) {  
+                     user = data[i];  
+                     var e = $('<tr><td id="firstName"></td><td id="lastName"></td><td id="email"></td><td id="number"></td><td id="roles"></td><td id="birthday"></td><td id="qr"></td><td id="actions"></td></tr>');
+                     
+                     $('#firstName', e).html(user.firstName);
+                     $('#lastName', e).html(user.lastName);
+                     $('#email', e).html(user.email);
+                     $('#number', e).html(user.number);
+                     $('#roles', e).html(user.role);
+					 $('#birthday', e).html(new Date(user.birthday.date).toLocaleDateString());
+                     $('#qr', e).html(`<img src="http://127.0.0.1:8000/profile/${user.id}" width="75px"/>`);
+
+					 $('#actions', e).append(`<a href="show/${user.id}" class="btn btn-sm btn-primary">Show</a>`);
+					 $('#actions', e).append(`<a href="${user.id}/edit" class="btn btn-sm btn-warning">Edit</a>`);
+					 if(user.blocked)
+					 	$('#actions', e).append(`<a href="unblock/${user.id}" class="btn btn-sm btn-success">Unblock</a>`);
+					 else 
+					 	$('#actions', e).append(`<a href="block/${user.id}" class="btn btn-sm btn-danger">Block</a>`);
+                     $('#users').append(e);  
+                  } 
+				  
+               },  
+               error : function(xhr, textStatus, errorThrown) {  
+                  alert('Ajax request failed.');  
+               }  
+            });  
+		
+
+		
+		});
+	
+	*/
+
+	$("#search-user").click(function(e) {
+		e.preventDefault();
+		req = $("#req").val()
+		data = { 'req' : req }
+
+		$.ajax({  
+			url: '/user/search',  
+			type: 'POST',   
+			dataType: 'json', 
+			data: data,
+			//async: true,  
+			
+			success: function(data, status) {  
+				// var e = $('<tr><th>First Name</th><th>Last Name</th><th>Email</th><th>Number</th><th>Role</th><th>Birthday</th><th>Profile</th><th>Actions</th></tr>');  
+				$('#users').html('');  
+				//$('#users').append(e);
+
+				console.log(data)
+				for(i = 0; i < data.length; i++) {  
+					user = data[i];  
+					var e = $('<tr><td id="firstName"></td><td id="lastName"></td><td id="email"></td><td id="number"></td><td id="roles"></td><td id="birthday"></td><td id="qr"></td><td id="actions"></td></tr>');
+					
+					$('#firstName', e).html(user.firstName);
+					$('#lastName', e).html(user.lastName);
+					$('#email', e).html(user.email);
+					$('#number', e).html(user.number);
+					$('#roles', e).html(user.role);
+					$('#birthday', e).html(new Date(user.birthday.date).toLocaleDateString());
+					$('#qr', e).html(`<img src="http://127.0.0.1:8000/profile/${user.id}" width="75px"/>`);
+
+					$('#actions', e).append(`<a href="show/${user.id}" class="btn btn-sm btn-primary">Show</a>`);
+					$('#actions', e).append(`<a href="${user.id}/edit" class="btn btn-sm btn-warning">Edit</a>`);
+					if(user.blocked)
+					$('#actions', e).append(`<a href="unblock/${user.id}" class="btn btn-sm btn-success">Unblock</a>`);
+					else 
+					$('#actions', e).append(`<a href="block/${user.id}" class="btn btn-sm btn-danger">Block</a>`);
+					$('#users').append(e);  
+				} 
+				
+			},  
+			error : function(xhr, textStatus, errorThrown) {  
+				alert('Ajax request failed.');  
+			}  
+		});  
+	})
+
+
+	
+	
+	
+	
+	
+	
+	</script>
 {% endblock %}
+
+
+

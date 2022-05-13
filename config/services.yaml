@@ -8,6 +8,7 @@ parameters:
     assets:   '%kernel.project_dir%/public/assets'
     pdf: '%kernel.project_dir%/public/pdf'
     app.locales: [ fr, en ]
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     # default configuration for services in *this* file

@@ -62,7 +62,7 @@ class ResultController extends AbstractController
         //adding userpersonatliy
         $userPersonality = new UserPersonality();
         $userPersonality->setPersonalityId($answer);
-        $userPersonality->setUserId("1");
+        $userPersonality->setUserId($this->getUser()->getId());
         $manager = $this->getDoctrine()->getManager();
         if (!$productExist = $this->getDoctrine()->getRepository(UserPersonality::class)->findOneBy(['userId' => $userPersonality->getUserId()])) {
             $manager->persist($userPersonality);

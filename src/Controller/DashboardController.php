@@ -33,7 +33,7 @@ class DashboardController extends AbstractController
     /**
      * @Route("/dashboard", name="app_dashboard")
      */
-    public function index(): Response
+    public function dashboard()
     {
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',

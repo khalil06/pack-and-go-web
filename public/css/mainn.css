@@ -64,7 +64,7 @@
     padding-bottom: 100%;
     margin: 0;
     cursor: pointer;
-    }
+}
 
 .carouselGallery-grid .carouselGallery-col-2{
     width: 100%;
@@ -157,10 +157,10 @@ box-shadow: 0 0 0 4px rgba(255,255,255,1);
     top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	-moz-transform: translate(-50%, -50%);
-	-o-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     max-width: 100%;
     width: auto;
 }
@@ -189,13 +189,13 @@ box-shadow: 0 0 0 4px rgba(255,255,255,1);
     overflow: hidden;
     letter-spacing: 0.04em;
     line-height: 2em;
-	color:#777;
+    color:#777;
 }
 .carouselGallery-modal a {
     color: #005293;
     font-weight: bold;
     font-size: 19px;
-	display: none;
+    display: none;
 }
 .carouselGallery-modal-image,
 .carouselGallery-modal-text{
@@ -259,9 +259,9 @@ box-shadow: 0 0 0 4px rgba(255,255,255,1);
     }
 }
 @media (max-width: 1200px){
-	.carouselGallery-item-meta {
-		padding: 20px 10px;
-	}
+    .carouselGallery-item-meta {
+        padding: 20px 10px;
+    }
 }
 @media (max-width: 1200px){
     .carouselGallery-modal .container{
