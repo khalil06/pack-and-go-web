@@ -37,7 +37,7 @@ class AddSocialController extends AbstractController
                 $manager = $this->getDoctrine()->getManager();
                 $manager->persist($socialStyle);
                 $manager->flush();
-                return $this->redirectToRoute('app_dashboard_table');
+                return $this->redirectToRoute('app_gestion_personnalite');
             }
             
         return $this->render('add_social/index.html.twig', [

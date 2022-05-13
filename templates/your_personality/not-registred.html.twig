@@ -59,65 +59,20 @@
             <img src="https://static.neris-assets.com/images/system/research/united-states-personalities.svg" class=""
                 alt="personalities">
     </div>
-<div class="flex justify-between items-center">
-  <div class="container flex flex-row w-full justify-around items-start  text-[#03045e]">
-    <div class="container-article">
-        <h1 class="border-t-4 border-indigo-500 font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600 py-9">
-            Your Personality Type Is {{personality.personalityId}}! </h1>
-        <div class="result-container w-auto  border-y-4 border-indigo-500 pt-2 pl-4">
-
-            <h1 class="font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600"> {{personality.personalityId}}
-            </h1>
-            <div class="personality-component  transition ease-in delay-150 my-9 cursor-pointer">
-                <h2
-                    class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600 border-b-4 border-indigo-500 inline-block w-1/6">
-                    {{personality.social.socialName}}
-                    </h2>
-                    <p class="my-4">{{personality.social.socialDetails}}</p>
+    <div class="container flex flex-row w-full justify-around items-start  text-[#03045e]">
+        <div class="container-article">
+            <h1 class="border-t-4 border-indigo-500 font-medium leading-tight text-5xl mt-0 mb-2 text-blue-600 py-9">
+                Please Proceed to the test first! </h1>
+                <img src="https://static.neris-assets.com/images/personality-types/avatars/intp-logician.svg" alt="">
+            <div class="w-full h-[200px] flex items-center justify-center">
+                <a href="/questions1"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-auto h-20 flex items-center justify-center underline-transparent">Do
+                    the test</a>
             </div>
-            <div class="personality-component  transition ease-in delay-150 my-9 cursor-pointer">
-                <h2
-                    class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600 border-b-4 border-indigo-500 inline-block w-1/6">
-                    {{personality.decisionMaking.decisionMakingName}}
-                </h2>
-                <p class="my-4">
-                    {{personality.decisionMaking.decisionMakingDetails}}
-                </p>
-            </div>
-            <div class="personality-component  transition ease-in delay-150 my-9 cursor-pointer">
-                <h2
-                    class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600 border-b-4 border-indigo-500 inline-block w-1/6">
-                    {{personality.interaction.interactionName}}
-                </h2>
-                <p class="my-4">
-                    {{personality.interaction.interactionDetails}}
-                </p>
-            </div>
-
-            <div class="personality-component  transition ease-in delay-150 my-9 cursor-pointer">
-                <h2
-                    class="font-medium leading-tight text-3xl mt-0 mb-2 text-blue-600 border-b-4 border-indigo-500 inline-block w-1/6">
-                    {{personality.processing.processingName}}
-                </h2>
-                <p class="my-4">
-                    {{personality.processing.processingDetails}}
-                </p>
-            </div>
-
         </div>
 
-        <div class="w-full h-[200px] flex items-center justify-center">
-            <a href="/questions1"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-auto h-20 flex items-center justify-center underline-transparent">Do
-                the test</a>
-        </div>
+
     </div>
-
-
-
-</div>
-<img src="{{personality.avatar}}" class="w-[500px] h-[500px] m-6" alt="">
-</div>
     <div class="share-buttons-container">
         <div class="share-list">
           <!-- FACEBOOK -->

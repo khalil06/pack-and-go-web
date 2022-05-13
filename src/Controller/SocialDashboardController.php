@@ -48,7 +48,7 @@ class SocialDashboardController extends AbstractController
                 } catch (\Throwable $th) {
                     echo $th->getMessage();
                 }
-                return $this->redirectToRoute('app_dashboard_table');
+                return $this->redirectToRoute('app_gestion_personnalite');
             }
             
         return $this->render('social_dashboard/index.html.twig', [

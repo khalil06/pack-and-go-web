@@ -60,6 +60,15 @@ class Personality
      * })
      */
     private $social;
+    /**
+     * @ORM\Column(name="avatar",type="string", length=255)
+     * 
+     */
+    private $avatar ;
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
 
     public function getPersonalityId(): ?string
     {

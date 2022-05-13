@@ -29,12 +29,22 @@ class YourPersonalityController extends AbstractController
                 
                 // look for a single person$personality by name
                 $personalityUser = $repository->findOneBy(['userId' => $this->getUser()->getId()]);
-                $personality = $repositoryPersonality->findOneBy(['personalityId' => $personalityUser->getPersonalityId()]);
+                if ( $personalityUser) {
+                    $personality = $repositoryPersonality->findOneBy(['personalityId' => $personalityUser->getPersonalityId()]);
+                    return $this->render('your_personality/index.html.twig', [
+                        'controller_name' => 'YourPersonalityController',
+                        'personality' => $personality,
+                        'user'=>$this->getUser()
+                    ]);
+                }
+                else{
+                    return $this->render('your_personality/not-registred.html.twig', [
+                        'controller_name' => 'YourPersonalityController',
+                        'user'=>$this->getUser()
+                    ]);
+                }
 
-        return $this->render('your_personality/index.html.twig', [
-            'controller_name' => 'YourPersonalityController',
-            'personality' => $personality,
-            'user'=>$this->getUser()
-        ]);
+
+
     }
 }
